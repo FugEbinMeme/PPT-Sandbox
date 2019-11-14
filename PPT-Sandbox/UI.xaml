@@ -10,7 +10,14 @@
     
     <StackPanel Margin="5 10">
         <TabControl Background="Transparent" Focusable="False">
-            <TabItem Background="#0A0A0A" Foreground="#DCDCDC" Header="Scripts">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                    <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="11" />
+                    <Setter Property="Controls:ControlsHelper.HeaderFontWeight" Value="Bold" />
+                </Style>
+            </TabControl.Resources>
+
+            <TabItem x:Name="Scripts">
                 <StackPanel Margin="10 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                     
@@ -52,7 +59,7 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Header="Garbage">
+            <TabItem x:Name="Garbage">
                 <StackPanel Margin="10 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                     
@@ -60,7 +67,7 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Header="Other">
+            <TabItem x:Name="Other">
                 <StackPanel Margin="10 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                     
