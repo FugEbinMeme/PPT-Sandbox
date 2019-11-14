@@ -43,6 +43,20 @@ namespace Sandbox {
 
                     Attack.Header = "ATTACK";
                         TetrisVsTetris.Header = "     Tetris vs Tetris";
+                            Attacks.Text = "Attacks";
+
+                            Single.Text = "Single";
+                            Double.Text = "Double";
+                            Triple.Text = "Triple";
+                            Tetris.Text = "Tetris";
+                            TetrisPlus.Text = "Tetris Plus";
+
+                            Clear.Text = "Clear";
+                            PerfectClear.Text = "Perfect Clear";
+                            TSpin.Text = "T-Spin";
+
+                            Combo.Text = "Combos";
+
                         TetrisVsPuyo.Header = "Tetris vs Puyo";
                         Puyo.Header = "Puyo";
 
