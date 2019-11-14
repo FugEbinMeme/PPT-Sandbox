@@ -166,7 +166,6 @@ namespace Sandbox {
 
         private void Secret(object sender, RoutedEventArgs e) {
             if (SecretGradeGarbage.IsChecked == true) {
-
                 Game.WriteByteArray(
                     new IntPtr(0x14009F480),
                     ConvertByteString("8A 1D 7A 3B 3C 00 80 3D 74 3B 3C 00 00 75 08 FF 05 6B 3B 3C 00 EB 06 FF 0D 63 3B 3C 00 80 3D 5D 3B 3C 00 00 75 10 80 3D 53 3B 3C 00 09 7C 27 C6 05 4B 3B 3C 00 01 80 3D 43 3B 3C 00 00 75 17 C6 05 3B 3B 3C 00 00 80 3D 33 3B 3C 00 0A 72 07 C6 05 2A 3B 3C 00 00 E9 85 3B 61 02")

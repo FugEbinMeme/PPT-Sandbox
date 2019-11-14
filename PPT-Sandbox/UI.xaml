@@ -9,7 +9,7 @@
                       Background="#0A0A0A" Foreground="#DCDCDC" GlowBrush="{DynamicResource AccentColorBrush}">
     
     <StackPanel Margin="5 10">
-        <TabControl Background="Transparent">
+        <TabControl Background="Transparent" Focusable="False">
             <TabItem Background="#0A0A0A" Foreground="#DCDCDC" Header="Scripts">
                 <StackPanel Margin="10 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
