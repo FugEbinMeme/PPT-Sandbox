@@ -68,9 +68,9 @@
 
                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="100" Unit="%" x:Name="CleanGarbage" />
 
-                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Unit="" FillStart="False" x:Name="GarbageFilled" />
+                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Default="9" Unit="" FillStart="False" x:Name="GarbageFilled" />
 
-                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Unit="" FillStart="False" x:Name="GarbageEmpty" />
+                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Default="8" Unit="" FillStart="False" x:Name="GarbageEmpty" />
 
                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                 </StackPanel>
