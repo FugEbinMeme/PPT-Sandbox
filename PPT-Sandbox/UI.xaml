@@ -1,0 +1,86 @@
+﻿<Controls:MetroWindow x:Class="Sandbox.UI"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:Sandbox="clr-namespace:Sandbox"
+                      TitleCharacterCasing="Normal" Title="PPT-Sandbox"
+                      WindowStartupLocation="CenterScreen"
+                      Width="500" SizeToContent="Height" BorderThickness="0" ResizeMode="NoResize"
+                      Background="#0A0A0A" Foreground="#DCDCDC" GlowBrush="{DynamicResource AccentColorBrush}">
+    
+    <StackPanel Margin="5 10">
+        <TabControl Background="Transparent">
+            <TabItem Background="#0A0A0A" Foreground="#DCDCDC" Header="Scripts">
+                <StackPanel Margin="10 5">
+                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                    
+                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="General" />
+
+                    <CheckBox Margin="0 0 0 5" x:Name="PentominoVersus" />
+
+                    <CheckBox Margin="0 0 0 5" x:Name="RemoveLineClearDelay" />
+
+                    <CheckBox Margin="0 0 0 5" x:Name="InfiniteHold" />
+
+                    <CheckBox Margin="0 0 0 5" x:Name="SecretGradeGarbage" />
+
+                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="AutoLocking" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="RemoveAutoLock" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="TGMAutoLock" />
+
+                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TetrisB2B" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BDouble" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BAdd2" />
+
+                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinB2B" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BDouble" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BAdd2" />
+
+                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Garbage">
+                <StackPanel Margin="10 5">
+                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                    
+                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Other">
+                <StackPanel Margin="10 5">
+                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                    
+                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="GarbageGeneration" />
+
+                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="100" Unit="%" x:Name="CleanGarbage" />
+
+                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Unit="" FillStart="False" x:Name="GarbageFilled" />
+
+                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Unit="" FillStart="False" x:Name="GarbageEmpty" />
+
+                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Margin="5 0 5 1" Foreground="#707070" x:Name="Version" />
+
+            <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+        </StackPanel>
+    </StackPanel>
+</Controls:MetroWindow>
