@@ -17,49 +17,49 @@
                 </Style>
             </TabControl.Resources>
 
-            <TabItem x:Name="Scripts">
+            <TabItem x:Name="ScriptsHeader">
                 <StackPanel Margin="5 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                     
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="General" />
 
-                    <CheckBox Margin="0 0 0 5" x:Name="PentominoVersus" Click="Pento" />
+                    <CheckBox Margin="0 0 0 5" x:Name="PentominoVersus" Click="CheckBoxHandle" />
 
-                    <CheckBox Margin="0 0 0 5" x:Name="RemoveLineClearDelay" Click="LineDelay" />
+                    <CheckBox Margin="0 0 0 5" x:Name="RemoveLineClearDelay" Click="CheckBoxHandle" />
 
-                    <CheckBox Margin="0 0 0 5" x:Name="UndoHold" Click="Hold" />
+                    <CheckBox Margin="0 0 0 5" x:Name="UndoHold" Click="CheckBoxHandle" />
 
-                    <CheckBox Margin="0 0 0 5" x:Name="SecretGradeGarbage" Click="Secret" />
+                    <CheckBox Margin="0 0 0 5" x:Name="SecretGradeGarbage" Click="CheckBoxHandle" />
 
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="AutoLocking" />
 
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="RemoveAutoLock" Click="Lock" />
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="RemoveAutoLock" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="TGMAutoLock" Click="TGMLock" />
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="TGMAutoLock" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TetrisB2B" />
 
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BDouble" />
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BDouble" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BAdd2" />
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinB2B" />
 
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BDouble" />
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BDouble" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BAdd2" />
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                 </StackPanel>
             </TabItem>
 
-            <TabItem x:Name="Attack">
+            <TabItem x:Name="AttackHeader">
                 <StackPanel Margin="10 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
@@ -176,7 +176,7 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem x:Name="Garbage">
+            <TabItem x:Name="GarbageHeader">
                 <StackPanel Margin="10 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                     
