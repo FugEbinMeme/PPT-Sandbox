@@ -209,5 +209,30 @@ namespace Sandbox {
                 );
             }
         }
+
+        private void Lock(object sender, RoutedEventArgs e) {
+            //call TGM to disable
+            Game.WriteByte(
+                new IntPtr(0x142853B33),
+                Convert.ToByte( ) //0 on enable, 1 on disable of script
+            );
+        }
+
+        private void TGMLock(object sender, RoutedEventArgs e) {
+            //Lock to disable
+
+
+            byte[] write = (UndoHold.IsChecked == true)
+                ? new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 } //enable
+                : new byte[] { 0x66, 0x41, 0x89, 0x86, 0x10, 0x01, 0x00, 0x00 };//disable
+            
+            Game.WriteByteArray(
+                new IntPtr(0x1400A76CF), write
+            );
+
+            Game.WriteByteArray(
+                new IntPtr(0x1400A6EE0), write
+            );
+        }
     }
 }
