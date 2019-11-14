@@ -16,13 +16,13 @@
                     
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="General" />
 
-                    <CheckBox Margin="0 0 0 5" x:Name="PentominoVersus" />
+                    <CheckBox Margin="0 0 0 5" x:Name="PentominoVersus" Click="Pento" />
 
-                    <CheckBox Margin="0 0 0 5" x:Name="RemoveLineClearDelay" />
+                    <CheckBox Margin="0 0 0 5" x:Name="RemoveLineClearDelay" Click="LineDelay" />
 
-                    <CheckBox Margin="0 0 0 5" x:Name="InfiniteHold" />
+                    <CheckBox Margin="0 0 0 5" x:Name="UndoHold" Click="Hold" />
 
-                    <CheckBox Margin="0 0 0 5" x:Name="SecretGradeGarbage" />
+                    <CheckBox Margin="0 0 0 5" x:Name="SecretGradeGarbage" Click="Secret" />
 
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
