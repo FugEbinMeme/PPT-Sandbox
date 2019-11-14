@@ -41,9 +41,12 @@ namespace Sandbox {
                             TspinB2BDouble.Content = "T-Spin B2B doubles attack";
                             TspinB2BAdd2.Content = "T-Spin B2B adds 2 attack";
 
-                    Garbage.Header = "GARBAGE";
+                    Attack.Header = "ATTACK";
+                        TetrisVsTetris.Header = "     Tetris vs Tetris";
+                        TetrisVsPuyo.Header = "Tetris vs Puyo";
+                        Puyo.Header = "Puyo";
 
-                    Other.Header = "OTHER";
+                    Garbage.Header = "GARBAGE";
                         GarbageGeneration.Text = "Garbage Generation";
                             CleanGarbage.Title = "Clean Garbage Chance";
                             GarbageFilled.Title = "Filled Garbage Tile";

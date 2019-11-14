@@ -18,7 +18,7 @@
             </TabControl.Resources>
 
             <TabItem x:Name="Scripts">
-                <StackPanel Margin="10 5">
+                <StackPanel Margin="5 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                     
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="General" />
@@ -59,15 +59,53 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem x:Name="Garbage">
+            <TabItem x:Name="Attack">
                 <StackPanel Margin="10 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                    <TabControl Margin="0 0 0 5" Background="Transparent" Focusable="False">
+                        <TabControl.Resources>
+                            <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                                <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="12" />
+                            </Style>
+                        </TabControl.Resources>
+
+                        <TabItem x:Name="TetrisVsTetris">
+                            <StackPanel Margin="10 5">
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="a" />
+
+                                <CheckBox x:Name="bvvbn" />
+                            </StackPanel>
+                        </TabItem>
+
+                        <TabItem x:Name="TetrisVsPuyo">
+                            <StackPanel Margin="10 5">
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="b" />
+
+                                <CheckBox x:Name="bvvbnb" />
+                            </StackPanel>
+                        </TabItem>
+
+                        <TabItem x:Name="Puyo">
+                            <StackPanel Margin="10 5">
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="c" />
+
+                                <CheckBox x:Name="bvvbnc" />
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
                     
                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                 </StackPanel>
             </TabItem>
 
-            <TabItem x:Name="Other">
+            <TabItem x:Name="Garbage">
                 <StackPanel Margin="10 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                     
