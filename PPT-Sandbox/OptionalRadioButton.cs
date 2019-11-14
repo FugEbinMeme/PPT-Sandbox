@@ -1,14 +1,20 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Sandbox {
     public class OptionalRadioButton: RadioButton {
+        static Dictionary<string, OptionalRadioButton> groupSelects = new Dictionary<string, OptionalRadioButton>();
+
+        public static OptionalRadioButton GetSelected(string groupName) =>
+            groupSelects.ContainsKey(groupName)? groupSelects[groupName] : null;
+
         public static DependencyProperty IsOptionalProperty =
             DependencyProperty.Register(
                 "IsOptional",
                 typeof(bool),
                 typeof(OptionalRadioButton),
-                new PropertyMetadata((bool)true,
+                new PropertyMetadata(true,
                     (obj, args) => {
                         ((OptionalRadioButton)obj).OnIsOptionalChanged(args);
                     }));
@@ -25,8 +31,13 @@ namespace Sandbox {
         protected override void OnClick() {
             bool? wasChecked = IsChecked;
             base.OnClick();
-            if (IsOptional && wasChecked == true)
+            if (IsOptional && wasChecked == true) {
                 IsChecked = false;
+                groupSelects[GroupName] = null;
+            }
+
+            if (IsChecked == true)
+                groupSelects[GroupName] = this;
         }
 
         public OptionalRadioButton() =>
