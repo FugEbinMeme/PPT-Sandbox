@@ -29,10 +29,12 @@ namespace Sandbox {
                             RemoveLineClearDelay.Content = "Remove Line Clear Delay";
                             UndoHold.Content = "Undo Hold";
                             SecretGradeGarbage.Content = "Secret Grade Garbage";
+                            GarbageBlocking.Content = "Garbage Blocking";
+                            UnCappedPC.Content = "Remove Perfect Clear Damage Cap";
 
                         AutoLocking.Text = "Piece Auto-Locking";
                             RemoveAutoLock.Content = "Disable Auto-Locking";
-                            TGMAutoLock.Content = "TGM Auto-Locking";
+                            TGMAutoLock.Content = "Arika Style Auto-Locking";
 
                         TetrisB2B.Text = "Back-to-Back Tetris";
                             TetrisB2BDouble.Content = "Tetris B2B doubles attack";
@@ -41,6 +43,10 @@ namespace Sandbox {
                         TspinB2B.Text = "Back-to-Back T-Spin";
                             TspinB2BDouble.Content = "T-Spin B2B doubles attack";
                             TspinB2BAdd2.Content = "T-Spin B2B adds 2 attack";
+
+                        RotationSystems.Text = "Rotation System";
+                            Ascension.Content = "Ascension";
+                            Cultris2.Content = "Cultris II";
 
                     AttackHeader.Header = "ATTACK";
                         TetrisVsTetris.Header = "     Tetris vs Tetris";
@@ -89,9 +95,9 @@ namespace Sandbox {
                             ConvertByteString("FF FF FF FF FF FF FF FF")
                         );
                         Game.WriteByte(addr + 0x380, 5);    //T
-                        Game.WriteInt32(addr + 0x3A8, 2);   
+                        Game.WriteInt32(addr + 0x3A8, 2);
                         Game.WriteByte(addr + 0x460, 5);    //O
-                        Game.WriteInt32(addr + 0x484, -1);  
+                        Game.WriteInt32(addr + 0x484, -1);
                         Game.WriteByte(addr + 0x540, 5);    //I
                         Game.WriteInt32(addr + 0x564, -2);
 
@@ -113,8 +119,8 @@ namespace Sandbox {
                 },
                 {UndoHold, x => {
                     byte[] write = x
-                        ? new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }
-                        : new byte[] { 0xFF, 0x83, 0x48, 0x01, 0x00, 0x00 };
+                        ? new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 } //enable
+                        : new byte[] { 0xFF, 0x83, 0x48, 0x01, 0x00, 0x00 };//disable
 
                     Game.WriteByteArray(new IntPtr(0x142852508), write);
                     Game.WriteByteArray(new IntPtr(0x14285252F), write);
@@ -134,19 +140,113 @@ namespace Sandbox {
                             : ConvertByteString("E9 AB 79 91 01")
                     );
                 }},
-                {RemoveAutoLock, x => 
+                {GarbageBlocking, x => {
+                    byte[] write = x
+                        ? new byte[] { 0x90, 0x90 }
+                        : new byte[] { 0x75, 0x0F };
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400A26D1), write
+                    );
+                }},
+                {UnCappedPC, x => {
+                    byte[] write = x
+                        ? new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }
+                        : new byte[] { 0x0F, 0x85, 0x8A, 0x00, 0x00, 0x00 };
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x1427E4539), write
+                    );
+                }},
+                {RemoveAutoLock, x =>
                     Game.WriteByte(
                         new IntPtr(0x142853B33),
-                        Convert.ToByte(!x) //0 on enable, 1 on disable of script
+                        Convert.ToByte(!x)
                     )
                 },
                 {TGMAutoLock, x => {
                     byte[] write = x
-                        ? new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 } //enable
-                        : new byte[] { 0x66, 0x41, 0x89, 0x86, 0x10, 0x01, 0x00, 0x00 };//disable
-            
+                        ? new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }
+                        : new byte[] { 0x66, 0x41, 0x89, 0x86, 0x10, 0x01, 0x00, 0x00 };
+
                     Game.WriteByteArray(new IntPtr(0x1400A76CF), write);
                     Game.WriteByteArray(new IntPtr(0x1400A6EE0), write);
+                }},
+                {TetrisB2BDouble, x => {
+                    byte[] write = x
+                        ? new byte[] { 0x45, 0x84, 0xDB, 0x75, 0x05, 0x01, 0xC8, 0x90, 0x90, 0x90 }
+                        : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 };
+
+                    Game.WriteByteArray(new IntPtr(0x14271DF3F), write);
+                }},
+                {TetrisB2BAdd2, x => {
+                    byte[] write = x
+                        ? new byte[] { 0x45, 0x84, 0xDB, 0x74, 0x05, 0xFF, 0xC0, 0xFF, 0xC0, 0x90 }
+                        : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 };
+
+                    Game.WriteByteArray(new IntPtr(0x14271DF3F), write);
+                }},
+                {TspinB2BDouble, x => {
+                    byte[] write = x
+                        ? new byte[] { 0x45, 0x84, 0xDB, 0x75, 0x05, 0x01, 0xC8, 0x90, 0x90, 0x90 }
+                        : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 };
+
+                    Game.WriteByteArray(new IntPtr(0x14271DF74), write);
+                }},
+                {TspinB2BAdd2, x => {
+                    byte[] write = x
+                        ? new byte[] { 0x45, 0x84, 0xDB, 0x74, 0x05, 0xFF, 0xC0, 0xFF, 0xC0, 0x90 }
+                        : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 };
+
+                    Game.WriteByteArray(new IntPtr(0x14271DF74), write);
+                }},
+                {Ascension, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1426CCE8E),
+                        x
+                            ? ConvertByteString("E9 17 51 93 FD 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90")
+                            : ConvertByteString("44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C")
+                        );
+                    Game.WriteByte(new IntPtr(0x1426CCEBE),
+                        (byte)(x
+                            ? 0x16
+                            : 0x05)
+                    );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140001FAA),
+                            ConvertByteString("48 8B D3 48 B9 00 20 46 40 01 00 00 00 44 0F BE 34 51 44 0F BE 7C 51 01 83 7C 24 58 01 0F 84 D5 AE 6C 02 41 F7 DE E9 CD AE 6C 02")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x140462000),
+                            ConvertByteString("00 00 FF 00 00 FF FF FF 00 FE FF FE FE 00 FE FF FE FF 01 00 01 FF 00 01 FF 01 FE 01 01 FE 02 00 00 02 FF 02 FE 02 02 FF 02 FE 01 01")
+                        );
+                    }
+                }},
+                {Cultris2, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1426CCE8E),
+                        x
+                            ? ConvertByteString("E9 17 51 93 FD 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90")
+                            : ConvertByteString("44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C")
+                        );
+                    Game.WriteByte(new IntPtr(0x1426CCEBE),
+                        (byte)(x
+                            ? 0x08
+                            : 0x05)
+                    );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140001FAA),
+                            ConvertByteString("48 8B D3 48 B9 00 20 46 40 01 00 00 00 44 0F BE 34 51 44 0F BE 7C 51 01 83 7C 24 58 01 0F 84 D5 AE 6C 02 41 F7 DE E9 CD AE 6C 02")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x140462000),
+                            ConvertByteString("00 00 FF 00 01 00 00 FF FF FF 01 FF FE 00 02 00 00 00")
+                        );
+                    }
                 }}
             };
         }
