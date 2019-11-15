@@ -140,24 +140,22 @@ namespace Sandbox {
                             : ConvertByteString("E9 AB 79 91 01")
                     );
                 }},
-                {GarbageBlocking, x => {
-                    byte[] write = x
-                        ? new byte[] { 0x90, 0x90 }
-                        : new byte[] { 0x75, 0x0F };
-
+                {GarbageBlocking, x =>
                     Game.WriteByteArray(
-                        new IntPtr(0x1400A26D1), write
-                    );
-                }},
-                {UnCappedPC, x => {
-                    byte[] write = x
-                        ? new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }
-                        : new byte[] { 0x0F, 0x85, 0x8A, 0x00, 0x00, 0x00 };
-
+                        new IntPtr(0x1400A26D1),
+                        x
+                            ? new byte[] { 0x90, 0x90 }
+                            : new byte[] { 0x75, 0x0F }
+                    )
+                },
+                {UnCappedPC, x =>
                     Game.WriteByteArray(
-                        new IntPtr(0x1427E4539), write
-                    );
-                }},
+                        new IntPtr(0x1427E4539),
+                        x
+                            ? new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }
+                            : new byte[] { 0x0F, 0x85, 0x8A, 0x00, 0x00, 0x00 }
+                    )
+                },
                 {RemoveAutoLock, x =>
                     Game.WriteByte(
                         new IntPtr(0x142853B33),
@@ -172,34 +170,38 @@ namespace Sandbox {
                     Game.WriteByteArray(new IntPtr(0x1400A76CF), write);
                     Game.WriteByteArray(new IntPtr(0x1400A6EE0), write);
                 }},
-                {TetrisB2BDouble, x => {
-                    byte[] write = x
-                        ? new byte[] { 0x45, 0x84, 0xDB, 0x75, 0x05, 0x01, 0xC8, 0x90, 0x90, 0x90 }
-                        : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 };
-
-                    Game.WriteByteArray(new IntPtr(0x14271DF3F), write);
-                }},
-                {TetrisB2BAdd2, x => {
-                    byte[] write = x
-                        ? new byte[] { 0x45, 0x84, 0xDB, 0x74, 0x05, 0xFF, 0xC0, 0xFF, 0xC0, 0x90 }
-                        : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 };
-
-                    Game.WriteByteArray(new IntPtr(0x14271DF3F), write);
-                }},
-                {TspinB2BDouble, x => {
-                    byte[] write = x
-                        ? new byte[] { 0x45, 0x84, 0xDB, 0x75, 0x05, 0x01, 0xC8, 0x90, 0x90, 0x90 }
-                        : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 };
-
-                    Game.WriteByteArray(new IntPtr(0x14271DF74), write);
-                }},
-                {TspinB2BAdd2, x => {
-                    byte[] write = x
-                        ? new byte[] { 0x45, 0x84, 0xDB, 0x74, 0x05, 0xFF, 0xC0, 0xFF, 0xC0, 0x90 }
-                        : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 };
-
-                    Game.WriteByteArray(new IntPtr(0x14271DF74), write);
-                }},
+                {TetrisB2BDouble, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x14271DF3F),
+                        x
+                            ? new byte[] { 0x45, 0x84, 0xDB, 0x75, 0x05, 0x01, 0xC8, 0x90, 0x90, 0x90 }
+                            : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 }
+                    )
+                },
+                {TetrisB2BAdd2, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x14271DF3F),
+                        x
+                            ? new byte[] { 0x45, 0x84, 0xDB, 0x74, 0x05, 0xFF, 0xC0, 0xFF, 0xC0, 0x90 }
+                            : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 }
+                    )
+                },
+                {TspinB2BDouble, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x14271DF74),
+                        x
+                            ? new byte[] { 0x45, 0x84, 0xDB, 0x75, 0x05, 0x01, 0xC8, 0x90, 0x90, 0x90 }
+                            : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 }
+                    )
+                },
+                {TspinB2BAdd2, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x14271DF74),
+                        x
+                            ? new byte[] { 0x45, 0x84, 0xDB, 0x74, 0x05, 0xFF, 0xC0, 0xFF, 0xC0, 0x90 }
+                            : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 }
+                    )
+                },
                 {Ascension, x => {
                     Game.WriteByteArray(
                         new IntPtr(0x1426CCE8E),
@@ -207,7 +209,8 @@ namespace Sandbox {
                             ? ConvertByteString("E9 17 51 93 FD 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90")
                             : ConvertByteString("44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C")
                         );
-                    Game.WriteByte(new IntPtr(0x1426CCEBE),
+                    Game.WriteByte(
+                        new IntPtr(0x1426CCEBE),
                         (byte)(x
                             ? 0x16
                             : 0x05)
@@ -231,7 +234,8 @@ namespace Sandbox {
                             ? ConvertByteString("E9 17 51 93 FD 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90")
                             : ConvertByteString("44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C")
                         );
-                    Game.WriteByte(new IntPtr(0x1426CCEBE),
+                    Game.WriteByte(
+                        new IntPtr(0x1426CCEBE),
                         (byte)(x
                             ? 0x08
                             : 0x05)
