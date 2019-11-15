@@ -10,6 +10,7 @@ using System.Windows.Controls;
 namespace Sandbox {
     public partial class UI {
         private ProcessMemory Game = new ProcessMemory("puyopuyotetris", false);
+
         public UI() {
             InitializeComponent();
 
@@ -79,36 +80,30 @@ namespace Sandbox {
                 {PentominoVersus, x => {
                     IntPtr addr = (IntPtr)Game.ReadUInt64(new IntPtr(0x140463F20));
 
+                    byte minoCount = (byte)(Convert.ToByte(x) + 4);
+
+                    Game.WriteByte(addr, minoCount);            //S
+                    Game.WriteByte(addr + 0xE0, minoCount);     //Z
+                    Game.WriteByte(addr + 0x1C0, minoCount);    //J
+                    Game.WriteByte(addr + 0x2A0, minoCount);    //L
+                    Game.WriteByte(addr + 0x380, minoCount);    //T
+                    Game.WriteByte(addr + 0x460, minoCount);    //O
+                    Game.WriteByte(addr + 0x540, minoCount);    //I
+
                     if (x) {
-                        Game.WriteByte(addr, 5);            //S
                         Game.WriteInt32(addr + 0x24, -2);
-                        Game.WriteByte(addr + 0xE0, 5);     //Z
                         Game.WriteByteArray(
                             addr + 0x104,
                             ConvertByteString("01 00 00 00 FF FF FF FF")
                         );
-                        Game.WriteByte(addr + 0x1C0, 5);    //J
                         Game.WriteInt32(addr + 0x1E8, -1);
-                        Game.WriteByte(addr + 0x2A0, 5);    //L
                         Game.WriteByteArray(
                             addr + 0x2C4,
                             ConvertByteString("FF FF FF FF FF FF FF FF")
                         );
-                        Game.WriteByte(addr + 0x380, 5);    //T
                         Game.WriteInt32(addr + 0x3A8, 2);
-                        Game.WriteByte(addr + 0x460, 5);    //O
                         Game.WriteInt32(addr + 0x484, -1);
-                        Game.WriteByte(addr + 0x540, 5);    //I
                         Game.WriteInt32(addr + 0x564, -2);
-
-                    } else {
-                        Game.WriteByte(addr, 4);          //S
-                        Game.WriteByte(addr + 0xE0, 4);   //Z
-                        Game.WriteByte(addr + 0x1C0, 4);  //J
-                        Game.WriteByte(addr + 0x2A0, 4);  //L
-                        Game.WriteByte(addr + 0x380, 4);  //T
-                        Game.WriteByte(addr + 0x460, 4);  //O
-                        Game.WriteByte(addr + 0x540, 4);  //I
                     }
                 }},
                 {RemoveLineClearDelay, x =>
