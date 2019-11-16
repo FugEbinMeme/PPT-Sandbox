@@ -239,7 +239,7 @@ namespace Sandbox {
                     if (x) {
                         Game.WriteByteArray(
                             new IntPtr(0x140001FAA),
-                            ConvertByteString("48 8B D3 48 B9 00 20 46 40 01 00 00 00 44 0F BE 34 51 44 0F BE 7C 51 01 83 7C 24 58 01 0F 84 D5 AE 6C 02 41 F7 DE E9 CD AE 6C 02")
+                            ConvertByteString("48 8B D3 48 B9 00 20 46 40 01 00 00 00 44 0F BE 34 51 44 0F BE 7C 51 01 E9 DB AE 6C 02")
                         );
                         Game.WriteByteArray(
                             new IntPtr(0x140462000),
