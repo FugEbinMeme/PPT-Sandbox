@@ -67,7 +67,7 @@
 
                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="RotationSystems" />
 
