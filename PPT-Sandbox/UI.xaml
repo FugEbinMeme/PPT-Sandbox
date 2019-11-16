@@ -128,6 +128,8 @@
                                     <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="6" Unit="" />
                                 </UniformGrid>
 
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
                                 <UniformGrid Rows="5" Columns="6" Margin="0 0 0 5" Height="125">
                                     <UniformGrid.Resources>
                                         <Style TargetType="{x:Type TextBlock}">
@@ -175,9 +177,83 @@
                             <StackPanel Margin="10 5 10 0">
                                 <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                                <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="b" />
+                                <UniformGrid Rows="4" Columns="6" Margin="0 0 0 5" Height="100">
+                                    <UniformGrid.Resources>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                    </UniformGrid.Resources>
 
-                                <CheckBox x:Name="bvvbnb" />
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Foreground="#707070" x:Name="TvPAttacks" />
+                                    <TextBlock HorizontalAlignment="Center" x:Name="TvPSingle" />
+                                    <TextBlock HorizontalAlignment="Center" x:Name="TvPDouble" />
+                                    <TextBlock HorizontalAlignment="Center" x:Name="TvPTriple" />
+                                    <TextBlock HorizontalAlignment="Center" x:Name="TvPTetris" />
+                                    <TextBlock HorizontalAlignment="Center" x:Name="TvPTetrisPlus" />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" x:Name="TvPClear" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="0" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="4" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="5" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="6" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="8" Unit="" />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" x:Name="TvPPerfectClear" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="13" Unit="" />
+                                    <TextBlock />
+                                    <TextBlock />
+                                    <TextBlock />
+                                    <TextBlock />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" x:Name="TvPTSpin" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="2" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="3" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="4" Unit="" />
+                                </UniformGrid>
+
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                <UniformGrid Rows="5" Columns="6" Margin="0 0 0 5" Height="125">
+                                    <UniformGrid.Resources>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                    </UniformGrid.Resources>
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Foreground="#707070" x:Name="TvPCombo" />
+                                    <TextBlock HorizontalAlignment="Center" Text="+1" />
+                                    <TextBlock HorizontalAlignment="Center" Text="+2" />
+                                    <TextBlock HorizontalAlignment="Center" Text="+3" />
+                                    <TextBlock HorizontalAlignment="Center" Text="+4" />
+                                    <TextBlock HorizontalAlignment="Center" Text="+5" />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="0" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="0" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="1" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="1" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="1" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="1" Unit="" />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="5" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="1" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="2" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="2" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="2" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="2" Unit="" />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="10" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="3" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="3" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="3" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="3" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="3" Unit="" />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="15" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="4" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="4" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="4" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="4" Unit="" />
+                                </UniformGrid>
                             </StackPanel>
                         </TabItem>
 
@@ -185,9 +261,60 @@
                             <StackPanel Margin="10 5 10 0">
                                 <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                                <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="c" />
+                                <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="200" Default="70" Unit="" x:Name="GarbageRate" />
 
-                                <CheckBox x:Name="bvvbnc" />
+                                <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="200" Default="30" Exponent="1.5" Unit="" x:Name="AllClearMultiplier" />
+
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                <UniformGrid Rows="6" Columns="6" Margin="0 0 0 5" Height="150">
+                                    <UniformGrid.Resources>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                    </UniformGrid.Resources>
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Foreground="#707070" x:Name="Chain" />
+                                    <TextBlock HorizontalAlignment="Center" Text="+1" />
+                                    <TextBlock HorizontalAlignment="Center" Text="+2" />
+                                    <TextBlock HorizontalAlignment="Center" Text="+3" />
+                                    <TextBlock HorizontalAlignment="Center" Text="+4" />
+                                    <TextBlock HorizontalAlignment="Center" Text="+5" />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="0" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="0" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="8" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="16" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="32" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="64" Unit="" />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="5" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="96" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="128" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="160" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="192" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="224" Unit="" />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="10" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="256" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="288" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="320" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="352" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="384" Unit="" />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="15" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="416" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="448" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="480" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="512" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="544" Unit="" />
+
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="20" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="576" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="608" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="640" Unit="" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="672" Unit="" />
+                                </UniformGrid>
                             </StackPanel>
                         </TabItem>
                     </TabControl>

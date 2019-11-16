@@ -70,7 +70,25 @@ namespace Sandbox {
                             Combo.Text = "Combos";
 
                         TetrisVsPuyo.Header = "Tetris vs Puyo";
+                            TvPAttacks.Text = "Attacks";
+
+                            TvPSingle.Text = "Single";
+                            TvPDouble.Text = "Double";
+                            TvPTriple.Text = "Triple";
+                            TvPTetris.Text = "Tetris";
+                            TvPTetrisPlus.Text = "Tetris Plus";
+
+                            TvPClear.Text = "Clear";
+                            TvPPerfectClear.Text = "Perfect Clear";
+                            TvPTSpin.Text = "T-Spin";
+
+                            TvPCombo.Text = "Combos";
+
                         Puyo.Header = "Puyo";
+                            GarbageRate.Title = "Garbage Rate";
+                            AllClearMultiplier.Title = "All Clear Multiplier";
+
+                            Chain.Text = "Chain";
 
                     GarbageHeader.Header = "GARBAGE";
                         GarbageGeneration.Text = "Garbage Generation";
