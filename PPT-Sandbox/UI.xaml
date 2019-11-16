@@ -35,6 +35,10 @@
 
                     <CheckBox Margin="0 0 0 5" x:Name="UnCappedPC" Click="CheckBoxHandle" />
 
+                    <CheckBox Margin="0 0 0 5" x:Name="DoubleRotate" Click="CheckBoxHandle" />
+
+                    <CheckBox Margin="0 0 0 5" x:Name="FreezeSwap" Click="CheckBoxHandle" />
+
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="AutoLocking" />
@@ -51,6 +55,8 @@
 
                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinB2B" />
@@ -58,6 +64,8 @@
                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BDouble" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 

@@ -32,6 +32,8 @@ namespace Sandbox {
                             SecretGradeGarbage.Content = "Secret Grade Garbage";
                             GarbageBlocking.Content = "Garbage Blocking";
                             UnCappedPC.Content = "Remove Perfect Clear Damage Cap";
+                            DoubleRotate.Content = "180 Rotations";
+                            FreezeSwap.Content = "Freeze Swap Timer";
 
                         AutoLocking.Text = "Piece Auto-Locking";
                             RemoveAutoLock.Content = "Disable Auto-Locking";
@@ -40,10 +42,12 @@ namespace Sandbox {
                         TetrisB2B.Text = "Back-to-Back Tetris";
                             TetrisB2BDouble.Content = "Tetris B2B doubles attack";
                             TetrisB2BAdd2.Content = "Tetris B2B adds 2 attack";
+                            TetrisB2BCum.Content = "Tetris B2B stacks";
 
                         TspinB2B.Text = "Back-to-Back T-Spin";
                             TspinB2BDouble.Content = "T-Spin B2B doubles attack";
                             TspinB2BAdd2.Content = "T-Spin B2B adds 2 attack";
+                            TspinB2BCum.Content = "T-Spin B2B stacks";
 
                         RotationSystems.Text = "Rotation System";
                             Ascension.Content = "Ascension";
@@ -244,6 +248,65 @@ namespace Sandbox {
                         Game.WriteByteArray(
                             new IntPtr(0x140462000),
                             ConvertByteString("00 00 FF 00 01 00 00 FF FF FF 01 FF FE 00 02 00 00 00")
+                        );
+                    }
+                }},
+                {DoubleRotate, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400A6D53),
+                        x
+                            ? ConvertByteString("E9 52 FF FF FF 90")
+                            : ConvertByteString("A8 10 74 02 FF CF")
+                        );
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400A6CAA),
+                            ConvertByteString("57 40 8A BB 5C 01 00 00 40 80 E7 30 83 FF 30 5F 75 25 A8 30 74 21 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 0A BF 02 00 00 00 E9 7F 00 00 00 BF FE FF FF FF EB 78 A8 10 74 74 FF CF EB 70")
+                        );
+                    }
+                }},
+                {FreezeSwap, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400433A5),
+                        x
+                            ? ConvertByteString("E8 F6 FE FF FF 90")
+                            : ConvertByteString("89 83 24 04 00 00")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400432A0),
+                            ConvertByteString("89 83 24 04 00 00 51 48 31 C9 48 8B 0D 07 DF 41 00 FF 81 A4 00 00 00 59 C3")
+                        );
+                    }
+                }},
+                {TetrisB2BCum, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x14271DF44),
+                        x
+                            ? ConvertByteString("E8 F7 BA 99 FD")
+                            : ConvertByteString("0F 95 D1 01 C8")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400B9A40),
+                            ConvertByteString("74 0C 8A 8E F3 03 00 00 D0 F9 FE C1 01 C8 C3")
+                        );
+                    }
+                }},
+                {TspinB2BCum, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x14271DF79),
+                        x
+                            ? ConvertByteString("E8 C2 BA 99 FD")
+                            : ConvertByteString("0F 95 D1 01 C8")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400B9A40),
+                            ConvertByteString("74 0C 8A 8E F3 03 00 00 D0 F9 FE C1 01 C8 C3")
                         );
                     }
                 }}
