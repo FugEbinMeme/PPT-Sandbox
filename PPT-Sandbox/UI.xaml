@@ -18,7 +18,7 @@
             </TabControl.Resources>
 
             <TabItem x:Name="ScriptsHeader">
-                <StackPanel Margin="5 5">
+                <StackPanel Margin="10 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                     
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="General" />
@@ -28,12 +28,6 @@
                     <CheckBox Margin="0 0 0 5" x:Name="RemoveLineClearDelay" Click="CheckBoxHandle" />
 
                     <CheckBox Margin="0 0 0 5" x:Name="UndoHold" Click="CheckBoxHandle" />
-
-                    <CheckBox Margin="0 0 0 5" x:Name="SecretGradeGarbage" Click="CheckBoxHandle" />
-
-                    <CheckBox Margin="0 0 0 5" x:Name="GarbageBlocking" Click="CheckBoxHandle" />
-
-                    <CheckBox Margin="0 0 0 5" x:Name="UnCappedPC" Click="CheckBoxHandle" />
 
                     <CheckBox Margin="0 0 0 5" x:Name="DoubleRotate" Click="CheckBoxHandle" />
 
@@ -46,26 +40,6 @@
                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="RemoveAutoLock" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="TGMAutoLock" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
-                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TetrisB2B" />
-
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BDouble" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
-                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinB2B" />
-
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BDouble" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
@@ -336,6 +310,36 @@
                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Default="8" Unit="" FillStart="False" x:Name="GarbageEmpty" />
 
                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="GarbageModification" />
+
+                    <CheckBox Margin="0 0 0 5" x:Name="SecretGradeGarbage" Click="CheckBoxHandle" />
+
+                    <CheckBox Margin="0 0 0 5" x:Name="GarbageBlocking" Click="CheckBoxHandle" />
+
+                    <CheckBox Margin="0 0 0 5" x:Name="UnCappedPC" Click="CheckBoxHandle" />
+
+                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TetrisB2B" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BDouble" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinB2B" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BDouble" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                 </StackPanel>
             </TabItem>
         </TabControl>

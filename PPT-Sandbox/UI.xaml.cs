@@ -29,25 +29,12 @@ namespace Sandbox {
                             PentominoVersus.Content = "Pentomino Versus";
                             RemoveLineClearDelay.Content = "Remove Line Clear Delay";
                             UndoHold.Content = "Undo Hold";
-                            SecretGradeGarbage.Content = "Secret Grade Garbage";
-                            GarbageBlocking.Content = "Garbage Blocking";
-                            UnCappedPC.Content = "Remove Perfect Clear Damage Cap";
                             DoubleRotate.Content = "180 Rotations";
                             FreezeSwap.Content = "Freeze Swap Timer";
 
                         AutoLocking.Text = "Piece Auto-Locking";
                             RemoveAutoLock.Content = "Disable Auto-Locking";
                             TGMAutoLock.Content = "Arika Style Auto-Locking";
-
-                        TetrisB2B.Text = "Back-to-Back Tetris";
-                            TetrisB2BDouble.Content = "Tetris B2B doubles attack";
-                            TetrisB2BAdd2.Content = "Tetris B2B adds 2 attack";
-                            TetrisB2BCum.Content = "Tetris B2B stacks";
-
-                        TspinB2B.Text = "Back-to-Back T-Spin";
-                            TspinB2BDouble.Content = "T-Spin B2B doubles attack";
-                            TspinB2BAdd2.Content = "T-Spin B2B adds 2 attack";
-                            TspinB2BCum.Content = "T-Spin B2B stacks";
 
                         RotationSystems.Text = "Rotation System";
                             Ascension.Content = "Ascension";
@@ -95,6 +82,21 @@ namespace Sandbox {
                             CleanGarbage.Title = "Clean Garbage Chance";
                             GarbageFilled.Title = "Filled Garbage Tile";
                             GarbageEmpty.Title = "Empty Garbage Tile";
+
+                        GarbageModification.Text = "Garbage Modification";
+                            SecretGradeGarbage.Content = "Secret Grade Garbage";
+                            GarbageBlocking.Content = "Garbage Blocking";
+                            UnCappedPC.Content = "Remove Perfect Clear Damage Cap";
+
+                        TetrisB2B.Text = "Back-to-Back Tetris";
+                            TetrisB2BDouble.Content = "Tetris B2B doubles attack";
+                            TetrisB2BAdd2.Content = "Tetris B2B adds 2 attack";
+                            TetrisB2BCum.Content = "Tetris B2B stacks";
+
+                        TspinB2B.Text = "Back-to-Back T-Spin";
+                            TspinB2BDouble.Content = "T-Spin B2B doubles attack";
+                            TspinB2BAdd2.Content = "T-Spin B2B adds 2 attack";
+                            TspinB2BCum.Content = "T-Spin B2B stacks";
                     break;
             }
 
