@@ -39,6 +39,8 @@ namespace Sandbox {
                         RotationSystems.Text = "Rotation System";
                             Ascension.Content = "Ascension";
                             Cultris2.Content = "Cultris II";
+                            h.Content = "h";
+                            BONKERS.Content = "B.O.N.K.E.R.S.";
 
                     AttackHeader.Header = "ATTACK";
                         TetrisVsTetris.Header = "     Tetris vs Tetris";
@@ -327,6 +329,43 @@ namespace Sandbox {
                         Game.WriteByteArray(
                             new IntPtr(0x1400B9A40),
                             ConvertByteString("74 0C 8A 8E F3 03 00 00 D0 F9 FE C1 01 C8 C3")
+                        );
+                    }
+                }},
+                {h, x =>
+                    Game.WriteByte(
+                        new IntPtr(0x1426CCEB4),
+                        (byte)(x
+                            ? 0xEB
+                            : 0x74
+                        )
+                    )
+                },
+                {BONKERS, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1426CCE8E),
+                        x
+                            ? ConvertByteString("E9 17 51 93 FD 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90")
+                            : ConvertByteString("44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C")
+                        );
+
+                    Game.WriteByte(
+                        new IntPtr(0x1426CCEB4),
+                        (byte)(x
+                            ? 0x7F
+                            : 0x05
+                        )
+                    );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140462000),
+                            ConvertByteString("00 01 FF")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x140001FAA),
+                            ConvertByteString("45 31 F6 45 31 FF 84 DB 0F 84 EA AE 6C 02 50 53 48 31 C0 31 D2 8B C7 BB 03 00 00 00 F7 F3 48 B9 00 20 46 40 01 00 00 00 44 0F BE 34 11 41 BF 16 00 00 00 41 29 C7 41 F7 DF 5B 58 E9 B8 AE 6C 02")
                         );
                     }
                 }}
