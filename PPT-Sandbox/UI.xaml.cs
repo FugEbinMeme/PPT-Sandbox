@@ -140,8 +140,8 @@ namespace Sandbox {
                 },
                 {UndoHold, x => {
                     byte[] write = x
-                        ? new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 } //enable
-                        : new byte[] { 0xFF, 0x83, 0x48, 0x01, 0x00, 0x00 };//disable
+                        ? ConvertByteString("90 90 90 90 90 90") //enable
+                        : ConvertByteString("FF 83 48 01 00 00");//disable
 
                     Game.WriteByteArray(new IntPtr(0x142852508), write);
                     Game.WriteByteArray(new IntPtr(0x14285252F), write);
@@ -165,16 +165,16 @@ namespace Sandbox {
                     Game.WriteByteArray(
                         new IntPtr(0x1400A26D1),
                         x
-                            ? new byte[] { 0x90, 0x90 }
-                            : new byte[] { 0x75, 0x0F }
+                            ? ConvertByteString("90 90")
+                            : ConvertByteString("75 0F")
                     )
                 },
                 {UnCappedPC, x =>
                     Game.WriteByteArray(
                         new IntPtr(0x1427E4539),
                         x
-                            ? new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }
-                            : new byte[] { 0x0F, 0x85, 0x8A, 0x00, 0x00, 0x00 }
+                            ? ConvertByteString("90 90 90 90 90 90")
+                            : ConvertByteString("0F 85 8A 00 00 00")
                     )
                 },
                 {RemoveAutoLock, x =>
@@ -185,8 +185,8 @@ namespace Sandbox {
                 },
                 {TGMAutoLock, x => {
                     byte[] write = x
-                        ? new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }
-                        : new byte[] { 0x66, 0x41, 0x89, 0x86, 0x10, 0x01, 0x00, 0x00 };
+                        ? ConvertByteString("90 90 90 90 90 90 90 90")
+                        : ConvertByteString("66 41 89 86 10 01 00 00");
 
                     Game.WriteByteArray(new IntPtr(0x1400A76CF), write);
                     Game.WriteByteArray(new IntPtr(0x1400A6EE0), write);
@@ -195,32 +195,32 @@ namespace Sandbox {
                     Game.WriteByteArray(
                         new IntPtr(0x14271DF3F),
                         x
-                            ? new byte[] { 0x45, 0x84, 0xDB, 0x75, 0x05, 0x01, 0xC8, 0x90, 0x90, 0x90 }
-                            : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 }
+                            ? ConvertByteString("45 84 DB 75 05 01 C8 90 90 90")
+                            : ConvertByteString("31 C9 45 84 DB 0F 95 D1 01 C8")
                     )
                 },
                 {TetrisB2BAdd2, x =>
                     Game.WriteByteArray(
                         new IntPtr(0x14271DF3F),
                         x
-                            ? new byte[] { 0x45, 0x84, 0xDB, 0x74, 0x05, 0xFF, 0xC0, 0xFF, 0xC0, 0x90 }
-                            : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 }
+                            ? ConvertByteString("45 84 DB 74 05 FF C0 FF C0 90")
+                            : ConvertByteString("31 C9 45 84 DB 0F 95 D1 01 C8")
                     )
                 },
                 {TspinB2BDouble, x =>
                     Game.WriteByteArray(
                         new IntPtr(0x14271DF74),
                         x
-                            ? new byte[] { 0x45, 0x84, 0xDB, 0x75, 0x05, 0x01, 0xC8, 0x90, 0x90, 0x90 }
-                            : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 }
+                            ? ConvertByteString("45 84 DB 75 05 01 C8 90 90 90")
+                            : ConvertByteString("31 C9 45 84 DB 0F 95 D1 01 C8")
                     )
                 },
                 {TspinB2BAdd2, x =>
                     Game.WriteByteArray(
                         new IntPtr(0x14271DF74),
                         x
-                            ? new byte[] { 0x45, 0x84, 0xDB, 0x74, 0x05, 0xFF, 0xC0, 0xFF, 0xC0, 0x90 }
-                            : new byte[] { 0x31, 0xC9, 0x45, 0x84, 0xDB, 0x0F, 0x95, 0xD1, 0x01, 0xC8 }
+                            ? ConvertByteString("45 84 DB 74 05 FF C0 FF C0 90")
+                            : ConvertByteString("31 C9 45 84 DB 0F 95 D1 01 C8")
                     )
                 },
                 {Ascension, x => {
