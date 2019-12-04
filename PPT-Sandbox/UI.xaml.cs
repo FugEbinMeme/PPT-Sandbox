@@ -6,13 +6,22 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace Sandbox {
     public partial class UI {
         private ProcessMemory Game = new ProcessMemory("puyopuyotetris", false);
 
+        private Dictionary<Control, Action<bool>> Scripts;
+        private Dictionary<Dial, Action<int>> DialScripts;
+        private Dictionary<UniformGrid, Action<int, int>> TableScripts;
+
+        private byte[] ConvertByteString(string bytes) =>
+            bytes.Split(' ').Select(i => Convert.ToByte(i, 16)).ToArray();
+
         public UI() {
             InitializeComponent();
+            FreezeDial = false;
 
             Version.Text = $"PPT-Sandbox-{Assembly.GetExecutingAssembly().GetName().Version.Minor} by {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName}";
 
@@ -470,12 +479,46 @@ namespace Sandbox {
                         )
                 }
             };
+
+            DialScripts = new Dictionary<Dial, Action<int>>() {
+                {GarbageRate, x => {
+                    // Standalone Dials go here
+                    // `x` is the new value the Dial has changed to
+                }},
+                {AllClearMultiplier, x => {
+
+                }},
+                {CleanGarbage, x => {
+
+                }},
+                {GarbageFilled, x => {
+
+                }},
+                {GarbageEmpty, x => {
+
+                }},
+            };
+
+            TableScripts = new Dictionary<UniformGrid, Action<int, int>>() {
+                {TvTAttackTable, (i, x) => {
+                    // Dials in Tables go here
+                    // `i` is which Dial in the table has changed
+                    // `x` is the new value the Dial has changed to
+                }},
+                {TvTComboTable, (i, x) => {
+
+                }},
+                {TvPAttackTable, (i, x) => {
+
+                }},
+                {TvPComboTable, (i, x) => {
+
+                }},
+                {PvPChainTable, (i, x) => {
+
+                }},
+            };
         }
-
-        private byte[] ConvertByteString(string bytes) =>
-            bytes.Split(' ').Select(i => Convert.ToByte(i, 16)).ToArray();
-
-        private Dictionary<Control, Action<bool>> Scripts;
 
         private void CheckBoxHandle(object sender, RoutedEventArgs e) {
             CheckBox source = (CheckBox)sender;
@@ -491,6 +534,22 @@ namespace Sandbox {
             
             if (source.IsChecked == true)
                 Scripts[source].Invoke(true);
+        }
+
+        private bool FreezeDial = true;
+
+        private void DialHandle(Dial source, double value) {
+            if (FreezeDial) return;
+
+            if (source.Parent is UniformGrid grid) {
+                int index = grid.Children.IndexOf(source);
+
+                TableScripts[grid].Invoke(
+                    (index / grid.Columns - 1) * (grid.Columns - 1) + (index % grid.Columns - 1),
+                    (int)value
+                );
+
+            } else DialScripts[source].Invoke((int)value);
         }
     }
 }
