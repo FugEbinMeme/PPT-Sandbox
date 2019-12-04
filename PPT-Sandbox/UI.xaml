@@ -59,7 +59,7 @@
                     
                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="BONKERS" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                 </StackPanel>
             </TabItem>
 
@@ -319,7 +319,7 @@
 
                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Default="8" Unit="" FillStart="False" x:Name="GarbageEmpty" />
 
-                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="GarbageModification" />
 
@@ -333,7 +333,7 @@
 
                     <CheckBox Margin="0 0 0 5" x:Name="AllSpin" Click="CheckBoxHandle" />
 
-                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TetrisB2B" />
 
@@ -353,7 +353,7 @@
 
                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                 </StackPanel>
             </TabItem>
         </TabControl>
