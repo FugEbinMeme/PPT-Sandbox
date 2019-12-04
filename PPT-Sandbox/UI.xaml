@@ -323,6 +323,10 @@
 
                     <CheckBox Margin="0 0 0 5" x:Name="UnCappedPC" Click="CheckBoxHandle" />
 
+                    <CheckBox Margin="0 0 0 5" x:Name="ColorClear" Click="CheckBoxHandle" />
+
+                    <CheckBox Margin="0 0 0 5" x:Name="AllSpin" Click="CheckBoxHandle" />
+
                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TetrisB2B" />

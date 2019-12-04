@@ -89,6 +89,8 @@ namespace Sandbox {
                             SecretGradeGarbage.Content = "Secret Grade Garbage";
                             GarbageBlocking.Content = "Garbage Blocking";
                             UnCappedPC.Content = "Remove Perfect Clear Damage Cap";
+                            ColorClear.Content = "Color Clear";
+                            AllSpin.Content = "All Spins";
 
                         TetrisB2B.Text = "Back-to-Back Tetris";
                             TetrisB2BDouble.Content = "Tetris B2B doubles attack";
@@ -366,6 +368,77 @@ namespace Sandbox {
                         Game.WriteByteArray(
                             new IntPtr(0x140001FAA),
                             ConvertByteString("45 31 F6 45 31 FF 84 DB 0F 84 EA AE 6C 02 50 53 48 31 C0 31 D2 8B C7 BB 03 00 00 00 F7 F3 48 B9 00 20 46 40 01 00 00 00 44 0F BE 34 11 41 BF 16 00 00 00 41 29 C7 41 F7 DF 5B 58 E9 B8 AE 6C 02")
+                        );
+                    }
+                }},
+                {ColorClear, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400A29B0),
+                        x
+                            ? ConvertByteString("E9 4B 70 01 00 90 90 90")
+                            : ConvertByteString("48 8B 08 41 83 3C 08 FF")
+                        );
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x142795324),
+                        x
+                            ? ConvertByteString("E9 F5 46 92 FD 90 90 90")
+                            : ConvertByteString("0F B6 94 28 D0 00 32 00")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400B9A00),
+                            ConvertByteString("48 8B 08 42 83 3C 01 09 74 0A 42 83 3C 01 FF E9 A1 8F FE FF C6 86 EC 03 00 00 01 EB F2 CC 0F B6 94 28 D0 00 32 00 80 B9 EC 03 00 00 01 75 09 C6 81 EC 03 00 00 00 D1 FA E9 EC B8 6D 02")
+                        );
+                    }
+                }},
+                {AllSpin, x => {
+                    Game.WriteByte(
+                        new IntPtr(0x14280D093),    //remove mini
+                        Convert.ToByte(!x)
+                    );
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x141A70306),    //jump to sfx patching
+                        x
+                            ? ConvertByteString("E9 6C FD 59 FE")
+                            : ConvertByteString("89 FA 48 89 D9")
+                        );
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x1426CCECD),    //jump to immobile detection
+                        x
+                            ? ConvertByteString("E9 17 30 94 FD 90")
+                            : ConvertByteString("8D 47 01 89 46 28")
+                        );
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400A7625),    //jump to flag reset on movement
+                        x
+                            ? ConvertByteString("E9 99 8A F6 FF")
+                            : ConvertByteString("48 8B 5C 24 40")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140010077),//sfx patching
+                            ConvertByteString("48 83 FF 51 75 3B 41 56 56 41 57 49 8B F7 E8 00 FF FF FF 4A 8D 14 FD 78 03 00 00 41 5F 4C 8B 35 85 1A 45 00 4E 8B 34 32 4D 8B B6 A8 00 00 00 41 80 BE E5 03 00 00 00 74 05 BF 57 00 00 00 5E 41 5E 8B D7 48 8B CB E9 49 02 A6 01")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400100C3),//reset flag
+                            ConvertByteString("48 8B 5C 24 40 84 C0 0F 85 5C 75 09 00 49 8B C6 49 8B D7 48 8B CE 48 8B 74 24 10 E8 A7 FE FF FF 48 8B F1 4A 8D 0C FD 78 03 00 00 44 8B 35 2B 1A 45 00 46 8B 34 31 45 8B B6 A8 00 00 00 41 C6 86 E5 03 00 00 00 4C 8B FA 4C 8B F0 E9 1B 75 09 00")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x14000FEE9),//immobile detection
+                            ConvertByteString("C6 05 12 31 45 00 00 8D 47 01 89 46 28 31 DB 41 BE FF FF FF FF 45 31 FF EB 23 83 FB 01 75 08 41 BE 02 00 00 00 EB 16 83 FB 02 75 08 41 BF 01 00 00 00 EB 06 41 BF FF FF FF FF 45 31 F6 8B 56 0C 44 01 F2 44 8B 46 10 45 01 F8 44 8B CD 4F 8D 24 89 48 8B CE E8 6E 09 09 00 84 C0 74 06 FF 05 B6 30 45 00 FF C3 83 FB 04 7C B0 E8 32 00 00 00 83 3D A3 30 45 00 04 41 0F 94 C0 4A 8D 04 FD 78 03 00 00 44 8B 35 AE 1B 45 00 46 8B 34 30 45 8B B6 A8 00 00 00 45 88 86 E5 03 00 00 E9 49 CF 6B 02")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x14000FF8A),//find player
+                            ConvertByteString("45 31 FF 44 8B 35 8C 1B 45 00 45 8B B6 78 03 00 00 45 8B B6 A8 00 00 00 45 8B B6 C8 03 00 00 49 39 F6 75 01 C3 44 8B 35 6A 1B 45 00 45 8B B6 80 03 00 00 45 85 F6 74 17 45 8B B6 A8 00 00 00 45 8B B6 C8 03 00 00 49 39 F6 75 05 41 83 C7 01 C3 44 8B 35 3F 1B 45 00 45 8B B6 88 03 00 00 45 85 F6 74 17 45 8B B6 A8 00 00 00 45 8B B6 C8 03 00 00 49 39 F6 75 05 41 83 C7 02 C3 44 8B 35 14 1B 45 00 45 8B B6 90 03 00 00 45 85 F6 74 04 41 83 C7 03 C3")
                         );
                     }
                 }}
