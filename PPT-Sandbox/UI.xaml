@@ -176,23 +176,23 @@
                                     <TextBlock HorizontalAlignment="Center" x:Name="TvPTetrisPlus" />
 
                                     <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" x:Name="TvPClear" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="0" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="5" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="6" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="8" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="0" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="5" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="6" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="8" Unit="" Changed="DialHandle" />
 
                                     <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" x:Name="TvPPerfectClear" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="13" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="30" Exponent="1.5" Default="13" Unit="" Changed="DialHandle" />
                                     <TextBlock />
                                     <TextBlock />
                                     <TextBlock />
                                     <TextBlock />
 
                                     <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" x:Name="TvPTSpin" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="2" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="13" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="2" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
                                 </UniformGrid>
 
                                 <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
@@ -212,31 +212,31 @@
                                     <TextBlock HorizontalAlignment="Center" Text="+5" />
 
                                     <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="0" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="0" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="1" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="1" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="1" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="1" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="0" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="1" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="1" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="1" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="1" Unit="" Changed="DialHandle" />
 
                                     <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="5" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="1" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="2" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="2" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="2" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="2" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="1" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="2" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="2" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="2" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="2" Unit="" Changed="DialHandle" />
 
                                     <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="10" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
 
                                     <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="15" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
-                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
                                 </UniformGrid>
                             </StackPanel>
                         </TabItem>
@@ -245,7 +245,7 @@
                             <StackPanel Margin="10 5 10 0">
                                 <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                                <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="200" Default="70" Unit="" x:Name="GarbageRate" Changed="DialHandle" />
+                                <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="1000" Default="70" Unit="" x:Name="GarbageRate" Changed="DialHandle" />
 
                                 <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="200" Default="30" Exponent="1.5" Unit="" x:Name="AllClearMultiplier" Changed="DialHandle" />
 
@@ -313,7 +313,7 @@
                     
                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="GarbageGeneration" />
 
-                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="100" Unit="%" x:Name="CleanGarbage" Changed="DialHandle" />
+                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="100" Default="70" Unit="%" x:Name="CleanGarbage" Changed="DialHandle" />
 
                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Default="9" Unit="" FillStart="False" x:Name="GarbageFilled" Changed="DialHandle" />
 
