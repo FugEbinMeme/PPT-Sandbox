@@ -481,41 +481,74 @@ namespace Sandbox {
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
-                {GarbageRate, x => {
-                    // Standalone Dials go here
-                    // `x` is the new value the Dial has changed to
-                }},
+                {GarbageRate, x =>
+                    Game.WriteUInt16(new IntPtr(0x14044193C), (ushort)x)
+                },
                 {AllClearMultiplier, x => {
+                    int? addr = Game.TraverseInt32(
+                                    new IntPtr(0x140598A20),
+                                    new int[] {0x38}
+                               );
+
+                    if (addr > 0x10000) {    //I'm not taking chances writing to bad memory, all pointer chains will do this
+                        Game.WriteInt32((IntPtr)addr+0x284, x);
+                    }
 
                 }},
-                {CleanGarbage, x => {
+                {CleanGarbage, x => 
+                    Game.WriteByte(new IntPtr(0x14032010F), (byte)x)
+                },
+                {GarbageFilled, x => {  //8 => -1
+                    if (x == 8) {
+                        x = -1;
+                    }
 
-                }},
-                {GarbageFilled, x => {
-
+                    Game.WriteInt32(new IntPtr(0x1426B71B1), x);
                 }},
                 {GarbageEmpty, x => {
+                    if (x == 8) {
+                        x = -1;
+                    }
 
+                    Game.WriteInt32(new IntPtr(0x1426B71BB), x);
                 }},
             };
 
             TableScripts = new Dictionary<UniformGrid, Action<int, int>>() {
                 {TvTAttackTable, (i, x) => {
-                    // Dials in Tables go here
-                    // `i` is which Dial in the table has changed
-                    // `x` is the new value the Dial has changed to
+                    int offset;
+
+                    if (i < 4) {
+                        offset = i + 0x24;
+                    } else if (i < 9) {
+                        offset = i + 0x16;
+                    } else {
+                        offset = i - 0xA;
+                    }
+
+                    Game.WriteByte(new IntPtr(0x1403200B5 + offset), (byte)x);
                 }},
                 {TvTComboTable, (i, x) => {
-
+                    Game.WriteByte(new IntPtr(0x1403200BB + i), (byte)x);
                 }},
                 {TvPAttackTable, (i, x) => {
+                    int offset;
 
+                    if (i < 5) {
+                        offset = i*2 + 0x26B;
+                    } else if (i == 5) {
+                        offset = 0x277;
+                    } else {
+                        offset = i - 0xA;
+                    }
+                    
+                    Game.WriteByte(new IntPtr(0x1404329C5 + offset), (byte)x);
                 }},
                 {TvPComboTable, (i, x) => {
-
+                    Game.WriteByte(new IntPtr(0x140432C17 + i), (byte)x);
                 }},
                 {PvPChainTable, (i, x) => {
-
+                    Game.WriteInt16(new IntPtr(0x14031DAC0 + i*2), (short)x);
                 }},
             };
         }
