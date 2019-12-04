@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("PPT-Sandbox")]
 [assembly: AssemblyDescription("Puyo Puyo Tetris Trainer/Modding Tool")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Fug Ebin Meme#9112")]
+[assembly: AssemblyCompany("Fug Ebin Meme#9912")]
 [assembly: AssemblyProduct("PPT-Sandbox")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
