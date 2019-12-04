@@ -31,6 +31,9 @@ namespace Sandbox {
                             UndoHold.Content = "Undo Hold";
                             DoubleRotate.Content = "180 Rotations";
                             FreezeSwap.Content = "Freeze Swap Timer";
+                            ColX.Content = "Remove Left/Right Collision";
+                            ColM.Content = "Remove Mino Collision";
+                            PreserveRot.Content = "Preserve Rotation on Held Piece";
 
                         AutoLocking.Text = "Piece Auto-Locking";
                             RemoveAutoLock.Content = "Disable Auto-Locking";
@@ -441,7 +444,31 @@ namespace Sandbox {
                             ConvertByteString("45 31 FF 44 8B 35 8C 1B 45 00 45 8B B6 78 03 00 00 45 8B B6 A8 00 00 00 45 8B B6 C8 03 00 00 49 39 F6 75 01 C3 44 8B 35 6A 1B 45 00 45 8B B6 80 03 00 00 45 85 F6 74 17 45 8B B6 A8 00 00 00 45 8B B6 C8 03 00 00 49 39 F6 75 05 41 83 C7 01 C3 44 8B 35 3F 1B 45 00 45 8B B6 88 03 00 00 45 85 F6 74 17 45 8B B6 A8 00 00 00 45 8B B6 C8 03 00 00 49 39 F6 75 05 41 83 C7 02 C3 44 8B 35 14 1B 45 00 45 8B B6 90 03 00 00 45 85 F6 74 04 41 83 C7 03 C3")
                         );
                     }
-                }}
+                }},
+                {ColX, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400A762C),
+                        x
+                            ? ConvertByteString("90 90")
+                            : ConvertByteString("75 49")
+                        )
+                },
+                {ColM, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x1426D4A52),
+                        x
+                            ? ConvertByteString("90 90")
+                            : ConvertByteString("75 25")
+                        )
+                },
+                {PreserveRot, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x142730C9E),
+                        x
+                            ? ConvertByteString("90 90 90 90 90 90")
+                            : ConvertByteString("FF 90 80 00 00 00")
+                        )
+                }
             };
         }
 
