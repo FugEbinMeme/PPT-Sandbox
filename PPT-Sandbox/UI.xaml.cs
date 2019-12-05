@@ -364,7 +364,7 @@ namespace Sandbox {
                         );
 
                     Game.WriteByte(
-                        new IntPtr(0x1426CCEB4),
+                        new IntPtr(0x1426CCEBE),
                         (byte)(x
                             ? 0x7F
                             : 0x05
