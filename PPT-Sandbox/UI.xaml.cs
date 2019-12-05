@@ -43,6 +43,7 @@ namespace Sandbox {
                             ColX.Content = "Remove Left/Right Collision";
                             ColM.Content = "Remove Mino Collision";
                             PreserveRot.Content = "Preserve Rotation on Held Piece";
+                            Lockout.Content = "Remove Lock-Out Death";
 
                         AutoLocking.Text = "Piece Auto-Locking";
                             RemoveAutoLock.Content = "Disable Auto-Locking";
@@ -477,6 +478,15 @@ namespace Sandbox {
                             ? ConvertByteString("90 90 90 90 90 90")
                             : ConvertByteString("FF 90 80 00 00 00")
                         )
+                },
+                {Lockout, x =>
+                    Game.WriteInt32(
+                        new IntPtr(0x142802821),
+                        x
+                            ? 0x30
+                            : 0x14
+                        )
+                        
                 }
             };
 
