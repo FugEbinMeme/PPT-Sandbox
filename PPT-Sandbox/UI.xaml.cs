@@ -97,6 +97,8 @@ namespace Sandbox {
                             CleanGarbage.Title = "Clean Garbage Chance";
                             GarbageFilled.Title = "Filled Garbage Tile";
                             GarbageEmpty.Title = "Empty Garbage Tile";
+                            RecieveT.Title = "Tetris Max Recieval";
+                            RecieveP.Title = "Puyo Max Recieval";
 
                         GarbageModification.Text = "Garbage Modification";
                             SecretGradeGarbage.Content = "Secret Grade Garbage";
@@ -522,6 +524,26 @@ namespace Sandbox {
 
                     Game.WriteInt32(new IntPtr(0x1426B71BB), x);
                 }},
+                {RecieveT, x => {                               //In games with only one game type (tvt, pvp) these actually point to the same address
+                    int? addr = Game.TraverseInt32(             //only in pvt and swap are they distinct
+                                    new IntPtr(0x1405989C8),    //but I won't say that on the writeup on this since it doesn't really matter
+                                    new int[] {0x18, 0xA8}
+                                );
+
+                    if (addr > 0x10000) {
+                        Game.WriteByte((IntPtr)addr+0x1AC, (byte)x);
+                    }
+                }},
+                {RecieveP, x => {
+                    int? addr = Game.TraverseInt32(
+                                    new IntPtr(0x1405989C8),
+                                    new int[] {0x18, 0x18, 0xA8}
+                                );
+
+                    if (addr > 0x10000) {
+                        Game.WriteByte((IntPtr)addr+0x1AC, (byte)x);
+                    }
+                }}
             };
 
             TableScripts = new Dictionary<UniformGrid, Action<int, int>>() {
