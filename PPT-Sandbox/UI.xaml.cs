@@ -558,7 +558,7 @@ namespace Sandbox {
                     Game.WriteByte(new IntPtr(0x140432C17 + i), (byte)x);
                 }},
                 {PvPChainTable, (i, x) => {
-                    Game.WriteInt16(new IntPtr(0x14031DAC0 + i*2), (short)x);
+                    Game.WriteUInt16(new IntPtr(0x14031DAC0 + i*2), (ushort)x);
                 }},
             };
         }
