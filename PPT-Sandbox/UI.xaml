@@ -40,6 +40,8 @@
                     <CheckBox Margin="0 0 0 5" x:Name="PreserveRot" Click="CheckBoxHandle" />
 
                     <CheckBox Margin="0 0 0 5" x:Name="Lockout" Click="CheckBoxHandle" />
+                    
+                    <CheckBox Margin="0 0 0 5" x:Name="Invisible" Click="CheckBoxHandle" />
 
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 

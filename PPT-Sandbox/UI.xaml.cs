@@ -44,6 +44,7 @@ namespace Sandbox {
                             ColM.Content = "Remove Mino Collision";
                             PreserveRot.Content = "Preserve Rotation on Held Piece";
                             Lockout.Content = "Remove Lock-Out Death";
+                            Invisible.Content = "Invisible Matrix";
 
                         AutoLocking.Text = "Piece Auto-Locking";
                             RemoveAutoLock.Content = "Disable Auto-Locking";
@@ -526,6 +527,15 @@ namespace Sandbox {
                             ? ConvertByteString("90 90")
                             : ConvertByteString("74 21")
                         )
+                },
+                {Invisible, x =>
+                    Game.WriteByte(
+                        new IntPtr(0x140238F4D),
+                        (byte)(x
+                            ? 0x9
+                            : 0x1
+                        )
+                    )
                 }
             };
 
