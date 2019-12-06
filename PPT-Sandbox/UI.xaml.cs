@@ -116,6 +116,23 @@ namespace Sandbox {
                             TspinB2BDouble.Content = "T-Spin B2B doubles attack";
                             TspinB2BAdd2.Content = "T-Spin B2B adds 2 attack";
                             TspinB2BCum.Content = "T-Spin B2B stacks";
+
+                    OtherHeader.Header = "OTHER";
+                        Delays.Text = "Line Delay";
+                            DelayBase.Text = "Base";
+                            DelaySingle.Text = "Single";
+                            DelayDouble.Text = "Double";
+                            DelayTriple.Text = "Triple";
+                            DelayTetris.Text = "Tetris";
+                            DelayTetrisPlus.Text = "Tetris Plus";
+
+                        DAS.Title = "DAS";
+                        //0ARR
+
+                        TspinDetection.Text = "T-Spin Detection";
+                            FullTmini.Content = "All T-Mini's are full";
+                            NoT.Content = "No T-Spins";
+                            AllT.Content = "Every Spin is a T-Spin";
                     break;
             }
 
@@ -488,7 +505,27 @@ namespace Sandbox {
                             ? 0x30
                             : 0x14
                         )
-                        
+                },
+                {FullTmini, x =>
+                    Game.WriteByte(
+                        new IntPtr(0x14280D08F),
+                        (byte)(x
+                                ? 0xE5  //changes what memory location the t spin flag is being set to
+                                : 0xE6  //so instead of setting T Mini to yes it sets T Full to yes
+                            )
+                        )
+                },
+                {NoT, x => {
+                    Game.WriteByte(new IntPtr(0x14280D093), Convert.ToByte(!x)); //changes the value being written to the t spin flags to be 0
+                    Game.WriteByte(new IntPtr(0x14280D09C), Convert.ToByte(!x)); //so it never registers a t spin
+                }},     //I wanted to just make the game always skip t spin detection but it would conflict with All Spins
+                {AllT, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400A4200),
+                        x
+                            ? ConvertByteString("90 90")
+                            : ConvertByteString("74 21")
+                        )
                 }
             };
 
@@ -507,7 +544,7 @@ namespace Sandbox {
                     }
 
                 }},
-                {CleanGarbage, x => 
+                {CleanGarbage, x =>
                     Game.WriteByte(new IntPtr(0x14032010F), (byte)x)
                 },
                 {GarbageFilled, x => {  //8 => -1
@@ -543,7 +580,10 @@ namespace Sandbox {
                     if (addr > 0x10000) {
                         Game.WriteByte((IntPtr)addr+0x1AC, (byte)x);
                     }
-                }}
+                }},
+                {DAS, x =>
+                    Game.WriteByte(new IntPtr(0x1413C8C52), (byte)(x + 1)) //DAS gets decremented the same frame it's set, so I increment x here to counter that
+                }
             };
 
             TableScripts = new Dictionary<UniformGrid, Action<int, int>>() {
@@ -573,7 +613,7 @@ namespace Sandbox {
                     } else {
                         offset = i - 0xA;
                     }
-                    
+
                     Game.WriteByte(new IntPtr(0x1404329C5 + offset), (byte)x);
                 }},
                 {TvPComboTable, (i, x) => {
@@ -582,6 +622,13 @@ namespace Sandbox {
                 {PvPChainTable, (i, x) => {
                     Game.WriteUInt16(new IntPtr(0x14031DAC0 + i*2), (ushort)x);
                 }},
+                {DelayTable, (i, x) => {
+                    if (i == 0) {
+                        Game.WriteByte(new IntPtr(0x142724DFC), (byte)x);
+                    } else {
+                        Game.WriteByte(new IntPtr(0x1427E453B + i*7), (byte)x);
+                    }
+                }}
             };
         }
 
