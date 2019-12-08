@@ -38,7 +38,6 @@ namespace Sandbox {
                             PentominoVersus.Content = "Pentomino Versus";
                             RemoveLineClearDelay.Content = "Remove Line Clear Delay";
                             UndoHold.Content = "Undo Hold";
-                            DoubleRotate.Content = "180 Rotations";
                             FreezeSwap.Content = "Freeze Swap Timer";
                             ColX.Content = "Remove Left/Right Collision";
                             ColM.Content = "Remove Mino Collision";
@@ -119,21 +118,27 @@ namespace Sandbox {
                             TspinB2BCum.Content = "T-Spin B2B stacks";
 
                     OtherHeader.Header = "OTHER";
-                        Delays.Text = "Line Delay";
-                            DelayBase.Text = "Base";
-                            DelaySingle.Text = "Single";
-                            DelayDouble.Text = "Double";
-                            DelayTriple.Text = "Triple";
-                            DelayTetris.Text = "Tetris";
-                            DelayTetrisPlus.Text = "Tetris Plus";
+                            Timing.Header = "     Timings";
+                                Delays.Text = "Line Delay";
+                                    DelayBase.Text = "Base";
+                                    DelaySingle.Text = "Single";
+                                    DelayDouble.Text = "Double";
+                                    DelayTriple.Text = "Triple";
+                                    DelayTetris.Text = "Tetris";
+                                    DelayTetrisPlus.Text = "Tetris Plus";
+                                    DAS.Title = "DAS";
+                                    Autolockdial.Title = "Auto-Lock Timer";
 
-                        DAS.Title = "DAS";
-                        //0ARR
-
-                        TspinDetection.Text = "T-Spin Detection";
+                    Misc.Header = "Misc";
+                        Lockoutdial.Title = "Lock Out Height";
+                            TspinDetection.Text = "T-Spin Detection";
                             FullTmini.Content = "All T-Mini's are full";
                             NoT.Content = "No T-Spins";
                             AllT.Content = "Every Spin is a T-Spin";
+
+                    Offline.Header = "Offline Only";
+                        DoubleRotate.Content = "180 Rotations";
+                        ARR.Content = "Instant ARR";
                     break;
             }
 
@@ -315,10 +320,20 @@ namespace Sandbox {
                             ? ConvertByteString("E9 52 FF FF FF 90")
                             : ConvertByteString("A8 10 74 02 FF CF")
                         );
+                    Game.WriteByteArray(
+                        new IntPtr(0x1402662D2),
+                        x
+                            ? ConvertByteString("E9 2F FC FF FF 90 90 90")
+                            : ConvertByteString("F6 84 19 68 01 00 00 80")
+                        );
                     if (x) {
                         Game.WriteByteArray(
                             new IntPtr(0x1400A6CAA),
-                            ConvertByteString("57 40 8A BB 5C 01 00 00 40 80 E7 30 83 FF 30 5F 75 25 A8 30 74 21 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 0A BF 02 00 00 00 E9 7F 00 00 00 BF FE FF FF FF EB 78 A8 10 74 74 FF CF EB 70")
+                            ConvertByteString("80 3D 52 C3 3B 00 01 75 31 C6 05 49 C3 3B 00 00 57 8B F8 83 E7 20 83 FF 20 5F 75 1E 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 07 BF 02 00 00 00 EB 7C BF FE FF FF FF EB 75 A8 10 74 71 FF CF EB 6D")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x140265F06),
+                            ConvertByteString("F6 84 19 68 01 00 00 80 0F 84 CA 03 00 00 38 4B 5E 0F 85 BF 03 00 00 C6 05 DF D0 1F 00 01 E9 B3 03 00 00")
                         );
                     }
                 }},
@@ -536,7 +551,28 @@ namespace Sandbox {
                             : 0x1
                         )
                     )
-                }
+                },
+                {ARR, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400A7616),
+                        x
+                            ? ConvertByteString("E9 DF 00 00 00")
+                            : ConvertByteString("48 8B 7C 24 58")
+                        );
+                     Game.WriteByteArray(
+                        new IntPtr(0x1400A763A),
+                        x
+                            ? ConvertByteString("90 90 90 90 90 90 90")
+                            : ConvertByteString("45 00 BE 00 01 00 00")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400A76FA),
+                            ConvertByteString("84 C0 0F 85 46 01 00 00 45 00 BE 00 01 00 00 44 8B 05 10 A4 3B 00 45 8B 80 78 03 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 0F 84 7E 00 00 00 44 8B 05 EB A3 3B 00 45 8B 80 80 03 00 00 45 85 C0 0F 84 03 01 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 74 6E 44 8B 05 C1 A3 3B 00 45 8B 80 88 03 00 00 45 85 C0 0F 84 D9 00 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 74 5E 44 8B 05 97 A3 3B 00 45 8B 80 90 03 00 00 45 85 C0 0F 84 AF 00 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 74 4E 45 31 D2 44 8B 15 6A A3 3B 00 45 8B 92 78 03 00 00 45 8B 92 B0 00 00 00 EB 4C 45 31 D2 44 8B 15 50 A3 3B 00 45 8B 92 80 03 00 00 45 8B 92 B0 00 00 00 EB 32 45 31 D2 44 8B 15 36 A3 3B 00 45 8B 92 88 03 00 00 45 8B 92 B0 00 00 00 EB 18 45 31 D2 44 8B 15 1C A3 3B 00 45 8B 92 90 03 00 00 45 8B 92 B0 00 00 00 41 83 FF 01 75 09 41 80 7A 3D 00 75 29 EB 07 41 80 7A 3B 00 75 20 44 8B 46 10 48 31 C0 41 8A 86 00 01 00 00 8B 56 18 44 8B CA 42 8D 14 38 48 8B CE E9 CB FD FF FF 48 8B 7C 24 58 E9 C9 FD FF FF")
+                        );
+                    }
+                }}
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
@@ -593,6 +629,12 @@ namespace Sandbox {
                 }},
                 {DAS, x =>
                     Game.WriteByte(new IntPtr(0x1413C8C52), (byte)(x + 1)) //DAS gets decremented the same frame it's set, so I increment x here to counter that
+                },
+                {Autolockdial, x =>
+                    Game.WriteByte(new IntPtr(0x142853B2C), (byte)x)
+                },
+                {Lockoutdial, x =>
+                    Game.WriteByte(new IntPtr(0x142802821), (byte)x)
                 }
             };
 

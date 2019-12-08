@@ -29,8 +29,6 @@
 
                     <CheckBox Margin="0 0 0 5" x:Name="UndoHold" Click="CheckBoxHandle" />
 
-                    <CheckBox Margin="0 0 0 5" x:Name="DoubleRotate" Click="CheckBoxHandle" />
-
                     <CheckBox Margin="0 0 0 5" x:Name="FreezeSwap" Click="CheckBoxHandle" />
 
                     <CheckBox Margin="0 0 0 5" x:Name="ColX" Click="CheckBoxHandle" />
@@ -368,50 +366,84 @@
             <TabItem x:Name="OtherHeader">
                 <StackPanel Margin="10 5">
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
-                    <StackPanel Margin="0 0 10 5">
-
-                        <UniformGrid Rows="2" Columns="7" Margin="0 0 0 5" Height="50" x:Name="DelayTable">
-                            <UniformGrid.Resources>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                </Style>
-                            </UniformGrid.Resources>
-                            
-                            <TextBlock HorizontalAlignment="Center" Text="" />
-                            <TextBlock HorizontalAlignment="Center" x:Name="DelayBase" />
-                            <TextBlock HorizontalAlignment="Center" x:Name="DelaySingle" />
-                            <TextBlock HorizontalAlignment="Center" x:Name="DelayDouble" />
-                            <TextBlock HorizontalAlignment="Center" x:Name="DelayTriple" />
-                            <TextBlock HorizontalAlignment="Center" x:Name="DelayTetris" />
-                            <TextBlock HorizontalAlignment="Center" x:Name="DelayTetrisPlus" />
-
-                            <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" x:Name="Delays" />
-                            <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="30" Unit="" Changed="DialHandle" />
-                            <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="5" Unit="" Changed="DialHandle" />
-                            <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="10" Unit="" Changed="DialHandle" />
-                            <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="10" Unit="" Changed="DialHandle" />
-                            <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="15" Unit="" Changed="DialHandle" />
-                            <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="15" Unit="" Changed="DialHandle" />
-
-                        </UniformGrid>
-                    </StackPanel>
                     
-                    <Border Margin="0 0 0 10" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-                    
-                    <Sandbox:Dial Margin="0 0 0 10" Scale="0.5" Minimum="0" Maximum="30" Default="10" Unit="" x:Name="DAS" Changed="DialHandle" />
+                    <TabControl Background="Transparent" Focusable="False">
+                        <TabControl.Resources>
+                            <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                                <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="12" />
+                            </Style>
+                        </TabControl.Resources>
 
-                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                        <TabItem x:Name="Timing">
+                            <StackPanel Margin="10 5 10 0">
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                
+                                <UniformGrid Rows="2" Columns="7" Margin="0 0 0 5" Height="50" x:Name="DelayTable">
+                                    <UniformGrid.Resources>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                    </UniformGrid.Resources>
 
-                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinDetection" />
+                                    <TextBlock HorizontalAlignment="Center" Text="" />
+                                    <TextBlock HorizontalAlignment="Center" x:Name="DelayBase" />
+                                    <TextBlock HorizontalAlignment="Center" x:Name="DelaySingle" />
+                                    <TextBlock HorizontalAlignment="Center" x:Name="DelayDouble" />
+                                    <TextBlock HorizontalAlignment="Center" x:Name="DelayTriple" />
+                                    <TextBlock HorizontalAlignment="Center" x:Name="DelayTetris" />
+                                    <TextBlock HorizontalAlignment="Center" x:Name="DelayTetrisPlus" />
 
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="FullTmini" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" x:Name="Delays" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="30" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="5" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="10" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="10" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="15" Unit="" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="60" Exponent="1.5" Default="15" Unit="" Changed="DialHandle" />
+                                </UniformGrid>
 
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="NoT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="AllT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="30" Default="10" Unit="" x:Name="DAS" Changed="DialHandle" />
 
-                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="120" Default="30" Unit="" x:Name="Autolockdial" Changed="DialHandle" />
+
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                            </StackPanel>
+                        </TabItem>
+                        
+                        <TabItem x:Name="Misc">
+                            <StackPanel Margin="10 5 10 0">
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="40" Default="20" Unit="" x:Name="Lockoutdial" Changed="DialHandle" />
+
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinDetection" />
+
+                                <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="FullTmini" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="NoT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="AllT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                            </StackPanel>
+                        </TabItem>
+                        
+                        <TabItem x:Name="Offline">
+                            <StackPanel Margin="10 5 10 0">
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                <CheckBox Margin="0 0 0 5" x:Name="DoubleRotate" Click="CheckBoxHandle" />
+
+                                <CheckBox Margin="0 0 0 5" x:Name="ARR" Click="CheckBoxHandle" />
+
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
                 </StackPanel>
             </TabItem>
 
