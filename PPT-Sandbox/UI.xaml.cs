@@ -23,6 +23,8 @@ namespace Sandbox {
             InitializeComponent();
             FreezeDial = false;
 
+            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(Int32.MaxValue)); //tooltips no longer yeet after 5 seconds
+
             Version.Text = $"PPT-Sandbox-{Assembly.GetExecutingAssembly().GetName().Version.Minor} by {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName}";
 
             switch (CultureInfo.CurrentCulture.TwoLetterISOLanguageName) {
@@ -36,24 +38,38 @@ namespace Sandbox {
                     ScriptsHeader.Header = "      SCRIPTS";
                         General.Text = "General";
                             PentominoVersus.Content = "Pentomino Versus";
+                                PentominoVersus.ToolTip = "Turns Tetrominos into their Pentomino counterparts.";
                             RemoveLineClearDelay.Content = "Remove Line Clear Delay";
                             UndoHold.Content = "Undo Hold";
+                                UndoHold.ToolTip = "Allows you to hold as much as you like, without the need to harddrop inbetween.";
                             FreezeSwap.Content = "Freeze Swap Timer";
                             ColX.Content = "Remove Left/Right Collision";
+                                ColX.ToolTip = "Piece will ignore collision on the X axis.";
                             ColM.Content = "Remove Mino Collision";
+                                ColM.ToolTip = "Piece will ignore all collision with other minos inside the matrix.";
                             PreserveRot.Content = "Preserve Rotation on Held Piece";
                             Lockout.Content = "Remove Lock-Out Death";
+                                Lockout.ToolTip = "Placing a piece above row 20 will no longer cause a game over.";
                             Invisible.Content = "Invisible Matrix";
+                                Invisible.ToolTip = "All mino types, except garbage, are hidden from view.";
 
                         AutoLocking.Text = "Piece Auto-Locking";
                             RemoveAutoLock.Content = "Disable Auto-Locking";
                             TGMAutoLock.Content = "Arika Style Auto-Locking";
+                                TGMAutoLock.ToolTip = "Auto-Lock timer is only reset upon reaching a new lowest height.\n" +
+                                                      "Normally, Auto-Lock timer is reset upon rotate and movement as well.";
 
                         RotationSystems.Text = "Rotation System";
                             Ascension.Content = "Ascension";
+                                Ascension.ToolTip = "Rotation system used by Ascension.\n" +
+                                                    "asc.winternebs.com";
                             Cultris2.Content = "Cultris II";
+                                Cultris2.ToolTip = "Rotation system used by Cultris II.\n" +
+                                                   "gewaltig.net/cultris2.aspx";
                             h.Content = "h";
+                                h.ToolTip = "Piece always rotates, even if it collides.";
                             BONKERS.Content = "B.O.N.K.E.R.S.";
+                                BONKERS.ToolTip = "If initial rotate fails, piece kicks to the ground and checks right one tile, left one tile, all the way up.";
 
                     AttackHeader.Header = "ATTACK";
                         TetrisVsTetris.Header = "     Tetris vs Tetris";
@@ -98,24 +114,36 @@ namespace Sandbox {
                             GarbageFilled.Title = "Filled Garbage Tile";
                             GarbageEmpty.Title = "Empty Garbage Tile";
                             RecieveT.Title = "Tetris Max Recieval";
+                                RecieveT.ToolTip = "Has no effect on Tetris vs Tetris games.";
                             RecieveP.Title = "Puyo Max Recieval";
 
                         GarbageModification.Text = "Garbage Modification";
                             SecretGradeGarbage.Content = "Secret Grade Garbage";
+                                SecretGradeGarbage.ToolTip = "Garbage forms a snaking pattern instead of a random one.";
                             GarbageBlocking.Content = "Garbage Blocking";
                             UnCappedPC.Content = "Remove Perfect Clear Damage Cap";
+                                UnCappedPC.ToolTip = "Perfect Clears are no longer capped at 10 garbage.\n" +
+                                                     "Example: With code active, a Tetris PC sends 10 (PC) + 4 (Tetris) = 14 garbage lines.\n" +
+                                                     "Without the code active, a Tetris PC sends 10 (PC) garbage lines.\n" +
+                                                     "Results in Perfect Clears having line delay";
                             ColorClear.Content = "Color Clear";
+                                ColorClear.ToolTip = "If you clear every non-garbage mino from your matrix, you do a pseudo-Perfect Clear, sending 5 garbage with no cap.\n" +
+                                                     "See Remove Perfect Clear Damage Cap tooltip for more info on what it means to not be capped.";
                             AllSpin.Content = "All Spins";
+                                AllSpin.ToolTip = "Adds All-Spin ruling with immobile detection and no mini penalty.\n" +
+                                                  "Regular T-Spin detection is still present so Fin-TSD still works.";
 
                         TetrisB2B.Text = "Back-to-Back Tetris";
                             TetrisB2BDouble.Content = "Tetris B2B doubles attack";
                             TetrisB2BAdd2.Content = "Tetris B2B adds 2 attack";
                             TetrisB2BCum.Content = "Tetris B2B stacks";
+                                TetrisB2BCum.ToolTip = "Garbage sent is increased by 1 for every two Back to Backs done without breaking.";
 
                         TspinB2B.Text = "Back-to-Back T-Spin";
                             TspinB2BDouble.Content = "T-Spin B2B doubles attack";
                             TspinB2BAdd2.Content = "T-Spin B2B adds 2 attack";
                             TspinB2BCum.Content = "T-Spin B2B stacks";
+                                TspinB2BCum.ToolTip = "Garbage sent is increased by 1 for every two Back to Backs done without breaking.";
 
                     OtherHeader.Header = "OTHER";
                             Timing.Header = "     Timings";
@@ -127,18 +155,23 @@ namespace Sandbox {
                                     DelayTetris.Text = "Tetris";
                                     DelayTetrisPlus.Text = "Tetris Plus";
                                     DAS.Title = "DAS";
+                                        DAS.ToolTip = "Frames before ARR activates.";
                                     Autolockdial.Title = "Auto-Lock Timer";
+                                        Autolockdial.ToolTip = "Frames before a piece locks after touching the ground.";
 
                     Misc.Header = "Misc";
                         Lockoutdial.Title = "Lock Out Height";
-                            TspinDetection.Text = "T-Spin Detection";
+                            Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
+                        TspinDetection.Text = "T-Spin Detection";
                             FullTmini.Content = "All T-Mini's are full";
                             NoT.Content = "No T-Spins";
                             AllT.Content = "Every Spin is a T-Spin";
 
                     Offline.Header = "Offline Only";
                         DoubleRotate.Content = "180 Rotations";
+                            DoubleRotate.ToolTip = "Using the third rotate right bind will cause the piece to rotate 180 degrees rather than 90.";
                         ARR.Content = "Instant ARR";
+                            ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
                     break;
             }
 
