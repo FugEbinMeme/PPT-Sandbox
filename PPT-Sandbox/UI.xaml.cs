@@ -47,7 +47,6 @@ namespace Sandbox {
                                 ColX.ToolTip = "Piece will ignore collision on the X axis.";
                             ColM.Content = "Remove Mino Collision";
                                 ColM.ToolTip = "Piece will ignore all collision with other minos inside the matrix.";
-                            PreserveRot.Content = "Preserve Rotation on Held Piece";
                             Lockout.Content = "Remove Lock-Out Death";
                                 Lockout.ToolTip = "Placing a piece above row 20 will no longer cause a game over.";
                             Invisible.Content = "Invisible Matrix";
@@ -146,32 +145,45 @@ namespace Sandbox {
                                 TspinB2BCum.ToolTip = "Garbage sent is increased by 1 for every two Back to Backs done without breaking.";
 
                     OtherHeader.Header = "OTHER";
-                            Timing.Header = "     Timings";
-                                Delays.Text = "Line Delay";
-                                    DelayBase.Text = "Base";
-                                    DelaySingle.Text = "Single";
-                                    DelayDouble.Text = "Double";
-                                    DelayTriple.Text = "Triple";
-                                    DelayTetris.Text = "Tetris";
-                                    DelayTetrisPlus.Text = "Tetris Plus";
-                                    DAS.Title = "DAS";
-                                        DAS.ToolTip = "Frames before ARR activates.";
-                                    Autolockdial.Title = "Auto-Lock Timer";
-                                        Autolockdial.ToolTip = "Frames before a piece locks after touching the ground.";
+                        Timing.Header = "     Timings";
+                            Delays.Text = "Line Delay";
+                                DelayBase.Text = "Base";
+                                DelaySingle.Text = "Single";
+                                DelayDouble.Text = "Double";
+                                DelayTriple.Text = "Triple";
+                                DelayTetris.Text = "Tetris";
+                                DelayTetrisPlus.Text = "Tetris Plus";
+                                DAS.Title = "DAS";
+                                    DAS.ToolTip = "Frames before ARR activates.";
+                                Autolockdial.Title = "Auto-Lock Timer";
+                                    Autolockdial.ToolTip = "Frames before a piece locks after touching the ground.";
 
-                    Misc.Header = "Misc";
-                        Lockoutdial.Title = "Lock Out Height";
-                            Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
-                        TspinDetection.Text = "T-Spin Detection";
-                            FullTmini.Content = "All T-Mini's are full";
-                            NoT.Content = "No T-Spins";
-                            AllT.Content = "Every Spin is a T-Spin";
+                        Misc.Header = "Misc";
+                            Lockoutdial.Title = "Lock Out Height";
+                                Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
+                            TspinDetection.Text = "T-Spin Detection";
+                                FullTmini.Content = "All T-Mini's are full";
+                                NoT.Content = "No T-Spins";
+                                AllT.Content = "Every Spin is a T-Spin";
+                            Harddrop.Text = "Hard-Drop Modification";
+                                Float.Content = "Floating Lock";
+                                    Float.ToolTip = "Piece locks at its current position rather than at the ghost position.";
+                                Sonicdrop.Content = "Sonic Drop";
+                                    Sonicdrop.ToolTip = "Piece drops as far as possible, but doesn't lock. Soft dropping while on the ground will now lock the piece.";
+                                Sink.Content = "Piece Sinking";
+                                    Sink.ToolTip = "Piece locks one tile below ghost on hard drop.";
+                            Noghost.Content = "No Ghost";
+                                Noghost.ToolTip = "Remove Ghost piece.";
+                            PreserveRot.Content = "Preserve rotation on Held Piece";
+                                PreserveRot.ToolTip = "Rotation doesn't reset on hold";
+                            Unhold.Content = "Preserve location on hold";
+                                Unhold.ToolTip = "Position doesn't reset on hold.";
 
-                    Offline.Header = "Offline Only";
-                        DoubleRotate.Content = "180 Rotations";
-                            DoubleRotate.ToolTip = "Using the third rotate right bind will cause the piece to rotate 180 degrees rather than 90.";
-                        ARR.Content = "Instant ARR";
-                            ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
+                        Offline.Header = "Offline Only";
+                            DoubleRotate.Content = "180 Rotations";
+                                DoubleRotate.ToolTip = "Using the third rotate right bind will cause the piece to rotate 180 degrees rather than 90.";
+                            ARR.Content = "Instant ARR";
+                                ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
                     break;
             }
 
@@ -565,9 +577,9 @@ namespace Sandbox {
                         )
                 },
                 {NoT, x => {
-                    Game.WriteByte(new IntPtr(0x14280D093), Convert.ToByte(!x)); //changes the value being written to the t spin flags to be 0
-                    Game.WriteByte(new IntPtr(0x14280D09C), Convert.ToByte(!x)); //so it never registers a t spin
-                }},     //I wanted to just make the game always skip t spin detection but it would conflict with All Spins
+                    Game.WriteByte(new IntPtr(0x14280D093), Convert.ToByte(!x));//changes the value being written to the t spin flags to be 0
+                    Game.WriteByte(new IntPtr(0x14280D09C), Convert.ToByte(!x));//so it never registers a t spin
+                }},                                                             //I wanted to just make the game always skip t spin detection but it would conflict with All Spins
                 {AllT, x =>
                     Game.WriteByteArray(
                         new IntPtr(0x1400A4200),
@@ -603,6 +615,60 @@ namespace Sandbox {
                         Game.WriteByteArray(
                             new IntPtr(0x1400A76FA),
                             ConvertByteString("84 C0 0F 85 46 01 00 00 45 00 BE 00 01 00 00 44 8B 05 10 A4 3B 00 45 8B 80 78 03 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 0F 84 7E 00 00 00 44 8B 05 EB A3 3B 00 45 8B 80 80 03 00 00 45 85 C0 0F 84 03 01 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 74 6E 44 8B 05 C1 A3 3B 00 45 8B 80 88 03 00 00 45 85 C0 0F 84 D9 00 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 74 5E 44 8B 05 97 A3 3B 00 45 8B 80 90 03 00 00 45 85 C0 0F 84 AF 00 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 74 4E 45 31 D2 44 8B 15 6A A3 3B 00 45 8B 92 78 03 00 00 45 8B 92 B0 00 00 00 EB 4C 45 31 D2 44 8B 15 50 A3 3B 00 45 8B 92 80 03 00 00 45 8B 92 B0 00 00 00 EB 32 45 31 D2 44 8B 15 36 A3 3B 00 45 8B 92 88 03 00 00 45 8B 92 B0 00 00 00 EB 18 45 31 D2 44 8B 15 1C A3 3B 00 45 8B 92 90 03 00 00 45 8B 92 B0 00 00 00 41 83 FF 01 75 09 41 80 7A 3D 00 75 29 EB 07 41 80 7A 3B 00 75 20 44 8B 46 10 48 31 C0 41 8A 86 00 01 00 00 8B 56 18 44 8B CA 42 8D 14 38 48 8B CE E9 CB FD FF FF 48 8B 7C 24 58 E9 C9 FD FF FF")
+                        );
+                    }
+                }},
+                {Unhold, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x1428524E0),
+                        x
+                            ? ConvertByteString("90 90 90")
+                            : ConvertByteString("FF 50 10")
+                        )
+                },
+                {Noghost, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x1426C8D60),
+                        x
+                            ? ConvertByteString("90 90 90")
+                            : ConvertByteString("89 43 14")
+                        )
+                },
+                {Float, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x1426D0839),
+                        x
+                            ? ConvertByteString("90 90")
+                            : ConvertByteString("74 E5")
+                        )
+                },
+                {Sink, x =>
+                    Game.WriteByteArray(
+                        new IntPtr(0x1426D083B),
+                        x
+                            ? ConvertByteString("90 90 90")
+                            : ConvertByteString("FF 43 10")
+                        )
+                },
+                {Sonicdrop, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400A70E0),
+                        x
+                            ? ConvertByteString("E9 84 00 00 00 90 90")
+                            : ConvertByteString("74 05 45 84 FF 75 09")
+                        );
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x142853B25),
+                        x
+                            ? ConvertByteString("E9 3C B2 7B FD 90 90 90")
+                            : ConvertByteString("66 83 B9 10 01 00 00 1E")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x14000ED66),
+                            ConvertByteString("48 0F B6 81 24 01 00 00 48 83 E0 08 3C 08 75 09 48 31 C0 B8 01 00 00 00 C3 48 31 C0 66 83 B9 10 01 00 00 1E E9 9E 4D 84 02")
                         );
                     }
                 }}
@@ -673,33 +739,29 @@ namespace Sandbox {
 
             TableScripts = new Dictionary<UniformGrid, Action<int, int>>() {
                 {TvTAttackTable, (i, x) => {
-                    int offset;
-
                     if (i < 4) {
-                        offset = i + 0x24;
+                        i += 0x24;
                     } else if (i < 9) {
-                        offset = i + 0x16;
+                        i += 0x16;
                     } else {
-                        offset = i - 0xA;
+                        i -= 0xA;
                     }
 
-                    Game.WriteByte(new IntPtr(0x1403200B5 + offset), (byte)x);
+                    Game.WriteByte(new IntPtr(0x1403200B5 + i), (byte)x);
                 }},
                 {TvTComboTable, (i, x) => {
                     Game.WriteByte(new IntPtr(0x1403200BB + i), (byte)x);
                 }},
                 {TvPAttackTable, (i, x) => {
-                    int offset;
-
                     if (i < 5) {
-                        offset = i*2 + 0x26B;
+                        i = i*2 + 0x26B;
                     } else if (i == 5) {
-                        offset = 0x277;
+                        i = 0x277;
                     } else {
-                        offset = i - 0xA;
+                        i -= 0xA;
                     }
 
-                    Game.WriteByte(new IntPtr(0x1404329C5 + offset), (byte)x);
+                    Game.WriteByte(new IntPtr(0x1404329C5 + i), (byte)x);
                 }},
                 {TvPComboTable, (i, x) => {
                     Game.WriteByte(new IntPtr(0x140432C17 + i), (byte)x);

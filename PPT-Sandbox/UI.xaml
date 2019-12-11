@@ -32,10 +32,8 @@
                     <CheckBox Margin="0 0 0 5" x:Name="FreezeSwap" Click="CheckBoxHandle" />
 
                     <CheckBox Margin="0 0 0 5" x:Name="ColX" Click="CheckBoxHandle" />
-                    
-                    <CheckBox Margin="0 0 0 5" x:Name="ColM" Click="CheckBoxHandle" />
 
-                    <CheckBox Margin="0 0 0 5" x:Name="PreserveRot" Click="CheckBoxHandle" />
+                    <CheckBox Margin="0 0 0 5" x:Name="ColM" Click="CheckBoxHandle" />
 
                     <CheckBox Margin="0 0 0 5" x:Name="Lockout" Click="CheckBoxHandle" />
                     
@@ -427,6 +425,24 @@
                                 <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="NoT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                                 <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="AllT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="Harddrop" />
+
+                                <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Sonicdrop" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Float" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Sink" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                <CheckBox Margin="0 0 0 5" x:Name="Noghost" Click="CheckBoxHandle" />
+
+                                <CheckBox Margin="0 0 0 5" x:Name="Unhold" Click="CheckBoxHandle" />
+
+                                <CheckBox Margin="0 0 0 5" x:Name="PreserveRot" Click="CheckBoxHandle" />
 
                                 <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                             </StackPanel>
