@@ -452,7 +452,17 @@
                             <StackPanel Margin="10 5 10 0">
                                 <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                                <CheckBox Margin="0 0 0 5" x:Name="DoubleRotate" Click="CheckBoxHandle" />
+                                <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="Rotate" />
+
+                                <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="DoubleRotate" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="Cycle" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="Flip" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="Flip180" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                                 <CheckBox Margin="0 0 0 5" x:Name="ARR" Click="CheckBoxHandle" />
 

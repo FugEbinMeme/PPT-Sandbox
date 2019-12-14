@@ -180,9 +180,23 @@ namespace Sandbox {
                                 Unhold.ToolTip = "Position doesn't reset on hold.";
 
                         Offline.Header = "Offline Only";
-                            DoubleRotate.Content = "180 Rotations";
-                                DoubleRotate.ToolTip = "Using the third rotate right bind will cause the piece to rotate 180 degrees rather than 90.";
-                            ARR.Content = "Instant ARR";
+                            Rotate.Text = "Extra Bind";
+                                Rotate.ToolTip = "Use the third Rotate Right key to activate these effects.";
+                                DoubleRotate.Content = "180 Rotations";
+                                    DoubleRotate.ToolTip = "Piece rotates 180 degrees rather than 90.";
+                                Cycle.Content = "Piece Cycling";
+                                    Cycle.ToolTip = "Piece will Cycle once, from S -> Z -> J -> L -> T -> O -> I -> monomino -> S.\n" +
+                                                    "This action counts as a rotation, and the piece will kick as such during transformation.";
+                                Flip.Content = "Piece Flipping";
+                                    Flip.ToolTip = "Piece will \"flip\" horizontally.\n" +
+                                                   "S <-> Z, J <-> L, counts as 0 degree rotate.\n" +
+                                                   "T, O, I will do a normal 180 rotate.\n" +
+                                                   "Due to the nature of SRS, Custom RS is reccomended along with this code.";
+
+                                Flip180.Content = "Piece Flipping (180)";
+                                    Flip180.ToolTip = "A different approach to piece flipping, that provides slightly different results than the basic version.\n" +
+                                                      "See \"Piece Flipping\" ToolTip for more info.";
+                    ARR.Content = "Instant ARR";
                                 ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
                     break;
             }
@@ -669,6 +683,87 @@ namespace Sandbox {
                         Game.WriteByteArray(
                             new IntPtr(0x14000ED66),
                             ConvertByteString("48 0F B6 81 24 01 00 00 48 83 E0 08 3C 08 75 09 48 31 C0 B8 01 00 00 00 C3 48 31 C0 66 83 B9 10 01 00 00 1E E9 9E 4D 84 02")
+                        );
+                    }
+                }},
+                {Cycle, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400A6D53),
+                        x
+                            ? ConvertByteString("E9 52 FF FF FF 90")
+                            : ConvertByteString("A8 10 74 02 FF CF")
+                        );
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x1402662D2),
+                        x
+                            ? ConvertByteString("E9 2F FC FF FF 90 90 90")
+                            : ConvertByteString("F6 84 19 68 01 00 00 80")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140265F06),
+                            ConvertByteString("F6 84 19 68 01 00 00 80 0F 84 CA 03 00 00 38 4B 5E 0F 85 BF 03 00 00 C6 05 DF D0 1F 00 01 E9 B3 03 00 00")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400A6CAA),
+                            ConvertByteString("80 3D 52 C3 3B 00 01 75 2D C6 05 49 C3 3B 00 00 57 8B F8 83 E7 20 83 FF 20 5F 75 1A 41 8B 7E 30 8B BF C8 03 00 00 8B 47 08 FF C0 83 F8 07 0F 4F C5 89 47 08 EB 79 A8 10 74 75 FF CF EB 71")
+                        );
+                    }
+                }},
+                {Flip, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400A6D4B),
+                        x
+                            ? ConvertByteString("E9 F6 F7 FF FF")
+                            : ConvertByteString("BF 00 00 00 00")
+                        );
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x1402662D2),
+                        x
+                            ? ConvertByteString("E9 2F FC FF FF 90 90 90")
+                            : ConvertByteString("F6 84 19 68 01 00 00 80")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140265F06),
+                            ConvertByteString("F6 84 19 68 01 00 00 80 0F 84 CA 03 00 00 38 4B 5E 0F 85 BF 03 00 00 C6 05 DF D0 1F 00 01 E9 B3 03 00 00")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400A6546),
+                            ConvertByteString("BF 00 00 00 00 0F 45 F9 80 3D AE CA 3B 00 01 0F 85 F8 07 00 00 C6 05 A1 CA 3B 00 00 57 8B F8 83 E7 20 83 FF 20 5F 0F 85 E1 07 00 00 41 8B 7E 30 8B BF C8 03 00 00 8B 47 08 83 F8 02 7D 08 83 F0 01 89 47 08 EB 3B 83 F8 04 7D 0E 83 E8 02 83 F0 01 83 C0 02 89 47 08 EB 28 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 07 BF 02 00 00 00 EB 05 BF FE FF FF FF E9 99 07 00 00 31 FF E9 92 07 00 00 31 FF 41 80 BE 25 01 00 00 00 0F 85 94 07 00 00 B8 00 08 00 00 66 41 89 86 1E 01 00 00 E9 AC")
+                        );
+                    }
+                }},
+                {Flip180, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1402662D2),
+                        x
+                            ? ConvertByteString("E9 2F FC FF FF 90 90 90")
+                            : ConvertByteString("F6 84 19 68 01 00 00 80")
+                        );
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x1402662D2),
+                        x
+                            ? ConvertByteString("E9 2F FC FF FF 90 90 90")
+                            : ConvertByteString("F6 84 19 68 01 00 00 80")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140265F06),
+                            ConvertByteString("F6 84 19 68 01 00 00 80 0F 84 CA 03 00 00 38 4B 5E 0F 85 BF 03 00 00 C6 05 DF D0 1F 00 01 E9 B3 03 00 00")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x140265F06),
+                            ConvertByteString("BF 00 00 00 00 0F 45 F9 80 3D AE CA 3B 00 01 0F 85 F8 07 00 00 C6 05 A1 CA 3B 00 00 57 8B F8 83 E7 20 83 FF 20 5F 0F 85 E1 07 00 00 41 8B 7E 30 8B BF C8 03 00 00 8B 47 08 83 F8 02 7D 08 83 F0 01 89 47 08 EB 11 83 F8 04 7D 0C 83 E8 02 83 F0 01 83 C0 02 89 47 08 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 07 BF 02 00 00 00 EB 05 BF FE FF FF FF E9 9B 07 00 00 31 FF E9 94 07 00 00 00 00 31 FF 41 80 BE 25 01 00 00 00 0F 85 94 07 00 00 B8 00 08 00 00 66 41 89 86 1E 01 00 00 E9 AC 07 00 00")
                         );
                     }
                 }}
