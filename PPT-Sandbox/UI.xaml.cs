@@ -110,11 +110,12 @@ namespace Sandbox {
                     GarbageHeader.Header = "GARBAGE";
                         GarbageGeneration.Text = "Garbage Generation";
                             CleanGarbage.Title = "Clean Garbage Chance";
+                                CleanGarbage.ToolTip = "Percent chance that garbage will stay in the same column.";
                             GarbageFilled.Title = "Filled Garbage Tile";
                             GarbageEmpty.Title = "Empty Garbage Tile";
-                            RecieveT.Title = "Tetris Max Recieval";
-                                RecieveT.ToolTip = "Has no effect on Tetris vs Tetris games.";
-                            RecieveP.Title = "Puyo Max Recieval";
+                            ReceiveT.Title = "Tetris Max Receival";
+                                ReceiveT.ToolTip = "Has no effect on Tetris vs Tetris games.";
+                            ReceiveP.Title = "Puyo Max Receival";
 
                         GarbageModification.Text = "Garbage Modification";
                             SecretGradeGarbage.Content = "Secret Grade Garbage";
@@ -148,11 +149,18 @@ namespace Sandbox {
                         Timing.Header = "     Timings";
                             Delays.Text = "Line Delay";
                                 DelayBase.Text = "Base";
+                                    DelayBase.ToolTip = "Every line clear has this much delay in frames, plus the extra delay based on how many were cleared at once.\n" +
+                                                        "Also is the garbage send delay, so if this is 0, garbage gets sent instantly upon line clear.";
                                 DelaySingle.Text = "Single";
+                                    DelaySingle.ToolTip = "Extra line delay added after 1 line is cleared.";
                                 DelayDouble.Text = "Double";
+                                    DelayDouble.ToolTip = "Extra line delay added after 2 lines is cleared.";
                                 DelayTriple.Text = "Triple";
+                                    DelayTriple.ToolTip = "Extra line delay added after 3 lines are cleared.";
                                 DelayTetris.Text = "Tetris";
+                                    DelayTetris.ToolTip = "Extra line delay added after 4 lines are cleared.";
                                 DelayTetrisPlus.Text = "Tetris Plus";
+                                    DelayTetrisPlus.ToolTip = "Extra line delay added after more than 4 lines are cleared.";
                                 DAS.Title = "DAS";
                                     DAS.ToolTip = "Frames before ARR activates.";
                                 Autolockdial.Title = "Auto-Lock Timer";
@@ -191,13 +199,12 @@ namespace Sandbox {
                                     Flip.ToolTip = "Piece will \"flip\" horizontally.\n" +
                                                    "S <-> Z, J <-> L, counts as 0 degree rotate.\n" +
                                                    "T, O, I will do a normal 180 rotate.\n" +
-                                                   "Due to the nature of SRS, Custom RS is reccomended along with this code.";
-
+                                                   "Due to the nature of SRS, Custom RS is recommended along with this code.";
                                 Flip180.Content = "Piece Flipping (180)";
                                     Flip180.ToolTip = "A different approach to piece flipping, that provides slightly different results than the basic version.\n" +
                                                       "See \"Piece Flipping\" ToolTip for more info.";
-                    ARR.Content = "Instant ARR";
-                                ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
+                        ARR.Content = "Instant ARR";
+                            ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
                     break;
             }
 
@@ -801,25 +808,16 @@ namespace Sandbox {
 
                     Game.WriteInt32(new IntPtr(0x1426B71BB), x);
                 }},
-                {RecieveT, x => {                               //In games with only one game type (tvt, pvp) these actually point to the same address
-                    int? addr = Game.TraverseInt32(             //only in pvt and swap are they distinct
-                                    new IntPtr(0x1405989C8),    //but I won't say that on the writeup on this since it doesn't really matter
-                                    new int[] {0x18, 0xA8}
-                                );
-
-                    if (addr > 0x10000) {
-                        Game.WriteByte((IntPtr)addr+0x1AC, (byte)x);
-                    }
-                }},
-                {RecieveP, x => {
-                    int? addr = Game.TraverseInt32(
-                                    new IntPtr(0x1405989C8),
-                                    new int[] {0x18, 0x18, 0xA8}
-                                );
-
-                    if (addr > 0x10000) {
-                        Game.WriteByte((IntPtr)addr+0x1AC, (byte)x);
-                    }
+                {ReceiveT, x => 
+                    Game.WriteByte(new IntPtr(0x142726178), (byte)x)
+                },
+                {ReceiveP, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x14113722A),
+                        ConvertByteString("B9 1E 00 00 00 90")  //I overwrite a useless operation to do this, although it /may/ not be useless
+                    );                                          //I followed the values around a while ago and came to the conclusion that what this overwrites isn't used, so I'll bet on that
+                                                                //AKA this might have unintended side effects
+                    Game.WriteByte(new IntPtr(0x1411371E4), (byte)x);
                 }},
                 {DAS, x =>
                     Game.WriteByte(new IntPtr(0x1413C8C52), (byte)(x + 1)) //DAS gets decremented the same frame it's set, so I increment x here to counter that

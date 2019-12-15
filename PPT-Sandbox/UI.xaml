@@ -319,9 +319,9 @@
 
                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Default="8" Unit="" FillStart="False" x:Name="GarbageEmpty" Changed="DialHandle" />
 
-                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="40" Default="7" Unit="" FillStart="False" x:Name="RecieveT" Changed="DialHandle" />
+                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="40" Default="7" Unit="" FillStart="False" x:Name="ReceiveT" Changed="DialHandle" />
 
-                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="100" Default="30" Unit="" FillStart="False" x:Name="RecieveP" Changed="DialHandle" />
+                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="70" Default="30" Unit="" FillStart="False" x:Name="ReceiveP" Changed="DialHandle" />
 
                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
