@@ -107,6 +107,10 @@ namespace Sandbox {
 
                             Chain.Text = "Chain";
 
+                        MarginTime.Header = "Margin Time";
+                            Margin.Text = "Value";
+                                Margin.ToolTip = "Has no effect on Tetris vs Tetris games.";
+
                     GarbageHeader.Header = "GARBAGE";
                         GarbageGeneration.Text = "Garbage Generation";
                             CleanGarbage.Title = "Clean Garbage Chance";
@@ -114,7 +118,7 @@ namespace Sandbox {
                             GarbageFilled.Title = "Filled Garbage Tile";
                             GarbageEmpty.Title = "Empty Garbage Tile";
                             ReceiveT.Title = "Tetris Max Receival";
-                                ReceiveT.ToolTip = "Has no effect on Tetris vs Tetris games.";
+                                ReceiveT.ToolTip = Margin.ToolTip.ToString();   //is the exact same information so I do this instead of copypaste, more for the translators than anything tbh
                             ReceiveP.Title = "Puyo Max Receival";
 
                         GarbageModification.Text = "Garbage Modification";
@@ -842,9 +846,9 @@ namespace Sandbox {
 
                     Game.WriteByte(new IntPtr(0x1403200B5 + i), (byte)x);
                 }},
-                {TvTComboTable, (i, x) => {
-                    Game.WriteByte(new IntPtr(0x1403200BB + i), (byte)x);
-                }},
+                {TvTComboTable, (i, x) => 
+                    Game.WriteByte(new IntPtr(0x1403200BB + i), (byte)x)
+                },
                 {TvPAttackTable, (i, x) => {
                     if (i < 5) {
                         i = i*2 + 0x26B;
@@ -856,19 +860,22 @@ namespace Sandbox {
 
                     Game.WriteByte(new IntPtr(0x1404329C5 + i), (byte)x);
                 }},
-                {TvPComboTable, (i, x) => {
-                    Game.WriteByte(new IntPtr(0x140432C17 + i), (byte)x);
-                }},
-                {PvPChainTable, (i, x) => {
-                    Game.WriteUInt16(new IntPtr(0x14031DAC0 + i*2), (ushort)x);
-                }},
+                {TvPComboTable, (i, x) => 
+                    Game.WriteByte(new IntPtr(0x140432C17 + i), (byte)x)
+                },
+                {PvPChainTable, (i, x) => 
+                    Game.WriteUInt16(new IntPtr(0x14031DAC0 + i*2), (ushort)x)
+                },
                 {DelayTable, (i, x) => {
                     if (i == 0) {
                         Game.WriteByte(new IntPtr(0x142724DFC), (byte)x);
                     } else {
                         Game.WriteByte(new IntPtr(0x1427E453B + i*7), (byte)x);
                     }
-                }}
+                }},
+                {MarginTimeTable, (i, x) => 
+                    Game.WriteUInt16(new IntPtr(0x1403201A6 + i*2), (ushort)x)
+                }
             };
         }
 
