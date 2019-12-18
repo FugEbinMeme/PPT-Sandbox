@@ -118,8 +118,9 @@ namespace Sandbox {
                             GarbageFilled.Title = "Filled Garbage Tile";
                             GarbageEmpty.Title = "Empty Garbage Tile";
                             ReceiveT.Title = "Tetris Max Receival";
-                                ReceiveT.ToolTip = Margin.ToolTip.ToString();   //is the exact same information so I do this instead of copypaste, more for the translators than anything tbh
+                                ReceiveT.ToolTip = "Max garbage lines your matrix gets at once when your piece locks.";
                             ReceiveP.Title = "Puyo Max Receival";
+                                ReceiveP.ToolTip = "Max nuisance your board gets at once when you place a puyo";
 
                         GarbageModification.Text = "Garbage Modification";
                             SecretGradeGarbage.Content = "Secret Grade Garbage";
@@ -812,14 +813,24 @@ namespace Sandbox {
 
                     Game.WriteInt32(new IntPtr(0x1426B71BB), x);
                 }},
-                {ReceiveT, x => 
-                    Game.WriteByte(new IntPtr(0x142726178), (byte)x)
-                },
+                {ReceiveT, x => {
+                    Game.WriteByte(new IntPtr(0x142726178), (byte)x);
+                    Game.WriteByteArray(                        //I know I could use a ? : thing here but this probably won't even be here in the first release
+                        new IntPtr(0x1427F6E11),
+                        ConvertByteString("90 90 90")           //in TvT, this code nullifies the garbage cap, so to make this work in TvT I NOP it
+                    );                                          //at this point, ppt-sandbox will now leave permanent changes to your ppt client until relaunch.
+                    if (x == 7) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1427F6E11),            //if you set your cap back to default, there is no chance to desync if you go into online
+                            ConvertByteString("41 89 C6")       //might remove this and just tell people to re-launch to get vanilla ppt again 
+                        );                                      //Or do this (and fix the next dial's residue) in a separate, "reset defaults" function that I intend to add since it was requested
+                    }
+                }},
                 {ReceiveP, x => {
                     Game.WriteByteArray(
-                        new IntPtr(0x14113722A),
+                        new IntPtr(0x14113722A),                //this leaves more residue that can't be undone without re-launching ppt. I could add a case to clean it like the previous dial but idk
                         ConvertByteString("B9 1E 00 00 00 90")  //I overwrite a useless operation to do this, although it /may/ not be useless
-                    );                                          //I followed the values around a while ago and came to the conclusion that what this overwrites isn't used, so I'll bet on that
+                    );                                          //I followed the values around a while ago and came to the conclusion that its redundant
                                                                 //AKA this might have unintended side effects
                     Game.WriteByte(new IntPtr(0x1411371E4), (byte)x);
                 }},
