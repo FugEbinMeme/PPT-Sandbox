@@ -59,6 +59,10 @@
                     
                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="BONKERS" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="jstris" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="jstrismeme" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                 </StackPanel>
             </TabItem>

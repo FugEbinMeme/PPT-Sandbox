@@ -69,6 +69,11 @@ namespace Sandbox {
                                 h.ToolTip = "Piece always rotates, even if it collides.";
                             BONKERS.Content = "B.O.N.K.E.R.S.";
                                 BONKERS.ToolTip = "If initial rotate fails, piece kicks to the ground and checks right one tile, left one tile, all the way up.";
+                            jstris.Content = "Jstris 180 SRS";
+                                jstris.ToolTip = "180 degree rotates now use Jstris kicks.";
+                            jstrismeme.Content = "Jstris meme RS";
+                                jstrismeme.ToolTip = "Kick table used by the \"O-Spin\" setting on Jstris.\n" +
+                                                     "Does not include O piece transformations.";
 
                     AttackHeader.Header = "ATTACK";
                         TetrisVsTetris.Header = "     Tetris vs Tetris";
@@ -404,7 +409,7 @@ namespace Sandbox {
                         );
                         Game.WriteByteArray(
                             new IntPtr(0x140265F06),
-                            ConvertByteString("F6 84 19 68 01 00 00 80 0F 84 CA 03 00 00 38 4B 5E 0F 85 BF 03 00 00 C6 05 DF D0 1F 00 01 E9 B3 03 00 00")
+                            ConvertByteString("80 25 F6 D0 1F 00 01 F6 84 19 68 01 00 00 80 0F 84 C3 03 00 00 38 4B 5E 0F 85 B8 03 00 00 C6 05 D8 D0 1F 00 01 E9 AC 03 00 00")
                         );
                     }
                 }},
@@ -776,6 +781,64 @@ namespace Sandbox {
                         Game.WriteByteArray(
                             new IntPtr(0x140265F06),
                             ConvertByteString("BF 00 00 00 00 0F 45 F9 80 3D AE CA 3B 00 01 0F 85 F8 07 00 00 C6 05 A1 CA 3B 00 00 57 8B F8 83 E7 20 83 FF 20 5F 0F 85 E1 07 00 00 41 8B 7E 30 8B BF C8 03 00 00 8B 47 08 83 F8 02 7D 08 83 F0 01 89 47 08 EB 11 83 F8 04 7D 0C 83 E8 02 83 F0 01 83 C0 02 89 47 08 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 07 BF 02 00 00 00 EB 05 BF FE FF FF FF E9 9B 07 00 00 31 FF E9 94 07 00 00 00 00 31 FF 41 80 BE 25 01 00 00 00 0F 85 94 07 00 00 B8 00 08 00 00 66 41 89 86 1E 01 00 00 E9 AC 07 00 00")
+                        );
+                    }
+                }},
+                {jstris, x => {
+                    if (DoubleRotate.IsChecked == true) {
+                        Game.WriteByte(
+                            new IntPtr(0x1400A6CB9),
+                            (byte)(x
+                                ? 2
+                                : 0
+                            )
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x1426CCE8E),
+                            x
+                                ? ConvertByteString("E9 17 51 93 FD 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90")
+                                : ConvertByteString("44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C")
+                        );
+
+                        if (x) {
+                            Game.WriteByteArray(
+                                new IntPtr(0x140462000),
+                                ConvertByteString("01 FF")
+                            );
+
+                            Game.WriteByteArray(
+                                new IntPtr(0x140001FAA),
+                                ConvertByteString("83 3D 52 10 46 00 02 75 56 45 31 F6 45 31 FF 48 83 FF 01 0F 85 DF AE 6C 02 48 B9 E2 1F 00 40 01 00 00 00 8B D5 6B D2 0A 48 8D 14 11 48 B9 00 20 46 40 01 00 00 00 FF E2 44 0F BE 79 01 E9 B6 AE 6C 02 44 0F BE 71 01 E9 AC AE 6C 02 44 0F BE 39 90 E9 A2 AE 6C 02 44 0F BE 31 E9 99 AE 6C 02 44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C E9 80 AE 6C 02")
+                            );
+                        }
+                    }
+                }},
+                {jstrismeme, x => {
+                    Game.WriteByte(
+                        new IntPtr(0x1426CCEBE),
+                        (byte)(x
+                            ? 0x10
+                            : 0x05
+                        )
+                    );
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x1426CCE8E),
+                        x
+                            ? ConvertByteString("E9 17 51 93 FD 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90")
+                            : ConvertByteString("44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140462000),
+                            ConvertByteString("00 00 FF 00 01 00 00 FF FF FF 01 FF FE 00 02 00 00 FE FF FE 01 FE 00 01 FE FE 02 FE FD FD 03 FD")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x140001FAA),
+                            ConvertByteString("48 8B D3 48 B9 00 20 46 40 01 00 00 00 44 0F BE 34 51 44 0F BE 7C 51 01 83 7C 24 58 01 0F 84 D5 AE 6C 02 41 F7 DE E9 CD AE 6C 02")
                         );
                     }
                 }}
