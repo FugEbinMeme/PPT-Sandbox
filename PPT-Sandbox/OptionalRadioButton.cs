@@ -6,6 +6,8 @@ namespace Sandbox {
     public class OptionalRadioButton: RadioButton {
         static Dictionary<string, OptionalRadioButton> groupSelects = new Dictionary<string, OptionalRadioButton>();
 
+        public static void OverrideSelected(string groupName, OptionalRadioButton selected) => groupSelects[groupName] = selected;
+
         public static OptionalRadioButton GetSelected(string groupName) =>
             groupSelects.ContainsKey(groupName)? groupSelects[groupName] : null;
 

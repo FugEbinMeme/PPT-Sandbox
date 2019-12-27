@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using Microsoft.Win32;
 
 namespace Sandbox {
     public partial class UI {
@@ -15,6 +18,9 @@ namespace Sandbox {
         private Dictionary<Control, Action<bool>> Scripts;
         private Dictionary<Dial, Action<int>> DialScripts;
         private Dictionary<UniformGrid, Action<int, int>> TableScripts;
+        private List<object> EncodingList;
+
+        static readonly int Version = Assembly.GetExecutingAssembly().GetName().Version.Minor;
 
         private byte[] ConvertByteString(string bytes) =>
             bytes.Split(' ').Select(i => Convert.ToByte(i, 16)).ToArray();
@@ -25,7 +31,7 @@ namespace Sandbox {
 
             ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(Int32.MaxValue)); //tooltips no longer yeet after 5 seconds
 
-            Version.Text = $"PPT-Sandbox-{Assembly.GetExecutingAssembly().GetName().Version.Minor} by {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName}";
+            VersionText.Text = $"PPT-Sandbox-{Version} by {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName}";
 
             switch (CultureInfo.CurrentCulture.TwoLetterISOLanguageName) {
                 case "ko":
@@ -215,6 +221,21 @@ namespace Sandbox {
                                                       "See \"Piece Flipping\" ToolTip for more info.";
                         ARR.Content = "Instant ARR";
                             ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
+                    
+                    ResetButton.Content = "Reset";
+                    SaveButton.Content = "Save";
+                    LoadButton.Content = "Load";
+
+                    ofd = new OpenFileDialog() {
+                        Multiselect = false,
+                        Filter = "PPT-Sandbox Files|*.pts|All Files|*.*",
+                        Title = "Open PPT-Sandbox File"
+                    };
+                    
+                    sfd = new SaveFileDialog() {
+                        Filter = "PPT-Sandbox Files|*.pts|All Files|*.*",
+                        Title = "Save PPT-Sandbox File"
+                    };
                     break;
             }
 
@@ -951,6 +972,81 @@ namespace Sandbox {
                     Game.WriteUInt16(new IntPtr(0x1403201A6 + i*2), (ushort)x)
                 }
             };
+
+            EncodingList = new List<object>() {
+                PentominoVersus,
+                RemoveLineClearDelay,
+                UndoHold,
+                FreezeSwap,
+                ColX,
+                ColM,
+                Lockout,
+                Invisible,
+                new List<OptionalRadioButton>() {
+                    RemoveAutoLock,
+                    TGMAutoLock
+                },
+                new List<OptionalRadioButton>() {
+                    Ascension,
+                    Cultris2,
+                    h,
+                    BONKERS,
+                    jstris,
+                    jstrismeme
+                },
+                TvTAttackTable,
+                TvTComboTable,
+                TvPAttackTable,
+                TvPComboTable,
+                GarbageRate,
+                AllClearMultiplier,
+                PvPChainTable,
+                MarginTimeTable,
+                CleanGarbage,
+                GarbageFilled,
+                GarbageEmpty,
+                ReceiveT,
+                ReceiveP,
+                SecretGradeGarbage,
+                GarbageBlocking,
+                UnCappedPC,
+                ColorClear,
+                AllSpin,
+                new List<OptionalRadioButton>() {
+                    TetrisB2BDouble,
+                    TetrisB2BAdd2,
+                    TetrisB2BCum
+                },
+                new List<OptionalRadioButton>() {
+                    TspinB2BDouble,
+                    TspinB2BAdd2,
+                    TspinB2BCum
+                },
+                DelayTable,
+                DAS,
+                Autolockdial,
+                Lockoutdial,
+                new List<OptionalRadioButton>() {
+                    FullTmini,
+                    NoT,
+                    AllT
+                },
+                new List<OptionalRadioButton>() {
+                    Sonicdrop,
+                    Float,
+                    Sink
+                },
+                Noghost,
+                Unhold,
+                PreserveRot,
+                new List<OptionalRadioButton>() {
+                    DoubleRotate,
+                    Cycle,
+                    Flip,
+                    Flip180
+                },
+                ARR
+            };
         }
 
         private void CheckBoxHandle(object sender, RoutedEventArgs e) {
@@ -983,6 +1079,115 @@ namespace Sandbox {
                 );
 
             } else DialScripts[source].Invoke((int)value);
+        }
+
+        OpenFileDialog ofd;
+        SaveFileDialog sfd;
+        
+        static byte[] CreateHeader() => Encoding.ASCII.GetBytes($"PTSB").Concat(BitConverter.GetBytes(Assembly.GetExecutingAssembly().GetName().Version.Minor)).ToArray();
+
+        static void CheckHeader(BinaryReader reader) {
+            if (!reader.ReadBytes(4).Select(i => (char)i).SequenceEqual(new char[] {'P', 'T', 'S', 'B'}))
+                throw new InvalidDataException("The selected file is not a PPT-Sandbox file.");
+
+            if (reader.ReadInt32() != Version)
+                throw new InvalidDataException("The version of the file doesn't match the version of PPT-Sandbox.");
+        }
+
+        void Encode(BinaryWriter writer, TextBlock textBlock) {} // Required because UniformGrid contains TextBlocks, but we don't care about them
+
+        void Encode(BinaryWriter writer, CheckBox checkBox)
+            => writer.Write(checkBox.IsChecked == true);
+
+        void Encode(BinaryWriter writer, List<OptionalRadioButton> group)
+            => writer.Write(group.FindIndex(i => i.IsChecked == true));
+
+        void Encode(BinaryWriter writer, Dial dial)
+            => writer.Write((int)dial.RawValue);
+
+        void Encode(BinaryWriter writer, UniformGrid grid) {
+            foreach (UIElement i in grid.Children)
+                Encode(writer, (dynamic)i);
+        }
+        
+        void Decode(BinaryReader reader, TextBlock textBlock) {} // Required because UniformGrid contains TextBlocks, but we don't care about them
+
+        void Decode(BinaryReader reader, CheckBox checkBox) {
+            checkBox.IsChecked = reader.ReadBoolean();
+            CheckBoxHandle(checkBox, null);
+        }
+
+        void Decode(BinaryReader reader, List<OptionalRadioButton> group) {
+            OptionalRadioButton update = null;
+
+            int currIndex = group.FindIndex(i => i.IsChecked == true);
+
+            if (currIndex >= 0)
+                (update = group[currIndex]).IsChecked = false;
+
+            int index = reader.ReadInt32();
+            if (index >= 0)
+                (update = group[index]).IsChecked = true;
+
+            if (currIndex != index && update != null) {
+                RadioButtonHandle(update, null);
+                OptionalRadioButton.OverrideSelected(update.GroupName, update);
+            }
+        }
+
+        void Decode(BinaryReader reader, Dial dial)
+            => dial.RawValue = reader.ReadInt32();
+
+        void Decode(BinaryReader reader, UniformGrid grid) {
+            foreach (UIElement i in grid.Children)
+                Decode(reader, (dynamic)i);
+        }
+
+        public void Encode(object sender, RoutedEventArgs e) {
+            if (sfd.ShowDialog() != true) return;
+
+            try {
+                using (MemoryStream output = new MemoryStream()) {
+                    using (BinaryWriter writer = new BinaryWriter(output)) {
+                        writer.Write(CreateHeader());
+
+                        foreach (object i in EncodingList)
+                            Encode(writer, (dynamic)i);
+                    }
+
+                    File.WriteAllBytes(sfd.FileName, output.ToArray());
+                }
+
+            } catch (Exception ex) {
+                MessageBox.Show(
+                    $"An error occurred while saving the file: \n\n{ex.Message}",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+            }
+        }
+
+        void Decode(object sender, RoutedEventArgs e) {
+            if (ofd.ShowDialog() != true) return;
+            
+            try {
+                using (FileStream file = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read))
+                    using (BinaryReader reader = new BinaryReader(file)) {
+                        CheckHeader(reader);
+                
+                        foreach (object i in EncodingList)
+                            Decode(reader, (dynamic)i);
+                    }
+
+            } catch (Exception ex) {
+                MessageBox.Show(
+                    $"An error occurred while loading the file: \n\n{ex.Message}",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+            }
         }
     }
 }
