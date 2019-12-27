@@ -386,6 +386,8 @@
 
                         <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="70" Default="30" Unit="" FillStart="False" x:Name="ReceiveP" Changed="DialHandle" />
 
+                        <CheckBox Margin="0 0 0 5" x:Name="ReceiveCap" Click="CheckBoxHandle" />
+
                         <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                         <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="GarbageModification" />

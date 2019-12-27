@@ -76,7 +76,8 @@ namespace Sandbox {
                             BONKERS.Content = "B.O.N.K.E.R.S.";
                                 BONKERS.ToolTip = "If initial rotate fails, piece kicks to the ground and checks right one tile, left one tile, all the way up.";
                             jstris.Content = "Jstris 180 SRS";
-                                jstris.ToolTip = "180 degree rotates now use Jstris kicks.";
+                                jstris.ToolTip = "180 degree rotates now use Jstris kicks.\n" +
+                                                 "Activate 180 rotations in Other -> Offline Only.";
                             jstrismeme.Content = "Jstris meme RS";
                                 jstrismeme.ToolTip = "Kick table used by the \"O-Spin\" setting on Jstris.\n" +
                                                      "Does not include O piece transformations.";
@@ -129,9 +130,13 @@ namespace Sandbox {
                             GarbageFilled.Title = "Filled Garbage Tile";
                             GarbageEmpty.Title = "Empty Garbage Tile";
                             ReceiveT.Title = "Tetris Max Receival";
-                                ReceiveT.ToolTip = "Max garbage lines your matrix gets at once when your piece locks.";
+                                ReceiveT.ToolTip = "Max garbage lines your matrix gets at once when your piece locks.\n" +
+                                                   "Does not work in Tetris vs Tetris games without another script.";
                             ReceiveP.Title = "Puyo Max Receival";
                                 ReceiveP.ToolTip = "Max nuisance your board gets at once when you place a puyo";
+                            ReceiveCap.Content = "Tetris vs Tetris Garbage Capping";
+                                ReceiveCap.ToolTip = "Allows " + ReceiveT.Title + " to work in Tetris vs Tetris games.\n" +
+                                                     "See " + ReceiveT.Title + " tooltip for more info.";
 
                         GarbageModification.Text = "Garbage Modification";
                             SecretGradeGarbage.Content = "Secret Grade Garbage";
@@ -218,7 +223,7 @@ namespace Sandbox {
                                                    "Due to the nature of SRS, Custom RS is recommended along with this code.";
                                 Flip180.Content = "Piece Flipping (180)";
                                     Flip180.ToolTip = "A different approach to piece flipping, that provides slightly different results than the basic version.\n" +
-                                                      "See \"Piece Flipping\" ToolTip for more info.";
+                                                      "See " + Flip.Content + " ToolTip for more info.";
                         ARR.Content = "Instant ARR";
                             ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
                     
@@ -862,7 +867,15 @@ namespace Sandbox {
                             ConvertByteString("48 8B D3 48 B9 00 20 46 40 01 00 00 00 44 0F BE 34 51 44 0F BE 7C 51 01 83 7C 24 58 01 0F 84 D5 AE 6C 02 41 F7 DE E9 CD AE 6C 02")
                         );
                     }
-                }}
+                }},
+                {ReceiveCap, x =>
+                   Game.WriteByteArray(
+                       new IntPtr(0x1427F6E11),
+                       x
+                           ? ConvertByteString("41 89 C6")
+                           : ConvertByteString("90 90 90")
+                       )
+                }
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
@@ -897,25 +910,16 @@ namespace Sandbox {
 
                     Game.WriteInt32(new IntPtr(0x1426B71BB), x);
                 }},
-                {ReceiveT, x => {
-                    Game.WriteByte(new IntPtr(0x142726178), (byte)x);
-                    Game.WriteByteArray(                        //I know I could use a ? : thing here but this probably won't even be here in the first release
-                        new IntPtr(0x1427F6E11),
-                        ConvertByteString("90 90 90")           //in TvT, this code nullifies the garbage cap, so to make this work in TvT I NOP it
-                    );                                          //at this point, ppt-sandbox will now leave permanent changes to your ppt client until relaunch.
-                    if (x == 7) {
-                        Game.WriteByteArray(
-                            new IntPtr(0x1427F6E11),            //if you set your cap back to default, there is no chance to desync if you go into online
-                            ConvertByteString("41 89 C6")       //might remove this and just tell people to re-launch to get vanilla ppt again 
-                        );                                      //Or do this (and fix the next dial's residue) in a separate, "reset defaults" function that I intend to add since it was requested
-                    }
-                }},
+                {ReceiveT, x =>
+                    Game.WriteByte(new IntPtr(0x142726178), (byte)x)
+                },
                 {ReceiveP, x => {
-                    Game.WriteByteArray(
-                        new IntPtr(0x14113722A),                //this leaves more residue that can't be undone without re-launching ppt. I could add a case to clean it like the previous dial but idk
-                        ConvertByteString("B9 1E 00 00 00 90")  //I overwrite a useless operation to do this, although it /may/ not be useless
-                    );                                          //I followed the values around a while ago and came to the conclusion that its redundant
-                                                                //AKA this might have unintended side effects
+                    Game.WriteByteArray(                                //I overwrite a useless operation to do this, although it /may/ not be useless
+                        new IntPtr(0x14113722A),                        //I followed the values around a while ago and came to the conclusion that its redundant
+                        (x == 30)                                       //AKA this might have unintended side effects
+                            ? ConvertByteString("89 8B E8 01 00 00")    //If setting back to default, also fix residue. PPT is now vanilla again
+                            : ConvertByteString("B9 1E 00 00 00 90")
+                    );
                     Game.WriteByte(new IntPtr(0x1411371E4), (byte)x);
                 }},
                 {DAS, x =>
@@ -1007,6 +1011,7 @@ namespace Sandbox {
                 GarbageEmpty,
                 ReceiveT,
                 ReceiveP,
+                ReceiveCap, 
                 SecretGradeGarbage,
                 GarbageBlocking,
                 UnCappedPC,
