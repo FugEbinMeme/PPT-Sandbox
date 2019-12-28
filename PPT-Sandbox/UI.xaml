@@ -598,7 +598,7 @@
         </StackPanel>
 
         <StackPanel Margin="5 5 30 5" VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Style="{StaticResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Width="50" x:Name="ResetButton" />
+            <Button Style="{StaticResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Width="50" x:Name="ResetButton" Click="Reset" />
             <Button Style="{StaticResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Width="50" x:Name="SaveButton" Click="Encode" Margin="5 0" />
             <Button Style="{StaticResource SquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True" Width="50" x:Name="LoadButton" Click="Decode" />
         </StackPanel>

@@ -1120,6 +1120,31 @@ namespace Sandbox {
             } else DialScripts[source].Invoke((int)value);
         }
 
+        void Reset(TextBlock textBlock) {} // Required because UniformGrid contains TextBlocks, but we don't care about them
+
+        void Reset(CheckBox checkBox) {
+            checkBox.IsChecked = false;
+            CheckBoxHandle(checkBox, null);
+        }
+
+        void Reset(List<OptionalRadioButton> group) {
+            int currIndex = group.FindIndex(i => i.IsChecked == true);
+
+            if (currIndex >= 0) {
+                group[currIndex].IsChecked = false;
+                RadioButtonHandle(group[currIndex], null);
+                OptionalRadioButton.OverrideSelected(group[currIndex].GroupName, null);
+            }
+        }
+
+        void Reset(Dial dial)
+            => dial.RawValue = dial.Default;
+
+        void Reset(UniformGrid grid) {
+            foreach (UIElement i in grid.Children)
+                Reset((dynamic)i);
+        }
+
         OpenFileDialog ofd;
         SaveFileDialog sfd;
         
@@ -1180,6 +1205,11 @@ namespace Sandbox {
         void Decode(BinaryReader reader, UniformGrid grid) {
             foreach (UIElement i in grid.Children)
                 Decode(reader, (dynamic)i);
+        }
+
+        public void Reset(object sender, RoutedEventArgs e) {
+            foreach (object i in EncodingList)
+                Reset((dynamic)i);
         }
 
         public void Encode(object sender, RoutedEventArgs e) {
