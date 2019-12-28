@@ -474,7 +474,58 @@
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
+                            
+                            <TabItem x:Name="Gravity">
+                                <StackPanel Margin="10 5 10 0">
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
+                                    <UniformGrid Rows="4" Columns="6" Margin="0 0 0 5" Height="120" x:Name="GravityTable">
+                                        <UniformGrid.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                            </Style>
+                                        </UniformGrid.Resources>
+
+                                        <TextBlock HorizontalAlignment="Center" x:Name="Level" />
+                                        <TextBlock HorizontalAlignment="Center" Text="+1"/>
+                                        <TextBlock HorizontalAlignment="Center" Text="+2"/>
+                                        <TextBlock HorizontalAlignment="Center" Text="+3"/>
+                                        <TextBlock HorizontalAlignment="Center" Text="+4"/>
+                                        <TextBlock HorizontalAlignment="Center" Text="+5"/>
+
+                                        <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="0" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="17" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="22" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="28" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="36" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="48" Unit="" Changed="DialHandle" />
+
+                                        <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="5" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="65" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="90" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="126" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="182" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="267" Unit="" Changed="DialHandle" />
+
+                                        <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Text="10" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="397" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="610" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="948" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="1552" Unit="" Changed="DialHandle" />
+                                        <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="1" Maximum="5000" Exponent="1.5" Default="2438" Unit="" Changed="DialHandle" />
+                                    </UniformGrid>
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="1" Maximum="1000" Default="20" Unit="" x:Name="Softdrop" Changed="DialHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                    <TextBlock Margin="0 0 0 5" TextWrapping="Wrap" Foreground="#707070" x:Name="GravityExplanation" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                </StackPanel>
+                            </TabItem>
+                            
                             <TabItem x:Name="Misc">
                                 <StackPanel Margin="10 5 10 0">
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />

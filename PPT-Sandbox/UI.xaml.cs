@@ -74,7 +74,7 @@ namespace Sandbox {
                             h.Content = "h";
                                 h.ToolTip = "Piece always rotates, even if it collides.";
                             BONKERS.Content = "B.O.N.K.E.R.S.";
-                                BONKERS.ToolTip = "If initial rotate fails, piece kicks to the ground and checks right one tile, left one tile, all the way up.";
+                                BONKERS.ToolTip = "If initial rotate fails, piece kicks to the bottom of the matrix and checks right one tile, left one tile, all the way up.";
                             jstris.Content = "Jstris 180 SRS";
                                 jstris.ToolTip = "180 degree rotates now use Jstris kicks.\n" +
                                                  "Activate 180 rotations in Other -> Offline Only.";
@@ -128,7 +128,9 @@ namespace Sandbox {
                             CleanGarbage.Title = "Clean Garbage Chance";
                                 CleanGarbage.ToolTip = "Percent chance that garbage will stay in the same column.";
                             GarbageFilled.Title = "Filled Garbage Tile";
+                                GarbageFilled.ToolTip = "Set to 8 for empty.";
                             GarbageEmpty.Title = "Empty Garbage Tile";
+                                GarbageEmpty.ToolTip = GarbageFilled.ToolTip;
                             ReceiveT.Title = "Tetris Max Receival";
                                 ReceiveT.ToolTip = "Max garbage lines your matrix gets at once when your piece locks.\n" +
                                                    "Does not work in Tetris vs Tetris games without another script.";
@@ -186,6 +188,14 @@ namespace Sandbox {
                                     DAS.ToolTip = "Frames before ARR activates.";
                                 Autolockdial.Title = "Auto-Lock Timer";
                                     Autolockdial.ToolTip = "Frames before a piece locks after touching the ground.";
+
+                        Gravity.Header = "Gravity";
+                            Level.Text = "Level";
+                            GravityExplanation.Text = "The higher the value, the less time it takes to reach the bottom of the matrix. Sweet / Mild / Normal / Hot / Spicy share values with certain levels.\n" +
+                                                      "Sweet is level 1, Mild is level 2, Normal is level 3, Hot is level 5, and Spicy is level 7.\n" +
+                                                      "Chellenge Modes like Sprint and Ultra count as level 1.";
+                            Softdrop.Title = "Softdrop Multiplier";
+                                Softdrop.ToolTip = "By default, Softdropping multiplies your gravity value by 20. You can change this value here";
 
                         Misc.Header = "Misc";
                             Lockoutdial.Title = "Lock Out Height";
@@ -930,7 +940,21 @@ namespace Sandbox {
                 },
                 {Lockoutdial, x =>
                     Game.WriteByte(new IntPtr(0x142802821), (byte)x)
-                }
+                },
+                {Softdrop, x => {
+                    if (x == 20) {                      //PPT uses lea eax,[rax+rax*4] and then shl eax,2 for default operations
+                        Game.WriteByteArray(            //and while imul eax,eax,20 is the exact same (but slower) I want to leave PPT in vanilla state if its a vanilla value
+                            new IntPtr(0x142892DC1),
+                            ConvertByteString("8D 04 80 C1 E0 02")
+                        );
+                    } else {
+                        Game.WriteByteArray(
+                            new IntPtr(0x142892DC1),
+                            ConvertByteString("69 C0 14 00 00 00")  //turn default operation into a 4 byte imul, defaulting to 20
+                        );
+                        Game.WriteInt32(new IntPtr(0x142892DC3), x);//change the 20 to what you actually want
+                    }
+                }}
             };
 
             TableScripts = new Dictionary<UniformGrid, Action<int, int>>() {
@@ -945,7 +969,7 @@ namespace Sandbox {
 
                     Game.WriteByte(new IntPtr(0x1403200B5 + i), (byte)x);
                 }},
-                {TvTComboTable, (i, x) => 
+                {TvTComboTable, (i, x) =>
                     Game.WriteByte(new IntPtr(0x1403200BB + i), (byte)x)
                 },
                 {TvPAttackTable, (i, x) => {
@@ -959,10 +983,10 @@ namespace Sandbox {
 
                     Game.WriteByte(new IntPtr(0x1404329C5 + i), (byte)x);
                 }},
-                {TvPComboTable, (i, x) => 
+                {TvPComboTable, (i, x) =>
                     Game.WriteByte(new IntPtr(0x140432C17 + i), (byte)x)
                 },
-                {PvPChainTable, (i, x) => 
+                {PvPChainTable, (i, x) =>
                     Game.WriteUInt16(new IntPtr(0x14031DAC0 + i*2), (ushort)x)
                 },
                 {DelayTable, (i, x) => {
@@ -972,9 +996,17 @@ namespace Sandbox {
                         Game.WriteByte(new IntPtr(0x1427E453B + i*7), (byte)x);
                     }
                 }},
-                {MarginTimeTable, (i, x) => 
+                {MarginTimeTable, (i, x) =>
                     Game.WriteUInt16(new IntPtr(0x1403201A6 + i*2), (ushort)x)
-                }
+                },
+                {GravityTable, (i, x) => {
+                    if (i == 0) {                                                   
+                        Game.WriteUInt16(new IntPtr(0x1403200E8), (ushort)x);       //in memory the first two values are both 17, but correspond to different things for no good reason
+                        Game.WriteUInt16(new IntPtr(0x1403200EA), (ushort)x);       //one is for the "Sweet" setting, and the other is for Challenge Modes / Level 1
+                    } else {                                                        //To reduce confusion I'm editing both at the same time since they are, after all, the same value
+                        Game.WriteUInt16(new IntPtr(0x1403200EA + i*2), (ushort)x);
+                    }
+                }}
             };
 
             EncodingList = new List<object>() {
@@ -1030,6 +1062,8 @@ namespace Sandbox {
                 DelayTable,
                 DAS,
                 Autolockdial,
+                GravityTable,
+                Softdrop,
                 Lockoutdial,
                 new List<OptionalRadioButton>() {
                     FullTmini,
