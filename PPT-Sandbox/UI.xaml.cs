@@ -901,7 +901,7 @@ namespace Sandbox {
 
                     if (x) {
                         Game.WriteByteArray(
-                            new IntPtr(0x140462000),
+                            new IntPtr(0x140265F4C),
                             ConvertByteString("50 48 8B 44 24 38 48 8B 80 C8 03 00 00 83 78 10 23 73 03 FE 40 10 58 FE 8B 01 01 00 00 E9 89 98 5F 02")
                         );
                     }
@@ -960,7 +960,6 @@ namespace Sandbox {
                     if (addr > 0x10000) {    //I'm not taking chances writing to bad memory, all pointer chains will do this
                         Game.WriteInt32((IntPtr)addr+0x284, x);
                     }
-
                 }},
                 {CleanGarbage, x =>
                     Game.WriteByte(new IntPtr(0x14032010F), (byte)x)
