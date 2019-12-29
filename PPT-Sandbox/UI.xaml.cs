@@ -211,6 +211,9 @@ namespace Sandbox {
                                     Sonicdrop.ToolTip = "Piece drops as far as possible, but doesn't lock. Soft dropping while on the ground will now lock the piece.";
                                 Sink.Content = "Piece Sinking";
                                     Sink.ToolTip = "Piece locks one tile below ghost on hard drop.";
+                                Up.Content = "Harddrop goes up";
+                                    Up.ToolTip = "Pressing Harddrop now makes your piece move 1 tile up, and can no longer lock your piece.\n" +
+                                                 "Auto-Lock is now the only way to place a piece.";
                             Noghost.Content = "No Ghost";
                                 Noghost.ToolTip = "Remove Ghost piece.";
                             PreserveRot.Content = "Preserve rotation on Held Piece";
@@ -234,6 +237,8 @@ namespace Sandbox {
                                 Flip180.Content = "Piece Flipping (180)";
                                     Flip180.ToolTip = "A different approach to piece flipping, that provides slightly different results than the basic version.\n" +
                                                       "See " + Flip.Content + " ToolTip for more info.";
+                                bigsoftdrop.Content = "Super Soft Drop";
+                                    bigsoftdrop.ToolTip = "Moves your piece one tile down, ignoring all collision.";
                         ARR.Content = "Instant ARR";
                             ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
                     
@@ -882,10 +887,64 @@ namespace Sandbox {
                    Game.WriteByteArray(
                        new IntPtr(0x1427F6E11),
                        x
-                           ? ConvertByteString("41 89 C6")
-                           : ConvertByteString("90 90 90")
+                           ? ConvertByteString("90 90 90")
+                           : ConvertByteString("41 89 C6")
                        )
-                }
+                },
+                {Up, x => {
+                    Game.WriteByteArray(
+                       new IntPtr(0x14285F7F2),
+                       x
+                           ? ConvertByteString("E9 55 67 A0 FD 90 90 90")
+                           : ConvertByteString("66 83 8B 98 00 00 00 04")
+                       );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140462000),
+                            ConvertByteString("50 48 8B 44 24 38 48 8B 80 C8 03 00 00 83 78 10 23 73 03 FE 40 10 58 FE 8B 01 01 00 00 E9 89 98 5F 02")
+                        );
+                    }
+                }},
+                {bigsoftdrop, x => {
+                    Game.WriteByteArray(
+                       new IntPtr(0x14285F826),
+                       x
+                           ? ConvertByteString("E9 C5 00 00 00 90 90 90")
+                           : ConvertByteString("66 83 8B 98 00 00 00 20")
+                       );
+
+                    Game.WriteByteArray(
+                       new IntPtr(0x140266101),
+                       x
+                           ? ConvertByteString("E9 0A FF FF FF")
+                           : ConvertByteString("3D 1E 00 07 80")
+                       );
+
+                    Game.WriteByteArray(
+                       new IntPtr(0x1402662D2),
+                       x
+                           ? ConvertByteString("E9 2F FC FF FF 90 90 90")
+                           : ConvertByteString("F6 84 19 68 01 00 00 80")
+                       );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140266010),
+                            ConvertByteString("C7 05 E9 CF 1F 00 00 00 00 00 3D 1E 00 07 80 E9 E2 00 00 00")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x140265F06),
+                            ConvertByteString("F6 84 19 68 01 00 00 80 0F 84 CA 03 00 00 38 4B 5E 0F 85 BF 03 00 00 C6 05 DF D0 1F 00 01 E9 B3 03 00 00")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x14285F8F0),
+                            ConvertByteString("80 3D 0C 37 C0 FD 01 75 2B C6 05 03 37 C0 FD 00 48 8B 4C 24 30 48 8B 89 C8 03 00 00 83 79 10 00 0F 84 18 FF FF FF FF 49 10 FF 83 01 01 00 00 E9 0A FF FF FF 66 83 8B 98 00 00 00 20 E9 FD FE FF FF 00")
+                        );
+                    }
+                }}
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
@@ -1073,7 +1132,8 @@ namespace Sandbox {
                 new List<OptionalRadioButton>() {
                     Sonicdrop,
                     Float,
-                    Sink
+                    Sink,
+                    Up
                 },
                 Noghost,
                 Unhold,
@@ -1082,7 +1142,8 @@ namespace Sandbox {
                     DoubleRotate,
                     Cycle,
                     Flip,
-                    Flip180
+                    Flip180,
+                    bigsoftdrop
                 },
                 ARR
             };

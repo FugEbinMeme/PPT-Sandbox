@@ -551,6 +551,8 @@
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Float" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Sink" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Up" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
@@ -577,6 +579,8 @@
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="Flip" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="Flip180" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="bigsoftdrop" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
