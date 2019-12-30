@@ -57,6 +57,10 @@ namespace Sandbox {
                                 Lockout.ToolTip = "Placing a piece above row 20 will no longer cause a game over.";
                             Invisible.Content = "Invisible Matrix";
                                 Invisible.ToolTip = "All mino types, except garbage, are hidden from view.";
+                            Input.Content = "Better Input Handling";
+                                Input.ToolTip = "By default, PPT processes inputs in the order of [Rotation -> Movement -> Gravity] if you don't harddrop, and [Rotation -> Harddrop] if you do.\n" +
+                                                "With this, it now always does [Movement -> Rotate -> (Gravity / Harddrop)], leading to a smoother experience and less \"dropped\" inputs.\n" +
+                                                "Hold is always processed first, before anything else.";
 
                         AutoLocking.Text = "Piece Auto-Locking";
                             RemoveAutoLock.Content = "Disable Auto-Locking";
@@ -944,6 +948,40 @@ namespace Sandbox {
                             ConvertByteString("80 3D 0C 37 C0 FD 01 75 2B C6 05 03 37 C0 FD 00 48 8B 4C 24 30 48 8B 89 C8 03 00 00 83 79 10 00 0F 84 18 FF FF FF FF 49 10 FF 83 01 01 00 00 E9 0A FF FF FF 66 83 8B 98 00 00 00 20 E9 FD FE FF FF 00")
                         );
                     }
+                }},
+                {Input, x => {
+                    Game.WriteByteArray(
+                       new IntPtr(0x14036A590),
+                       x
+                           ? ConvertByteString("E6 DF 01 40 01")
+                           : ConvertByteString("50 75 0A 40 01")
+                       );
+
+                    Game.WriteByteArray(
+                       new IntPtr(0x14036A598),
+                       x
+                           ? ConvertByteString("50 75 0A 40 01")
+                           : ConvertByteString("10 6D 0A 40 01")
+                       );
+
+                    Game.WriteByteArray(
+                       new IntPtr(0x1400A763A),
+                       x
+                           ? ConvertByteString("E9 B7 00 00 00 90 90")
+                           : ConvertByteString("45 00 BE 00 01 00 00")
+                       );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x14001DFE6),
+                            ConvertByteString("80 3D 17 50 44 00 00 0F 84 1D 8D 08 00 0F BE 0D 0A 50 44 00 C6 05 03 50 44 00 00 48 8B 44 24 68 48 8B 80 C8 03 00 00 01 48 0C 48 31 C0 48 8B CB E9 F5 8C 08 00")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400A76F6),
+                            ConvertByteString("44 88 3D 07 B9 3B 00 45 00 BE 00 01 00 00 E9 38 FF FF FF")
+                        );
+                    }
                 }}
             };
 
@@ -1076,6 +1114,7 @@ namespace Sandbox {
                 ColM,
                 Lockout,
                 Invisible,
+                Input,
                 new List<OptionalRadioButton>() {
                     RemoveAutoLock,
                     TGMAutoLock
