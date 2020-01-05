@@ -990,14 +990,17 @@ namespace Sandbox {
                     Game.WriteUInt16(new IntPtr(0x14044193C), (ushort)x)
                 },
                 {AllClearMultiplier, x => {
-                    int? addr = Game.TraverseInt32(
-                                    new IntPtr(0x140598A20),
-                                    new int[] {0x38}
-                               );
-
-                    if (addr > 0x10000) {    //I'm not taking chances writing to bad memory, all pointer chains will do this
-                        Game.WriteInt32((IntPtr)addr+0x284, x);
-                    }
+                    Game.WriteByteArray(
+                        new IntPtr(0x1411372F0),
+                        (x == 30)
+                            ? ConvertByteString("89 8B 84 02 00 00")
+                            : ConvertByteString("E9 F6 00 00 00 90")
+                        );
+                    Game.WriteByteArray(
+                        new IntPtr(0x1411373EB),
+                        ConvertByteString("C7 83 84 02 00 00 1E 00 00 00 E9 FC FE FF FF")
+                    );
+                    Game.WriteUInt32(new IntPtr(0x1411373F1), (uint)x);
                 }},
                 {CleanGarbage, x =>
                     Game.WriteByte(new IntPtr(0x14032010F), (byte)x)
