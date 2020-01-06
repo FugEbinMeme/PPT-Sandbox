@@ -79,12 +79,22 @@ namespace Sandbox {
                                 h.ToolTip = "Piece always rotates, even if it collides.";
                             BONKERS.Content = "B.O.N.K.E.R.S.";
                                 BONKERS.ToolTip = "If initial rotate fails, piece kicks to the bottom of the matrix and checks right one tile, left one tile, all the way up.";
-                            jstris.Content = "Jstris 180 SRS";
-                                jstris.ToolTip = "180 degree rotates now use Jstris kicks.\n" +
-                                                 "Activate 180 rotations in Other -> Offline Only.";
                             jstrismeme.Content = "Jstris meme RS";
                                 jstrismeme.ToolTip = "Kick table used by the \"O-Spin\" setting on Jstris.\n" +
                                                      "Does not include O piece transformations.";
+                            thenew.Content = "The New Tetris";
+                                thenew.ToolTip = "Rotation system used by The New Tetris on N64.\n" +
+                                                 "Best used with The New Tetris rotation state code.";
+                            jstris.Content = "Jstris 180 SRS";
+                                jstris.ToolTip = "180 degree rotates now use Jstris kicks.\n" +
+                                                 "Activate 180 rotations in Other -> Offline Only.";
+                            nullpo.Content = "Nullpomino 180 SRS";
+                                nullpo.ToolTip = "180 degree rotates now use Nullpomino kicks.\n" +
+                                                 "Activate 180 rotations in Other -> Offline Only.";
+
+                        RotationStates.Text = "Rotation State Modification";
+                            ars.Content = "ARS";
+                            thenewrs.Content = thenew.Content;
 
                     AttackHeader.Header = "ATTACK";
                         TetrisVsTetris.Header = "     Tetris vs Tetris";
@@ -435,6 +445,25 @@ namespace Sandbox {
                     }
                 }},
                 {DoubleRotate, x => {
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400A6CAA),
+                            ConvertByteString("80 3D 52 C3 3B 00 01 75 31 C6 05 49 C3 3B 00 00 57 8B F8 83 E7 20 83 FF 20 5F 75 1E 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 07 BF 02 00 00 00 EB 7C BF FE FF FF FF EB 75 A8 10 74 71 FF CF EB 6D")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x140265F06),
+                            ConvertByteString("80 25 F6 D0 1F 00 01 F6 84 19 68 01 00 00 80 0F 84 C3 03 00 00 38 4B 5E 0F 85 B8 03 00 00 C6 05 D8 D0 1F 00 01 E9 AC 03 00 00")
+                        );
+                    } else {
+                        if (jstris.IsChecked == true) {
+                            Scripts[jstris].Invoke(false);
+                            jstris.IsChecked = false;
+                        }
+                        if (nullpo.IsChecked == true) {
+                            Scripts[nullpo].Invoke(false);
+                            nullpo.IsChecked = false;
+                        }
+                    }
                     Game.WriteByteArray(
                         new IntPtr(0x1400A6D53),
                         x
@@ -447,16 +476,6 @@ namespace Sandbox {
                             ? ConvertByteString("E9 2F FC FF FF 90 90 90")
                             : ConvertByteString("F6 84 19 68 01 00 00 80")
                         );
-                    if (x) {
-                        Game.WriteByteArray(
-                            new IntPtr(0x1400A6CAA),
-                            ConvertByteString("80 3D 52 C3 3B 00 01 75 31 C6 05 49 C3 3B 00 00 57 8B F8 83 E7 20 83 FF 20 5F 75 1E 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 07 BF 02 00 00 00 EB 7C BF FE FF FF FF EB 75 A8 10 74 71 FF CF EB 6D")
-                        );
-                        Game.WriteByteArray(
-                            new IntPtr(0x140265F06),
-                            ConvertByteString("80 25 F6 D0 1F 00 01 F6 84 19 68 01 00 00 80 0F 84 C3 03 00 00 38 4B 5E 0F 85 B8 03 00 00 C6 05 D8 D0 1F 00 01 E9 AC 03 00 00")
-                        );
-                    }
                 }},
                 {FreezeSwap, x => {
                     Game.WriteByteArray(
@@ -830,7 +849,7 @@ namespace Sandbox {
                     }
                 }},
                 {jstris, x => {
-                    if (DoubleRotate.IsChecked == true) {
+                    if (DoubleRotate.IsChecked == true || x == false) {
                         Game.WriteByte(
                             new IntPtr(0x1400A6CB9),
                             (byte)(x
@@ -857,6 +876,8 @@ namespace Sandbox {
                                 ConvertByteString("83 3D 52 10 46 00 02 75 56 45 31 F6 45 31 FF 48 83 FF 01 0F 85 DF AE 6C 02 48 B9 E2 1F 00 40 01 00 00 00 8B D5 6B D2 0A 48 8D 14 11 48 B9 00 20 46 40 01 00 00 00 FF E2 44 0F BE 79 01 E9 B6 AE 6C 02 44 0F BE 71 01 E9 AC AE 6C 02 44 0F BE 39 90 E9 A2 AE 6C 02 44 0F BE 31 E9 99 AE 6C 02 44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C E9 80 AE 6C 02")
                             );
                         }
+                    } else {
+                        jstris.IsChecked = false;
                     }
                 }},
                 {jstrismeme, x => {
@@ -980,6 +1001,94 @@ namespace Sandbox {
                         Game.WriteByteArray(
                             new IntPtr(0x1400A76F6),
                             ConvertByteString("44 88 3D 07 B9 3B 00 45 00 BE 00 01 00 00 E9 38 FF FF FF")
+                        );
+                    }
+                }},
+                {nullpo, x => {
+                    if (DoubleRotate.IsChecked == true) {
+                        Game.WriteByte(
+                            new IntPtr(0x1400A6CB9),
+                            (byte)(x
+                                ? 2
+                                : 0
+                            )
+                        );
+
+                        Game.WriteByte(
+                            new IntPtr(0x1426CCEBE),
+                            (byte)(x
+                                ? 0x0C
+                                : 0x05
+                            )
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x1426CCE8E),
+                            x
+                                ? ConvertByteString("E9 17 51 93 FD 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90")
+                                : ConvertByteString("44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C")
+                        );
+
+                        if (x) {
+                            Game.WriteByteArray(
+                                new IntPtr(0x140462000),
+                                ConvertByteString("00 00 01 00 02 00 01 FF 02 FF FF 00 FE 00 FF FF FE FF 00 01 03 00 FD 00 00 00 00 FF 00 FE FF FF FF FE 00 01 00 02 FF 01 FF 02 01 00 00 FD 00 03 00 00 FF 00 FE 00 01 00 02 00 00 FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 FE 00 01 00 02 FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 02 00 FF 00 FE 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF 00 FE 00 01 00 02 01 00 00 00 00 00 00 00 00 00 00 00 00 00 01 FF FF FF FF 01 01 01")
+                            );
+
+                            Game.WriteByteArray(
+                                new IntPtr(0x140001FAA),
+                                ConvertByteString("83 3D 52 10 46 00 02 75 58 83 7E 08 06 74 74 48 0F B6 4E 18 48 83 F9 02 7C 04 48 83 E9 02 48 6B C9 18 48 BA 00 20 46 40 01 00 00 00 48 01 CA 44 0F BE 34 5A 44 0F BE 7C 5A 01 83 7E 18 02 0F 8C B4 AE 6C 02 41 F7 DE 83 7E 08 06 0F 85 A7 AE 6C 02 48 0F B6 56 18 E9 9D AE 6C 02 45 31 FF 45 31 F6 83 FF 04 0F 8F 8E AE 6C 02 44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C E9 75 AE 6C 02 48 0F B6 4E 18 48 6B C9 18 48 BA 00 20 46 40 01 00 00 00 48 8D 54 11 30 44 0F BE 34 5A 44 0F BE 7C 5A 01 0F B6 4E 18 48 BA 90 20 46 40 01 00 00 00 0F BE 0C 4A 41 01 CE 0F B6 4E 18 0F BE 4C 4A 01 41 01 CF E9 2C AE 6C 02")
+                            );
+                        }
+                    } else {
+                        nullpo.IsChecked = false;
+                    }
+                }},
+                {thenew, x => {
+                    Game.WriteByte(
+                        new IntPtr(0x1426CCEBE),
+                        (byte)(x
+                            ? 0x04
+                            : 0x05
+                        )
+                    );
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x1426CCE8E),
+                        x
+                            ? ConvertByteString("E9 17 51 93 FD 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90")
+                            : ConvertByteString("44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140462000),
+                            ConvertByteString("00 00 01 00 00 FF FF 00 00 01")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x140001FAA),
+                            ConvertByteString("48 8B D3 48 B9 00 20 46 40 01 00 00 00 44 0F BE 34 51 44 0F BE 7C 51 01 83 7C 24 58 01 0F 84 D5 AE 6C 02 41 F7 DE E9 CD AE 6C 02")
+                        );
+                    }
+                }},
+                {thenewrs, x => {
+                    RotationStateBase(x);
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140463E20),
+                            ConvertByteString("00 00 00 FF 01 00 FF FF 00 00 00 FF FF 00 01 FF 00 FF 01 FF FF FF FF 00 01 FF 00 FF FF FF 01 00 00 00 00 FF FF 00 01 00 00 00 FF 00 00 FF FF FF 00 00 FF 00 FE 00 01 00 00 00 FF 01 FF 00 00 FF 00 00 00 FF 01 00 01 01 FF 01 FF 00 FF FF 00 01 00 00 00 01 00 FF 01 FF 00 00 00 FF FF 00 00 01 00 00 FF 00 00 FF FF FF 00 00 00 01 00 FF 00 FE 00 00 00 FF 01 00 FF FF 00 00 00 FF FF 00 01 FF 00 00 01 00 FF 00 01 FF 00 00 01 00 FF 00 FF FF 00 00 00 01 FF 00 01 00 00 00 FF 00 00 FF FF FF 00 00 FF 00 FE 00 01 00 00 00 FF 01 FF 00 00 FF 00 00 00 FF 01 00 01 01 00 00 00 FF 00 01 FF FF 01 00 01 01 01 FF 00 01 00 00 00 FF 01 00 00 01 00 00 FF 00 00 FF FF FF 00 00 00 01 00 FF 00 FE")
+                        );
+                    }
+                }},
+                {ars, x => {
+                    RotationStateBase(x);
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x140463E20),
+                            ConvertByteString("00 00 00 FF 01 00 FF FF 00 00 00 FF FF 00 01 FF 00 00 01 00 FF 00 FF 01 00 00 FF 00 01 00 01 01 00 00 00 01 FF 00 01 00 00 00 FF 00 00 FF FF FF 00 00 01 00 FE 00 FF 00 00 00 00 FF 01 FF 01 FE 00 00 00 FF FF FF FF FE 00 00 00 FF 00 01 01 01 00 00 00 01 00 FF 01 FF 00 00 00 FF 01 00 00 01 00 00 FF 00 00 FF FF FF 00 00 00 FF 00 01 00 02 00 00 00 FF 01 00 FF FF 00 00 00 FF FF 00 01 FF 00 01 01 01 01 00 FF 01 00 01 01 01 FF 00 FF 01 00 01 01 01 FF 01 00 00 00 00 FF 00 00 FF FF FF 00 00 01 00 FE 00 FF 00 00 00 00 FF 01 FF 01 FE 00 00 00 FF FF FF FF FE 00 00 00 FF 00 01 FF FF 00 00 00 01 00 FF FF 01 00 00 00 FF FF 00 00 01 00 00 FF 00 00 FF FF FF 00 00 00 FF 00 01 00 02")
                         );
                     }
                 }}
@@ -1127,8 +1236,14 @@ namespace Sandbox {
                     Cultris2,
                     h,
                     BONKERS,
+                    jstrismeme,
+                    thenew,
                     jstris,
-                    jstrismeme
+                    nullpo
+                },
+                new List<OptionalRadioButton>() {
+                    ars,
+                    thenewrs
                 },
                 TvTAttackTable,
                 TvTComboTable,
@@ -1188,6 +1303,86 @@ namespace Sandbox {
                 },
                 ARR
             };
+        }
+
+        private void RotationStateBase(bool x) {    //All custom rotation state codes will call this first, passing its own activation state to it
+            if (x) {
+                Game.WriteByteArray(
+                    new IntPtr(0x140463E00),
+                    ConvertByteString("20 3E 46 40 01")
+                );
+
+                Game.WriteByteArray(
+                    new IntPtr(0x140463E08),
+                    ConvertByteString("58 3E 46 40 01")
+                );
+
+                Game.WriteByteArray(
+                    new IntPtr(0x140463E10),
+                    ConvertByteString("90 3E 46 40 01")
+                );
+
+                Game.WriteByteArray(
+                    new IntPtr(0x140463E18),
+                    ConvertByteString("C8 3E 46 40 01")
+                );
+            }
+
+            Game.WriteByteArray(//x
+               new IntPtr(0x1426D5EF4),
+               x
+                   ? ConvertByteString("48 8B 05 05 DF D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 C3")
+                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 1E E0 D8 FD 8B 44 C8 04 44 01")
+               );
+
+            Game.WriteByteArray(
+               new IntPtr(0x1426D5ED7),
+               x
+                   ? ConvertByteString("48 8B 05 2A DF D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 C3")
+                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 3B E0 D8 FD 8B 44 C8 08 44 01")
+               );
+
+            Game.WriteByteArray(
+               new IntPtr(0x1426D5E09),
+               x
+                   ? ConvertByteString("48 8B 05 00 E0 D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 C3")
+                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 09 E1 D8 FD 44 2B 44 C8 04 44")
+               );
+
+            Game.WriteByteArray(
+               new IntPtr(0x1426D5DEB),
+               x
+                   ? ConvertByteString("48 8B 05 26 E0 D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 C3")
+                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 27 E1 D8 FD 44 2B 44 C8 08 44")
+               );
+
+            Game.WriteByteArray(//y
+               new IntPtr(0x14270DBA0),
+               x
+                   ? ConvertByteString("48 8B 05 59 62 D5 FD 48 8D 04 50 44 2A 4C C8 01 41 0F BE C1 C3")
+                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 72 63 D5 FD 8B 44 C8 08 44 01 C8")
+               );
+
+            Game.WriteByteArray(
+               new IntPtr(0x14270DB82),
+               x
+                   ? ConvertByteString("48 8B 05 7F 62 D5 FD 48 8D 04 50 44 2A 4C C8 01 41 0F BE C1 C3")
+                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 90 63 D5 FD 44 2B 4C C8 04 44 89")
+               );
+
+            Game.WriteByteArray(
+               new IntPtr(0x14270DB60),
+               x
+                   ? ConvertByteString("48 8B 05 A9 62 D5 FD 48 8D 04 50 44 2A 4C C8 01 41 0F BE C1 C3")
+                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 B2 63 D5 FD 44 2B 4C C8 08 44 89")
+               );
+
+            Game.WriteByteArray(
+               new IntPtr(0x14270DB43),
+               x
+                   ? ConvertByteString("48 8B 05 CE 62 D5 FD 48 8D 04 50 44 2A 4C C8 01 41 0F BE C1 C3")
+                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 CF 63 D5 FD 8B 44 C8 04 44 01 C8")
+               );
         }
 
         private void CheckBoxHandle(object sender, RoutedEventArgs e) {
