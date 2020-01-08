@@ -22,63 +22,145 @@
                     <StackPanel Margin="10 5">
                         <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                        <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="General" />
+                        <TabControl Background="Transparent" Focusable="False">
+                            <TabControl.Resources>
+                                <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                                    <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="12" />
+                                </Style>
+                            </TabControl.Resources>
 
-                        <CheckBox Margin="0 0 0 5" x:Name="PentominoVersus" Click="CheckBoxHandle" />
+                            <TabItem x:Name="Script1">
+                                <StackPanel Margin="10 5 10 0">
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="RemoveLineClearDelay" Click="CheckBoxHandle" />
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="General" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="UndoHold" Click="CheckBoxHandle" />
+                                    <CheckBox Margin="0 0 0 5" x:Name="PentominoVersus" Click="CheckBoxHandle" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="FreezeSwap" Click="CheckBoxHandle" />
+                                    <CheckBox Margin="0 0 0 5" x:Name="RemoveLineClearDelay" Click="CheckBoxHandle" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="ColX" Click="CheckBoxHandle" />
+                                    <CheckBox Margin="0 0 0 5" x:Name="UndoHold" Click="CheckBoxHandle" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="ColM" Click="CheckBoxHandle" />
+                                    <CheckBox Margin="0 0 0 5" x:Name="FreezeSwap" Click="CheckBoxHandle" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="Lockout" Click="CheckBoxHandle" />
+                                    <CheckBox Margin="0 0 0 5" x:Name="ColX" Click="CheckBoxHandle" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="Invisible" Click="CheckBoxHandle" />
+                                    <CheckBox Margin="0 0 0 5" x:Name="ColM" Click="CheckBoxHandle" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="Input" Click="CheckBoxHandle" />
+                                    <CheckBox Margin="0 0 0 5" x:Name="Lockout" Click="CheckBoxHandle" />
 
-                        <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <CheckBox Margin="0 0 0 5" x:Name="Invisible" Click="CheckBoxHandle" />
 
-                        <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="AutoLocking" />
+                                    <CheckBox Margin="0 0 0 5" x:Name="Input" Click="CheckBoxHandle" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="RemoveAutoLock" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="TGMAutoLock" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="AutoLocking" />
 
-                        <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="RemoveAutoLock" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="RotationSystems" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="TGMAutoLock" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="Ascension" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="Cultris2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="Harddrop" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="h" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Sonicdrop" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="BONKERS" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Float" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="jstrismeme" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Sink" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="thenew" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Up" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="jstris" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                </StackPanel>
+                            </TabItem>
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="nullpo" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                            <TabItem x:Name="Script2">
+                                <StackPanel Margin="10 5 10 0">
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="RotationSystems" />
 
-                        <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="Ascension" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="RotationStates" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="Cultris2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationStates" x:Name="ars" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="h" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationStates" x:Name="thenewrs" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="BONKERS" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="jstrismeme" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="thenew" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="jstris" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationSystems" x:Name="nullpo" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="RotationStates" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationStates" x:Name="ars" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationStates" x:Name="thenewrs" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                </StackPanel>
+                            </TabItem>
+
+                            <TabItem x:Name="Script3">
+                                <StackPanel Margin="10 5 10 0">
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinDetection" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="FullTmini" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="NoT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="AllT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="Noghost" Click="CheckBoxHandle" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="Unhold" Click="CheckBoxHandle" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="PreserveRot" Click="CheckBoxHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="40" Default="20" Unit="" x:Name="Lockoutdial" Changed="DialHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem x:Name="Offline">
+                                <StackPanel Margin="10 5 10 0">
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="Rotate" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="DoubleRotate" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="Cycle" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="Flip" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="Flip180" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="bigsoftdrop" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="ARR" Click="CheckBoxHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                </StackPanel>
+                            </TabItem>
+                        </TabControl>
                     </StackPanel>
                 </TabItem>
 
@@ -488,7 +570,7 @@
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
-                            
+
                             <TabItem x:Name="Gravity">
                                 <StackPanel Margin="10 5 10 0">
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
@@ -500,7 +582,7 @@
                                             </Style>
                                         </UniformGrid.Resources>
 
-                                        <TextBlock HorizontalAlignment="Center" x:Name="Level" />
+                                        <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" Foreground="#707070" x:Name="Level" />
                                         <TextBlock HorizontalAlignment="Center" Text="+1"/>
                                         <TextBlock HorizontalAlignment="Center" Text="+2"/>
                                         <TextBlock HorizontalAlignment="Center" Text="+3"/>
@@ -535,70 +617,6 @@
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                                     <TextBlock Margin="0 0 0 5" TextWrapping="Wrap" Foreground="#707070" x:Name="GravityExplanation" />
-
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-                                </StackPanel>
-                            </TabItem>
-                            
-                            <TabItem x:Name="Misc">
-                                <StackPanel Margin="10 5 10 0">
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
-                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="40" Default="20" Unit="" x:Name="Lockoutdial" Changed="DialHandle" />
-
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
-                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinDetection" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="FullTmini" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="NoT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="AllT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
-                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="Harddrop" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Sonicdrop" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Float" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Sink" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-                                    
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Up" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
-                                    <CheckBox Margin="0 0 0 5" x:Name="Noghost" Click="CheckBoxHandle" />
-
-                                    <CheckBox Margin="0 0 0 5" x:Name="Unhold" Click="CheckBoxHandle" />
-
-                                    <CheckBox Margin="0 0 0 5" x:Name="PreserveRot" Click="CheckBoxHandle" />
-
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-                                </StackPanel>
-                            </TabItem>
-
-                            <TabItem x:Name="Offline">
-                                <StackPanel Margin="10 5 10 0">
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
-                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="Rotate" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="DoubleRotate" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="Cycle" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="Flip" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="Flip180" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="bind" x:Name="bigsoftdrop" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
-                                    <CheckBox Margin="0 0 0 5" x:Name="ARR" Click="CheckBoxHandle" />
 
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>

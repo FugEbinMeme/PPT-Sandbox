@@ -42,60 +42,107 @@ namespace Sandbox {
                     
                 default:
                     ScriptsHeader.Header = "      SCRIPTS";
-                        General.Text = "General";
-                            PentominoVersus.Content = "Pentomino Versus";
-                                PentominoVersus.ToolTip = "Turns Tetrominos into their Pentomino counterparts.";
-                            RemoveLineClearDelay.Content = "Remove Line Clear Delay";
-                            UndoHold.Content = "Undo Hold";
-                                UndoHold.ToolTip = "Allows you to hold as much as you like, without the need to harddrop inbetween.";
-                            FreezeSwap.Content = "Freeze Swap Timer";
-                            ColX.Content = "Remove Left/Right Collision";
-                                ColX.ToolTip = "Piece will ignore collision on the X axis.";
-                            ColM.Content = "Remove Mino Collision";
-                                ColM.ToolTip = "Piece will ignore all collision with other minos inside the matrix.";
-                            Lockout.Content = "Remove Lock-Out Death";
-                                Lockout.ToolTip = "Placing a piece above row 20 will no longer cause a game over.";
-                            Invisible.Content = "Invisible Matrix";
-                                Invisible.ToolTip = "All mino types, except garbage, are hidden from view.";
-                            Input.Content = "Better Input Handling";
-                                Input.ToolTip = "By default, PPT processes inputs in the order of [Rotation -> Movement -> Gravity] if you don't harddrop, and [Rotation -> Harddrop] if you do.\n" +
-                                                "With this, it now always does [Movement -> Rotate -> (Gravity / Harddrop)], leading to a smoother experience and less \"dropped\" inputs.\n" +
-                                                "Hold is always processed first, before anything else.";
+                        Script1.Header = "     Page 1";
+                            General.Text = "General";
+                                PentominoVersus.Content = "Pentomino Versus";
+                                    PentominoVersus.ToolTip = "Turns Tetrominos into their Pentomino counterparts.";
+                                RemoveLineClearDelay.Content = "Remove Line Clear Delay";
+                                UndoHold.Content = "Undo Hold";
+                                    UndoHold.ToolTip = "Allows you to hold as much as you like, without the need to harddrop inbetween.";
+                                FreezeSwap.Content = "Freeze Swap Timer";
+                                ColX.Content = "Remove Left/Right Collision";
+                                    ColX.ToolTip = "Piece will ignore collision on the X axis.";
+                                ColM.Content = "Remove Mino Collision";
+                                    ColM.ToolTip = "Piece will ignore all collision with other minos inside the matrix.";
+                                Lockout.Content = "Remove Lock-Out Death";
+                                    Lockout.ToolTip = "Placing a piece above row 20 will no longer cause a game over.";
+                                Invisible.Content = "Invisible Matrix";
+                                    Invisible.ToolTip = "All mino types, except garbage, are hidden from view.";
+                                Input.Content = "Better Input Handling";
+                                    Input.ToolTip = "By default, PPT processes inputs in the order of [Rotation -> Movement -> Gravity] if you don't harddrop, and [Rotation -> Harddrop] if you do.\n" +
+                                                    "With this, it now always does [Movement -> Rotate -> (Gravity / Harddrop)], leading to a smoother experience and less \"dropped\" inputs.\n" +
+                                                    "Hold is always processed first, before anything else.";
 
-                        AutoLocking.Text = "Piece Auto-Locking";
-                            RemoveAutoLock.Content = "Disable Auto-Locking";
-                            TGMAutoLock.Content = "Arika Style Auto-Locking";
-                                TGMAutoLock.ToolTip = "Auto-Lock timer is only reset upon reaching a new lowest height.\n" +
-                                                      "Normally, Auto-Lock timer is reset upon rotate and movement as well.";
+                            AutoLocking.Text = "Piece Auto-Locking";
+                                RemoveAutoLock.Content = "Disable Auto-Locking";
+                                TGMAutoLock.Content = "Arika Style Auto-Locking";
+                                    TGMAutoLock.ToolTip = "Auto-Lock timer is only reset upon reaching a new lowest height.\n" +
+                                                          "Normally, Auto-Lock timer is reset upon rotate and movement as well.";
 
-                        RotationSystems.Text = "Rotation System";
-                            Ascension.Content = "Ascension";
-                                Ascension.ToolTip = "Rotation system used by Ascension.\n" +
-                                                    "asc.winternebs.com";
-                            Cultris2.Content = "Cultris II";
-                                Cultris2.ToolTip = "Rotation system used by Cultris II.\n" +
-                                                   "gewaltig.net/cultris2.aspx";
-                            h.Content = "h";
-                                h.ToolTip = "Piece always rotates, even if it collides.";
-                            BONKERS.Content = "B.O.N.K.E.R.S.";
-                                BONKERS.ToolTip = "If initial rotate fails, piece kicks to the bottom of the matrix and checks right one tile, left one tile, all the way up.";
-                            jstrismeme.Content = "Jstris meme RS";
-                                jstrismeme.ToolTip = "Kick table used by the \"O-Spin\" setting on Jstris.\n" +
-                                                     "Does not include O piece transformations.";
-                            thenew.Content = "The New Tetris";
-                                thenew.ToolTip = "Rotation system used by The New Tetris on N64.\n" +
-                                                 "Best used with The New Tetris rotation state code.";
-                            jstris.Content = "Jstris 180 SRS";
-                                jstris.ToolTip = "180 degree rotates now use Jstris kicks.\n" +
-                                                 "Activate 180 rotations in Other -> Offline Only.";
-                            nullpo.Content = "Nullpomino 180 SRS";
-                                nullpo.ToolTip = "180 degree rotates now use Nullpomino kicks.\n" +
-                                                 "Activate 180 rotations in Other -> Offline Only.";
+                            Harddrop.Text = "Hard-Drop Modification";
+                                Float.Content = "Floating Lock";
+                                    Float.ToolTip = "Piece locks at its current position rather than at the ghost position.";
+                                Sonicdrop.Content = "Sonic Drop";
+                                    Sonicdrop.ToolTip = "Piece drops as far as possible, but doesn't lock. Soft dropping while on the ground will now lock the piece.";
+                                Sink.Content = "Piece Sinking";
+                                    Sink.ToolTip = "Piece locks one tile below ghost on hard drop.";
+                                Up.Content = "Harddrop goes up";
+                                    Up.ToolTip = "Pressing Harddrop now makes your piece move 1 tile up, and can no longer lock your piece.\n" +
+                                                 "Auto-Lock is now the only way to place a piece.";
+                        Script2.Header = "Page 2";
+                            RotationSystems.Text = "Rotation System";
+                                Ascension.Content = "Ascension";
+                                    Ascension.ToolTip = "Rotation system used by Ascension.\n" +
+                                                        "asc.winternebs.com";
+                                Cultris2.Content = "Cultris II";
+                                    Cultris2.ToolTip = "Rotation system used by Cultris II.\n" +
+                                                       "gewaltig.net/cultris2.aspx";
+                                h.Content = "h";
+                                    h.ToolTip = "Piece always rotates, even if it collides.";
+                                BONKERS.Content = "B.O.N.K.E.R.S.";
+                                    BONKERS.ToolTip = "If initial rotate fails, piece kicks to the bottom of the matrix and checks right one tile, left one tile, all the way up.";
+                                jstrismeme.Content = "Jstris meme RS";
+                                    jstrismeme.ToolTip = "Kick table used by the \"O-Spin\" setting on Jstris.\n" +
+                                                         "Does not include O piece transformations.";
+                                thenew.Content = "The New Tetris";
+                                    thenew.ToolTip = "Rotation system used by The New Tetris on N64.\n" +
+                                                     "Best used with The New Tetris rotation state code.";
+                                jstris.Content = "Jstris 180 SRS";
+                                    jstris.ToolTip = "180 degree rotates now use Jstris kicks.\n" +
+                                                     "Activate 180 rotations in the Offline Only tab.";
+                                nullpo.Content = "Nullpomino 180 SRS";
+                                    nullpo.ToolTip = "180 degree rotates now use Nullpomino kicks.\n" +
+                                                     "Activate 180 rotations in the Offline Only tab.";
 
-                        RotationStates.Text = "Rotation State Modification";
-                            ars.Content = "ARS";
-                            thenewrs.Content = thenew.Content;
+                            RotationStates.Text = "Rotation State Modification";
+                                ars.Content = "ARS";
+                                thenewrs.Content = thenew.Content;
 
+                        Script3.Header = "Page 3";
+                            TspinDetection.Text = "T-Spin Detection";
+                                FullTmini.Content = "All T-Mini's are full";
+                                NoT.Content = "No T-Spins";
+                                AllT.Content = "Every Spin is a T-Spin";
+                            
+                            Noghost.Content = "No Ghost";
+                                Noghost.ToolTip = "Remove Ghost piece.";
+                            PreserveRot.Content = "Preserve rotation on Held Piece";
+                                PreserveRot.ToolTip = "Rotation doesn't reset on hold";
+                            Unhold.Content = "Preserve location on hold";
+                                Unhold.ToolTip = "Position doesn't reset on hold.";
+                            Lockoutdial.Title = "Lock Out Height";
+                                Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
+
+                        Offline.Header = "Offline Only";
+                            Rotate.Text = "Extra Bind";
+                                Rotate.ToolTip = "Use the third Rotate Right key to activate these effects.";
+                                DoubleRotate.Content = "180 Rotations";
+                                    DoubleRotate.ToolTip = "Piece rotates 180 degrees rather than 90.";
+                                Cycle.Content = "Piece Cycling";
+                                    Cycle.ToolTip = "Piece will Cycle once, from S -> Z -> J -> L -> T -> O -> I -> monomino -> S.\n" +
+                                                    "This action counts as a rotation, and the piece will kick as such during transformation.";
+                                Flip.Content = "Piece Flipping";
+                                    Flip.ToolTip = "Piece will \"flip\" horizontally.\n" +
+                                                   "S <-> Z, J <-> L, counts as 0 degree rotate.\n" +
+                                                   "T, O, I will do a normal 180 rotate.\n" +
+                                                   "Due to the nature of SRS, Custom RS is recommended along with this code.";
+                                Flip180.Content = "Piece Flipping (180)";
+                                    Flip180.ToolTip = "A different approach to piece flipping, that provides slightly different results than the basic version.\n" +
+                                                      "See " + Flip.Content + " ToolTip for more info.";
+                                bigsoftdrop.Content = "Super Soft Drop";
+                                    bigsoftdrop.ToolTip = "Moves your piece one tile down, ignoring all collision.";
+                        ARR.Content = "Instant ARR";
+                            ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
                     AttackHeader.Header = "ATTACK";
                         TetrisVsTetris.Header = "     Tetris vs Tetris";
                             Attacks.Text = "Attacks";
@@ -211,50 +258,6 @@ namespace Sandbox {
                             Softdrop.Title = "Softdrop Multiplier";
                                 Softdrop.ToolTip = "By default, Softdropping multiplies your gravity value by 20. You can change this value here";
 
-                        Misc.Header = "Misc";
-                            Lockoutdial.Title = "Lock Out Height";
-                                Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
-                            TspinDetection.Text = "T-Spin Detection";
-                                FullTmini.Content = "All T-Mini's are full";
-                                NoT.Content = "No T-Spins";
-                                AllT.Content = "Every Spin is a T-Spin";
-                            Harddrop.Text = "Hard-Drop Modification";
-                                Float.Content = "Floating Lock";
-                                    Float.ToolTip = "Piece locks at its current position rather than at the ghost position.";
-                                Sonicdrop.Content = "Sonic Drop";
-                                    Sonicdrop.ToolTip = "Piece drops as far as possible, but doesn't lock. Soft dropping while on the ground will now lock the piece.";
-                                Sink.Content = "Piece Sinking";
-                                    Sink.ToolTip = "Piece locks one tile below ghost on hard drop.";
-                                Up.Content = "Harddrop goes up";
-                                    Up.ToolTip = "Pressing Harddrop now makes your piece move 1 tile up, and can no longer lock your piece.\n" +
-                                                 "Auto-Lock is now the only way to place a piece.";
-                            Noghost.Content = "No Ghost";
-                                Noghost.ToolTip = "Remove Ghost piece.";
-                            PreserveRot.Content = "Preserve rotation on Held Piece";
-                                PreserveRot.ToolTip = "Rotation doesn't reset on hold";
-                            Unhold.Content = "Preserve location on hold";
-                                Unhold.ToolTip = "Position doesn't reset on hold.";
-
-                        Offline.Header = "Offline Only";
-                            Rotate.Text = "Extra Bind";
-                                Rotate.ToolTip = "Use the third Rotate Right key to activate these effects.";
-                                DoubleRotate.Content = "180 Rotations";
-                                    DoubleRotate.ToolTip = "Piece rotates 180 degrees rather than 90.";
-                                Cycle.Content = "Piece Cycling";
-                                    Cycle.ToolTip = "Piece will Cycle once, from S -> Z -> J -> L -> T -> O -> I -> monomino -> S.\n" +
-                                                    "This action counts as a rotation, and the piece will kick as such during transformation.";
-                                Flip.Content = "Piece Flipping";
-                                    Flip.ToolTip = "Piece will \"flip\" horizontally.\n" +
-                                                   "S <-> Z, J <-> L, counts as 0 degree rotate.\n" +
-                                                   "T, O, I will do a normal 180 rotate.\n" +
-                                                   "Due to the nature of SRS, Custom RS is recommended along with this code.";
-                                Flip180.Content = "Piece Flipping (180)";
-                                    Flip180.ToolTip = "A different approach to piece flipping, that provides slightly different results than the basic version.\n" +
-                                                      "See " + Flip.Content + " ToolTip for more info.";
-                                bigsoftdrop.Content = "Super Soft Drop";
-                                    bigsoftdrop.ToolTip = "Moves your piece one tile down, ignoring all collision.";
-                        ARR.Content = "Instant ARR";
-                            ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
                     
                     ResetButton.Content = "Reset";
                     SaveButton.Content = "Save";
@@ -1232,6 +1235,12 @@ namespace Sandbox {
                     TGMAutoLock
                 },
                 new List<OptionalRadioButton>() {
+                    Sonicdrop,
+                    Float,
+                    Sink,
+                    Up
+                },
+                new List<OptionalRadioButton>() {
                     Ascension,
                     Cultris2,
                     h,
@@ -1245,6 +1254,23 @@ namespace Sandbox {
                     ars,
                     thenewrs
                 },
+                new List<OptionalRadioButton>() {
+                    FullTmini,
+                    NoT,
+                    AllT
+                },
+                Noghost,
+                Unhold,
+                PreserveRot,
+                Lockoutdial,
+                new List<OptionalRadioButton>() {
+                    DoubleRotate,
+                    Cycle,
+                    Flip,
+                    Flip180,
+                    bigsoftdrop
+                },
+                ARR,
                 TvTAttackTable,
                 TvTComboTable,
                 TvPAttackTable,
@@ -1279,29 +1305,6 @@ namespace Sandbox {
                 Autolockdial,
                 GravityTable,
                 Softdrop,
-                Lockoutdial,
-                new List<OptionalRadioButton>() {
-                    FullTmini,
-                    NoT,
-                    AllT
-                },
-                new List<OptionalRadioButton>() {
-                    Sonicdrop,
-                    Float,
-                    Sink,
-                    Up
-                },
-                Noghost,
-                Unhold,
-                PreserveRot,
-                new List<OptionalRadioButton>() {
-                    DoubleRotate,
-                    Cycle,
-                    Flip,
-                    Flip180,
-                    bigsoftdrop
-                },
-                ARR
             };
         }
 
