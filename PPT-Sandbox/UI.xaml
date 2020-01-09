@@ -63,6 +63,14 @@
 
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
+                                </StackPanel>
+                            </TabItem>
+
+
+                            <TabItem x:Name="Script2">
+                                <StackPanel Margin="10 5 10 0">
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
                                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="Harddrop" />
 
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Sonicdrop" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
@@ -74,10 +82,22 @@
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Up" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    
+                                    <CheckBox Margin="0 5 0 5" x:Name="Noghost" Click="CheckBoxHandle" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="Unhold" Click="CheckBoxHandle" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="PreserveRot" Click="CheckBoxHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="40" Default="20" Unit="" x:Name="Lockoutdial" Changed="DialHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
-
-                            <TabItem x:Name="Script2">
+                            
+                            <TabItem x:Name="Script3">
                                 <StackPanel Margin="10 5 10 0">
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="RotationSystems" />
@@ -109,34 +129,7 @@
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
-
-                            <TabItem x:Name="Script3">
-                                <StackPanel Margin="10 5 10 0">
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
-                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinDetection" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="FullTmini" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="NoT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="AllT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
-                                    <CheckBox Margin="0 0 0 5" x:Name="Noghost" Click="CheckBoxHandle" />
-
-                                    <CheckBox Margin="0 0 0 5" x:Name="Unhold" Click="CheckBoxHandle" />
-
-                                    <CheckBox Margin="0 0 0 5" x:Name="PreserveRot" Click="CheckBoxHandle" />
-
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-                                    
-                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="40" Default="20" Unit="" x:Name="Lockoutdial" Changed="DialHandle" />
-
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-                                </StackPanel>
-                            </TabItem>
+                            
                             <TabItem x:Name="Offline">
                                 <StackPanel Margin="10 5 10 0">
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
@@ -470,55 +463,87 @@
                     <StackPanel Margin="10 5">
                         <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                        <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="GarbageGeneration" />
+                        <TabControl Background="Transparent" Focusable="False">
+                            <TabControl.Resources>
+                                <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                                    <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="12" />
+                                </Style>
+                            </TabControl.Resources>
 
-                        <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="100" Default="70" Unit="%" x:Name="CleanGarbage" Changed="DialHandle" />
+                            <TabItem x:Name="Detection">
+                                <StackPanel Margin="10 5 10 0">
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TetrisB2B" />
 
-                        <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Default="9" Unit="" FillStart="False" x:Name="GarbageFilled" Changed="DialHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BDouble" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Default="8" Unit="" FillStart="False" x:Name="GarbageEmpty" Changed="DialHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="40" Default="7" Unit="" FillStart="False" x:Name="ReceiveT" Changed="DialHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="70" Default="30" Unit="" FillStart="False" x:Name="ReceiveP" Changed="DialHandle" />
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="ReceiveCap" Click="CheckBoxHandle" />
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinB2B" />
 
-                        <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BDouble" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="GarbageModification" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="SecretGradeGarbage" Click="CheckBoxHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="GarbageBlocking" Click="CheckBoxHandle" />
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinDetection" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="UnCappedPC" Click="CheckBoxHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="FullTmini" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="ColorClear" Click="CheckBoxHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="NoT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <CheckBox Margin="0 0 0 5" x:Name="AllSpin" Click="CheckBoxHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="AllT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                        <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                        <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TetrisB2B" />
+                                </StackPanel>
+                            </TabItem>
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BDouble" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                            <TabItem x:Name="Behavior">
+                                <StackPanel Margin="10 5 10 0">
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="GarbageGeneration" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TetrisB2B" x:Name="TetrisB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="100" Default="70" Unit="%" x:Name="CleanGarbage" Changed="DialHandle" />
 
-                        <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Default="9" Unit="" FillStart="False" x:Name="GarbageFilled" Changed="DialHandle" />
 
-                        <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="TspinB2B" />
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="9" Default="8" Unit="" FillStart="False" x:Name="GarbageEmpty" Changed="DialHandle" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BDouble" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="40" Default="7" Unit="" FillStart="False" x:Name="ReceiveT" Changed="DialHandle" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BAdd2" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="70" Default="30" Unit="" FillStart="False" x:Name="ReceiveP" Changed="DialHandle" />
 
-                        <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinB2B" x:Name="TspinB2BCum" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+                                    <CheckBox Margin="0 0 0 5" x:Name="ReceiveCap" Click="CheckBoxHandle" />
 
-                        <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="GarbageModification" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="SecretGradeGarbage" Click="CheckBoxHandle" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="GarbageBlocking" Click="CheckBoxHandle" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="UnCappedPC" Click="CheckBoxHandle" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="ColorClear" Click="CheckBoxHandle" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="AllSpin" Click="CheckBoxHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                </StackPanel>
+                            </TabItem>
+                        </TabControl>
                     </StackPanel>
                 </TabItem>
 

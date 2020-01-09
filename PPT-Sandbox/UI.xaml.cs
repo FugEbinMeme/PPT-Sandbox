@@ -69,6 +69,7 @@ namespace Sandbox {
                                     TGMAutoLock.ToolTip = "Auto-Lock timer is only reset upon reaching a new lowest height.\n" +
                                                           "Normally, Auto-Lock timer is reset upon rotate and movement as well.";
 
+                        Script2.Header = "Page 2";
                             Harddrop.Text = "Hard-Drop Modification";
                                 Float.Content = "Floating Lock";
                                     Float.ToolTip = "Piece locks at its current position rather than at the ghost position.";
@@ -79,8 +80,17 @@ namespace Sandbox {
                                 Up.Content = "Harddrop goes up";
                                     Up.ToolTip = "Pressing Harddrop now makes your piece move 1 tile up, and can no longer lock your piece.\n" +
                                                  "Auto-Lock is now the only way to place a piece.";
-                        Script2.Header = "Page 2";
-                            RotationSystems.Text = "Rotation System";
+                            Noghost.Content = "Remove Ghost";
+                            
+                            PreserveRot.Content = "Preserve rotation on Held Piece";
+                                PreserveRot.ToolTip = "Rotation doesn't reset on hold";
+                            Unhold.Content = "Preserve location on hold";
+                                Unhold.ToolTip = "Position doesn't reset on hold.";
+                            Lockoutdial.Title = "Lock Out Height";
+                                Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
+
+                        Script3.Header = "Rotation System";
+                            RotationSystems.Text = "Kick Table";
                                 Ascension.Content = "Ascension";
                                     Ascension.ToolTip = "Rotation system used by Ascension.\n" +
                                                         "asc.winternebs.com";
@@ -104,26 +114,12 @@ namespace Sandbox {
                                     nullpo.ToolTip = "180 degree rotates now use Nullpomino kicks.\n" +
                                                      "Activate 180 rotations in the Offline Only tab.";
 
-                            RotationStates.Text = "Rotation State Modification";
+                            RotationStates.Text = "Rotation States";
                                 ars.Content = "ARS";
                                 thenewrs.Content = thenew.Content;
 
-                        Script3.Header = "Page 3";
-                            TspinDetection.Text = "T-Spin Detection";
-                                FullTmini.Content = "All T-Mini's are full";
-                                NoT.Content = "No T-Spins";
-                                AllT.Content = "Every Spin is a T-Spin";
-                            
-                            Noghost.Content = "No Ghost";
-                                Noghost.ToolTip = "Remove Ghost piece.";
-                            PreserveRot.Content = "Preserve rotation on Held Piece";
-                                PreserveRot.ToolTip = "Rotation doesn't reset on hold";
-                            Unhold.Content = "Preserve location on hold";
-                                Unhold.ToolTip = "Position doesn't reset on hold.";
-                            Lockoutdial.Title = "Lock Out Height";
-                                Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
-
                         Offline.Header = "Offline Only";
+                            Offline.ToolTip = "None of these work in Puzzle League or Free Play";
                             Rotate.Text = "Extra Bind";
                                 Rotate.ToolTip = "Use the third Rotate Right key to activate these effects.";
                                 DoubleRotate.Content = "180 Rotations";
@@ -143,6 +139,7 @@ namespace Sandbox {
                                     bigsoftdrop.ToolTip = "Moves your piece one tile down, ignoring all collision.";
                         ARR.Content = "Instant ARR";
                             ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
+
                     AttackHeader.Header = "ATTACK";
                         TetrisVsTetris.Header = "     Tetris vs Tetris";
                             Attacks.Text = "Attacks";
@@ -185,6 +182,25 @@ namespace Sandbox {
                                 Margin.ToolTip = "Has no effect on Tetris vs Tetris games.";
 
                     GarbageHeader.Header = "GARBAGE";
+                    Detection.Header = "     Detection";
+                        TetrisB2B.Text = "Back-to-Back Tetris";
+                            TetrisB2BDouble.Content = "Tetris B2B doubles attack";
+                            TetrisB2BAdd2.Content = "Tetris B2B adds 2 attack";
+                            TetrisB2BCum.Content = "Tetris B2B stacks";
+                                TetrisB2BCum.ToolTip = "Garbage sent is increased by 1 for every two Back to Backs done without breaking.";
+
+                        TspinB2B.Text = "Back-to-Back T-Spin";
+                            TspinB2BDouble.Content = "T-Spin B2B doubles attack";
+                            TspinB2BAdd2.Content = "T-Spin B2B adds 2 attack";
+                            TspinB2BCum.Content = "T-Spin B2B stacks";
+                                TspinB2BCum.ToolTip = "Garbage sent is increased by 1 for every two Back to Backs done without breaking.";
+
+                        TspinDetection.Text = "T-Spin Detection";
+                            FullTmini.Content = "All T-Mini's are full";
+                            NoT.Content = "No T-Spins";
+                            AllT.Content = "Every Spin is a T-Spin";
+
+                    Behavior.Header = "Behavior";
                         GarbageGeneration.Text = "Garbage Generation";
                             CleanGarbage.Title = "Clean Garbage Chance";
                                 CleanGarbage.ToolTip = "Percent chance that garbage will stay in the same column.";
@@ -216,18 +232,6 @@ namespace Sandbox {
                             AllSpin.Content = "All Spins";
                                 AllSpin.ToolTip = "Adds All-Spin ruling with immobile detection and no mini penalty.\n" +
                                                   "Regular T-Spin detection is still present so Fin-TSD still works.";
-
-                        TetrisB2B.Text = "Back-to-Back Tetris";
-                            TetrisB2BDouble.Content = "Tetris B2B doubles attack";
-                            TetrisB2BAdd2.Content = "Tetris B2B adds 2 attack";
-                            TetrisB2BCum.Content = "Tetris B2B stacks";
-                                TetrisB2BCum.ToolTip = "Garbage sent is increased by 1 for every two Back to Backs done without breaking.";
-
-                        TspinB2B.Text = "Back-to-Back T-Spin";
-                            TspinB2BDouble.Content = "T-Spin B2B doubles attack";
-                            TspinB2BAdd2.Content = "T-Spin B2B adds 2 attack";
-                            TspinB2BCum.Content = "T-Spin B2B stacks";
-                                TspinB2BCum.ToolTip = "Garbage sent is increased by 1 for every two Back to Backs done without breaking.";
 
                     OtherHeader.Header = "OTHER";
                         Timing.Header = "     Timings";
@@ -1240,6 +1244,10 @@ namespace Sandbox {
                     Sink,
                     Up
                 },
+                Noghost,
+                Unhold,
+                PreserveRot,
+                Lockoutdial,
                 new List<OptionalRadioButton>() {
                     Ascension,
                     Cultris2,
@@ -1254,15 +1262,6 @@ namespace Sandbox {
                     ars,
                     thenewrs
                 },
-                new List<OptionalRadioButton>() {
-                    FullTmini,
-                    NoT,
-                    AllT
-                },
-                Noghost,
-                Unhold,
-                PreserveRot,
-                Lockoutdial,
                 new List<OptionalRadioButton>() {
                     DoubleRotate,
                     Cycle,
@@ -1279,6 +1278,21 @@ namespace Sandbox {
                 AllClearMultiplier,
                 PvPChainTable,
                 MarginTimeTable,
+                new List<OptionalRadioButton>() {
+                    TetrisB2BDouble,
+                    TetrisB2BAdd2,
+                    TetrisB2BCum
+                },
+                new List<OptionalRadioButton>() {
+                    TspinB2BDouble,
+                    TspinB2BAdd2,
+                    TspinB2BCum
+                },
+                new List<OptionalRadioButton>() {
+                    FullTmini,
+                    NoT,
+                    AllT
+                },
                 CleanGarbage,
                 GarbageFilled,
                 GarbageEmpty,
@@ -1290,16 +1304,6 @@ namespace Sandbox {
                 UnCappedPC,
                 ColorClear,
                 AllSpin,
-                new List<OptionalRadioButton>() {
-                    TetrisB2BDouble,
-                    TetrisB2BAdd2,
-                    TetrisB2BCum
-                },
-                new List<OptionalRadioButton>() {
-                    TspinB2BDouble,
-                    TspinB2BAdd2,
-                    TspinB2BCum
-                },
                 DelayTable,
                 DAS,
                 Autolockdial,
