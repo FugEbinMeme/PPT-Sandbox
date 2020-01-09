@@ -739,10 +739,10 @@ namespace Sandbox {
                 },
                 {Noghost, x =>
                     Game.WriteByteArray(
-                        new IntPtr(0x1426C8D60),
+                        new IntPtr(0x1426C8D57),
                         x
-                            ? ConvertByteString("90 90 90")
-                            : ConvertByteString("89 43 14")
+                            ? ConvertByteString("90 90")
+                            : ConvertByteString("74 e7")
                         )
                 },
                 {Float, x =>
