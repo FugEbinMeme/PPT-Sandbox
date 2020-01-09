@@ -42,11 +42,11 @@ namespace Sandbox {
             VersionText.Text = $"PPT-Sandbox-{Version}{appendix} by {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName}";
 
             switch (CultureInfo.CurrentCulture.TwoLetterISOLanguageName) {
-                case "ko":
-                    break;
+                //case "ko":
+                //    break;
                     
-                case "ja":
-                    break;
+                //case "ja":
+                //    break;
                     
                 default:
                     ScriptsHeader.Header = "      SCRIPTS";
