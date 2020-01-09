@@ -61,8 +61,7 @@
 
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="AutoLocking" x:Name="TGMAutoLock" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
 
@@ -93,7 +92,7 @@
                                     
                                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="40" Default="20" Unit="" x:Name="Lockoutdial" Changed="DialHandle" />
 
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
                             
@@ -126,7 +125,7 @@
 
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="RotationStates" x:Name="thenewrs" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
                             
@@ -150,7 +149,7 @@
 
                                     <CheckBox Margin="0 0 0 5" x:Name="ARR" Click="CheckBoxHandle" />
 
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
                         </TabControl>
@@ -248,6 +247,8 @@
                                         <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="5" Unit="" Changed="DialHandle" />
                                         <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="10" Exponent="1.5" Default="5" Unit="" Changed="DialHandle" />
                                     </UniformGrid>
+
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
 
@@ -332,6 +333,8 @@
                                         <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
                                         <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="15" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
                                     </UniformGrid>
+
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
 
@@ -393,6 +396,8 @@
                                         <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="640" Unit="" Changed="DialHandle" />
                                         <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="672" Unit="" Changed="DialHandle" />
                                     </UniformGrid>
+
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
                             
@@ -453,6 +458,8 @@
                                         <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="506" Unit="" Changed="DialHandle" />
                                         <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="1000" Exponent="1.5" Default="531" Unit="" Changed="DialHandle" />
                                     </UniformGrid>
+
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
                         </TabControl>
@@ -502,8 +509,7 @@
 
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="TspinDetect" x:Name="AllT" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
 
@@ -539,8 +545,7 @@
 
                                     <CheckBox Margin="0 0 0 5" x:Name="AllSpin" Click="CheckBoxHandle" />
 
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
                         </TabControl>
@@ -592,7 +597,7 @@
 
                                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="120" Default="30" Unit="" x:Name="Autolockdial" Changed="DialHandle" />
 
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
 
@@ -643,7 +648,7 @@
 
                                     <TextBlock Margin="0 0 0 5" TextWrapping="Wrap" Foreground="#707070" x:Name="GravityExplanation" />
 
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
                         </TabControl>
@@ -652,7 +657,7 @@
             </TabControl>
 
             <StackPanel HorizontalAlignment="Center">
-                <TextBlock Margin="5 0 5 1" Foreground="#707070" x:Name="VersionText" />
+                <TextBlock Margin="5 -4 5 1" Foreground="#707070" x:Name="VersionText" />
 
                 <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
             </StackPanel>
