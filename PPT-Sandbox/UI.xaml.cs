@@ -77,14 +77,14 @@ namespace Sandbox {
                                     Sonicdrop.ToolTip = "Piece drops as far as possible, but doesn't lock. Soft dropping while on the ground will now lock the piece.";
                                 Sink.Content = "Piece Sinking";
                                     Sink.ToolTip = "Piece locks one tile below ghost on hard drop.";
-                                Up.Content = "Harddrop goes up";
+                                Up.Content = "Hard Drop Goes Up";
                                     Up.ToolTip = "Pressing Harddrop now makes your piece move 1 tile up, and can no longer lock your piece.\n" +
                                                  "Auto-Lock is now the only way to place a piece.";
                             Noghost.Content = "Remove Ghost";
                             
-                            PreserveRot.Content = "Preserve rotation on Held Piece";
+                            PreserveRot.Content = "Preserve Rotation on Hold";
                                 PreserveRot.ToolTip = "Rotation doesn't reset on hold";
-                            Unhold.Content = "Preserve location on hold";
+                            Unhold.Content = "Preserve Position on Hold";
                                 Unhold.ToolTip = "Position doesn't reset on hold.";
                             Lockoutdial.Title = "Lock Out Height";
                                 Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
