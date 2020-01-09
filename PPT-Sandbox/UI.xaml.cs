@@ -31,7 +31,15 @@ namespace Sandbox {
 
             ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(Int32.MaxValue)); //tooltips no longer yeet after 5 seconds
 
-            VersionText.Text = $"PPT-Sandbox-{Version} by {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName}";
+            string appendix = 
+            #if PRERELEASE
+                "-prerelease"
+            #else
+                ""
+            #endif
+            ;
+
+            VersionText.Text = $"PPT-Sandbox-{Version}{appendix} by {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName}";
 
             switch (CultureInfo.CurrentCulture.TwoLetterISOLanguageName) {
                 case "ko":
