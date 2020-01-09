@@ -670,12 +670,13 @@ namespace Sandbox {
                         )
                 },
                 {Lockout, x =>
-                    Game.WriteInt32(
+                    Game.WriteByte(
                         new IntPtr(0x142804C8A),
-                        x
+                        (byte)(x
                             ? 0xEB
                             : 0x7C
                         )
+                    )
                 },
                 {FullTmini, x =>
                     Game.WriteByte(
