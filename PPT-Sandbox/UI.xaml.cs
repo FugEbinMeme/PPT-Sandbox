@@ -712,20 +712,14 @@ namespace Sandbox {
                     Game.WriteByteArray(
                         new IntPtr(0x1400A7616),
                         x
-                            ? ConvertByteString("E9 DF 00 00 00")
+                            ? ConvertByteString("E9 DB 00 00 00")
                             : ConvertByteString("48 8B 7C 24 58")
-                        );
-                     Game.WriteByteArray(
-                        new IntPtr(0x1400A763A),
-                        x
-                            ? ConvertByteString("90 90 90 90 90 90 90")
-                            : ConvertByteString("45 00 BE 00 01 00 00")
                         );
 
                     if (x) {
                         Game.WriteByteArray(
-                            new IntPtr(0x1400A76FA),
-                            ConvertByteString("84 C0 0F 85 46 01 00 00 45 00 BE 00 01 00 00 44 8B 05 10 A4 3B 00 45 8B 80 78 03 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 0F 84 7E 00 00 00 44 8B 05 EB A3 3B 00 45 8B 80 80 03 00 00 45 85 C0 0F 84 03 01 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 74 6E 44 8B 05 C1 A3 3B 00 45 8B 80 88 03 00 00 45 85 C0 0F 84 D9 00 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 74 5E 44 8B 05 97 A3 3B 00 45 8B 80 90 03 00 00 45 85 C0 0F 84 AF 00 00 00 45 8B 80 A8 00 00 00 45 8B 80 C8 03 00 00 49 39 F0 74 4E 45 31 D2 44 8B 15 6A A3 3B 00 45 8B 92 78 03 00 00 45 8B 92 B0 00 00 00 EB 4C 45 31 D2 44 8B 15 50 A3 3B 00 45 8B 92 80 03 00 00 45 8B 92 B0 00 00 00 EB 32 45 31 D2 44 8B 15 36 A3 3B 00 45 8B 92 88 03 00 00 45 8B 92 B0 00 00 00 EB 18 45 31 D2 44 8B 15 1C A3 3B 00 45 8B 92 90 03 00 00 45 8B 92 B0 00 00 00 41 83 FF 01 75 09 41 80 7A 3D 00 75 29 EB 07 41 80 7A 3B 00 75 20 44 8B 46 10 48 31 C0 41 8A 86 00 01 00 00 8B 56 18 44 8B CA 42 8D 14 38 48 8B CE E9 CB FD FF FF 48 8B 7C 24 58 E9 C9 FD FF FF")
+                            new IntPtr(0x1400A76F6),
+                            ConvertByteString("84 C0 75 6F 45 00 BE 00 01 00 00 45 31 C0 44 8B 84 24 10 01 00 00 41 C1 E8 03 41 81 C0 78 03 00 00 45 31 D2 44 8B 15 FF A3 3B 00 47 8B 14 02 45 8B 92 B0 00 00 00 41 83 FF 01 75 09 41 80 7A 3D 00 75 30 EB 07 41 80 7A 3B 00 75 27 C6 05 BC B8 3B 00 01 8B 7E 18 44 8B CF 8B 5E 10 44 8B C3 41 0F B6 86 00 01 00 00 42 8D 14 38 48 8B CE FF 55 70 EB 8D 83 3D 95 B8 3B 00 01 75 1B C6 05 8C B8 3B 00 00 30 C0 45 28 BE 00 01 00 00 41 0F B6 BE 00 01 00 00 89 7E 0C 48 8B 7C 24 58 E9 84 FE FF FF")
                         );
                     }
                 }},
@@ -1004,7 +998,7 @@ namespace Sandbox {
                     Game.WriteByteArray(
                        new IntPtr(0x1400A763A),
                        x
-                           ? ConvertByteString("E9 B7 00 00 00 90 90")
+                           ? ConvertByteString("E9 58 01 00 00 90 90")
                            : ConvertByteString("45 00 BE 00 01 00 00")
                        );
 
@@ -1015,8 +1009,8 @@ namespace Sandbox {
                         );
 
                         Game.WriteByteArray(
-                            new IntPtr(0x1400A76F6),
-                            ConvertByteString("44 88 3D 07 B9 3B 00 45 00 BE 00 01 00 00 E9 38 FF FF FF")
+                            new IntPtr(0x1400A7797),
+                            ConvertByteString("44 88 3D 66 B8 3B 00 45 00 BE 00 01 00 00 E9 97 FE FF FF")
                         );
                     }
                 }},
