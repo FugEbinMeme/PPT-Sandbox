@@ -483,7 +483,7 @@ namespace Sandbox {
                                 DelaySingle.Text = "Single";
                                     DelaySingle.ToolTip = "Extra line delay added after 1 line is cleared.";
                                 DelayDouble.Text = "Double";
-                                    DelayDouble.ToolTip = "Extra line delay added after 2 lines is cleared.";
+                                    DelayDouble.ToolTip = "Extra line delay added after 2 lines are cleared.";
                                 DelayTriple.Text = "Triple";
                                     DelayTriple.ToolTip = "Extra line delay added after 3 lines are cleared.";
                                 DelayTetris.Text = "Tetris";
@@ -497,9 +497,9 @@ namespace Sandbox {
 
                         Gravity.Header = "Gravity";
                             Level.Text = "Level";
-                            GravityExplanation.Text = "The higher the value, the less time it takes to reach the bottom of the matrix. Sweet / Mild / Normal / Hot / Spicy share values with certain levels.\n" +
+                            GravityExplanation.Text = "The higher the value, the less time it takes to reach the bottom of the matrix. Sweet / Mild / Normal / Hot / Spicy handicaps are assigned to certain levels\n" +
                                                       "Sweet is level 1, Mild is level 2, Normal is level 3, Hot is level 5, and Spicy is level 7.\n" +
-                                                      "Chellenge Modes like Sprint and Ultra count as level 1.";
+                                                      "Challenge Modes like Sprint and Ultra count as level 1.";
                             Softdrop.Title = "Softdrop Multiplier";
                                 Softdrop.ToolTip = "By default, Softdropping multiplies your gravity value by 20. You can change this value here";
 
