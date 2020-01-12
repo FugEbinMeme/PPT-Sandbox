@@ -33,7 +33,7 @@ namespace Sandbox {
 
             string appendix = 
             #if PRERELEASE
-                "-prerelease"
+                "-prerelease-2"
             #else
                 ""
             #endif
