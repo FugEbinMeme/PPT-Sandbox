@@ -923,7 +923,9 @@ namespace Sandbox {
                 {NoT, x => {
                     Game.WriteByte(new IntPtr(0x14280D093), Convert.ToByte(!x));//changes the value being written to the t spin flags to be 0
                     Game.WriteByte(new IntPtr(0x14280D09C), Convert.ToByte(!x));//so it never registers a t spin
-                }},                                                             //I wanted to just make the game always skip t spin detection but it would conflict with All Spins
+                    Game.WriteByte(new IntPtr(0x14280C1B7), Convert.ToByte(!x));
+                    Game.WriteByte(new IntPtr(0x14280C1C0), Convert.ToByte(!x));
+                }},                                                             
                 {AllT, x =>
                     Game.WriteByteArray(
                         new IntPtr(0x1400A4200),
