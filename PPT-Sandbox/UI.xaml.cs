@@ -42,12 +42,246 @@ namespace Sandbox {
             VersionText.Text = $"PPT-Sandbox-{Version}{appendix} by {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName}";
 
             switch (CultureInfo.CurrentCulture.TwoLetterISOLanguageName) {
-                //case "ko":
-                //    break;
-                    
+                case "ko":
+                    ScriptsHeader.Header = "      스크립트";
+                        Script1.Header = "     페이지 1";
+                            General.Text = "보통";
+                                PentominoVersus.Content = "펜토미노 대전";
+                                    PentominoVersus.ToolTip = "모든 미노(블록)들을 펜토미노로 바꿉니다.";
+                                RemoveLineClearDelay.Content = "줄 지울때 딜레이 삭제";
+                                UndoHold.Content = "무한 홀드";
+                                    UndoHold.ToolTip = "하드 드롭하기 전까지는 몇 번이든 홀드를 할 수 있습니다.";
+                                FreezeSwap.Content = "스왑 타이머 정지";
+                                ColX.Content = "좌/우 이동범위 제거";
+                                    ColX.ToolTip = "미노들을 이동할때 좌우 범위 제한을 제거합니다.";
+                                ColM.Content = "미노 겹치기";
+                                    ColM.ToolTip = "블록을 놓을 때 겹처서 놓을 수 있게 됩니다.";
+                                Lockout.Content = "미노 높이제한 제거";
+                                    Lockout.ToolTip = "20라인 이상 위에 놓아도 게임오버 되지 않습니다.";
+                                Invisible.Content = "투명 모드";
+                                    Invisible.ToolTip = "쓰레기줄을 제외하고 모든 미노가 보이지 않습니다.";
+                                Input.Content = "향상된 입력 모드";
+                                    Input.ToolTip = "기본적으로, 뿌요뿌요 테트리스는 하드 드롭하지 않으면 [회전-> 이동-> 중력] 순서대로 입력을 처리하고, 그렇지 않으면 [회전-> 하드 드롭] 순서로 입력을 처리합니다.\n" +
+                                                    "이 옵션을 키면, 항상 [이동 -> 회전 -> (중력 / 하드드롭] 순으로 처리하여 입력 수를 줄이고 부드러운 입력을 보여줍니다.\n" +
+                                                    "홀드는 항상 다른 것보다 먼저 처리됩니다.";
+
+                                AutoLocking.Text = "블록 자동 놓기";
+                                    RemoveAutoLock.Content = "블록 자동 놓기 해제";
+                                    TGMAutoLock.Content = "아키라 스타일 자동 놓기";
+                                        TGMAutoLock.ToolTip = "자동 놓기 타이머는 아래 새 층에 놓았을때만 재설정됩니다.\n" +
+                                                      "일반적으로 자동 놓기 타이머는 회전 & 이동시에도 재설정됩니다.";
+
+                    Script2.Header = "페이지 2";
+                        Harddrop.Text = "하드드롭 변형";
+                            Float.Content = "떠있는 상태로 놓기";
+                                Float.ToolTip = "블록을 아래 고스트 위치에 놓지 않고 현재 위치에 놓습니다.";
+                            Sonicdrop.Content = "소닉드롭";
+                                Sonicdrop.ToolTip = "하드드롭과 유사하나, 소프트 드랍처럼 완전히 놓기 전까지 시간이 있습니다.";
+                            Sink.Content = "미노 겹치기";
+                                Sink.ToolTip = "아래 있는 블록을 무시하고 블록을 놓습니다.";
+                            Up.Content = "하드드랍 -> 위로 올리기";
+                                Up.ToolTip = "하드드랍 키를 누를 시 블록이 1칸 위로 이동합니다.";
+                            Noghost.Content = "고스트 모양 삭제";
+
+                            PreserveRot.Content = "홀드 시 블록의 회전상태 유지";
+                                PreserveRot.ToolTip = "홀드 시 블록 회전 저장";
+                            Unhold.Content = "홀드 시 블록의 위치 유지";
+                                Unhold.ToolTip = "홀드 시 블록 위치 저장";
+
+                            Lockoutdial.Content = "블록 최대높이";
+                                Lockoutdial.ToolTip = "이 높이 위로 블록을 놓을 시 게임오버됩니다.";
+
+                        Script3.Header = "회전 시스템";
+                            RotationSystems.Text = "킥 테이블 시스템";
+                                Ascension.Content = "Ascension";
+                                    Ascension.ToolTip = "Ascension의 회전 시스템입니다.\n" +
+                                                        "asc.winternebs.com";
+                                Cultris2.Content = "Cultris II";
+                                    Cultris2.ToolTip = "Cultris II의 회전 시스템입니다.\n" +
+                                                       "gewaltig.net/cultris2.aspx";
+                                h.Content = "h";
+                                    h.ToolTip = "블록의 맞닿음을 무시하고 회전합니다.";
+                                BONKERS.Content = "B.O.N.K.E.R.S.";
+                                    BONKERS.ToolTip = "기본 회전에 실패하면 미노가 매트릭스의 맨 아래로 걷어차면서 오른쪽 타일 하나를 확인하고 왼쪽 타일 하나를 끝까지 확인합니다.\n" +
+                                                      "자세한 것은 https://tetris.wiki/A_Gnowius%27_Challenge#Biased-On-Nutty-Kick-Enhancement_Rotation_System 을 참고하세요.";
+                                jstrismeme.Content = "Jstris 밈 회전 시스템";
+                                    jstrismeme.ToolTip = "Jstris의 O-스핀 설정에 사용되는 킥테이블 시스템입니다.\n" +
+                                                         "O블록의 변환은 포함되지 않습니다.";
+                                thenew.Content = "The New Tetris";
+                                    thenew.ToolTip = "닌텐도 64의 \"The New Tetris\" 회전 시스템입니다.\n" +
+                                                     "The New Tetris 회전상태 코드와 함께 사용하면 좋습니다.";
+                                jstris.Content = "Jstris 180 SRS";
+                                    jstris.ToolTip = "180도 회전시 Jstris의 킥 시스템이 적용됩니다.\n" +
+                                                     "오프라인 전용 탭에서 180도 회전을 활성화하세요.";
+                                nullpo.Content = "Nullpomino 180 SRS";
+                                    nullpo.ToolTip = "180도 회전시 Nullpomino의 킥 시스템이 적용됩니다.\n" +
+                                                     "오프라인 전용 탭에서 180도 회전을 활성화하세요.";
+
+                            RotationStates.Text = "회전 상태 변환";
+                                ars.Content = "아리카 회전 시스템 (ARS)";
+                                thenewrs.Content = thenew.Content;
+
+                        Offline.Header = "오프라인 전용";
+                            Offline.ToolTip = "퍼즐 리그나 클럽/프리플레이에는 적용되지 않습니다.";
+
+                        Rotate.Text = "추가 설정";
+                            Rotate.ToolTip = "'세번째' 오른쪽 회전 키를 입력하면 다음 효과가 발동됩니다.\n" +
+                                             "[내 정보 (Options&Data)-> 옵션(Settings)->키보드&마우스 조작 설정에서 확인]";
+                            DoubleRotate.Content = "180도 회전";
+                                DoubleRotate.ToolTip = "블록을 180도 회전시킵니다.";
+                            Cycle.Content = "블록 바꾸기";
+                                Cycle.ToolTip = "S -> Z -> J -> L -> T -> O -> I -> 모노미노 [1x1블럭] -> S 순으로 미노가 바뀝니다.\n" +
+                                                "이 동작은 회전으로 계산되며 변환하는 동안 블럭의 킥 처리도 이루어집니다. [-스핀류 가능]";
+                            Flip.Content = "블럭 뒤집기";
+                                Flip.ToolTip = "블럭을 가로 방향으로 뒤집습니다.\n" +
+                                               "S <-> Z, J <-> L: 0도 회전으로 계산합니다.\n" +
+                                               "T, O,  I는 정상적인 180도 회전으로 될 것입니다.\n" +
+                                               "SRS의 특성상 커스텀 회전 시스템이 권장됩니다.";
+                            Flip180.Content = "블럭 뒤집기(180)";
+                                Flip180.ToolTip = "\"블럭 뒤집기\"에 대한 조금 다른 결과를 제공합니다. 자세한 내용은 \"블럭 뒤집기\" 툴팁 설명을 참조하세요.";
+                            bigsoftdrop.Content = "슈퍼 소프트 드랍";
+                                bigsoftdrop.ToolTip = "아래 있는 블럭을 무시하고 1줄씩 드랍합니다.";
+                            ARR.Content = "즉시 이동";
+                                ARR.ToolTip = "DAS가 충전되면 블럭이 수평으로 가능한 한 멀리 이동합니다.";
+
+                    AttackHeader.Header = "공격력";
+                        TetrisVsTetris.Header = "     테트리스 VS 테트리스";
+                            Attacks.Text = "공격";
+
+                            Single.Text = "싱글";
+                            Double.Text = "더블";
+                            Triple.Text = "트리플";
+                            Tetris.Text = "테트리스";
+                            TetrisPlus.Text = "테트리스 +";
+
+                            Clear.Text = "라인 클리어";
+                            PerfectClear.Text = "퍼클";
+                            TSpin.Text = "T-스핀";
+
+                            Combo.Text = "콤보/렌";
+
+                        TetrisVsPuyo.Header = "테트리스 VS 뿌요뿌요";
+                            TvPAttacks.Text = "공격";
+
+                            TvPSingle.Text = "싱글";
+                            TvPDouble.Text = "더블";
+                            TvPTriple.Text = "트리플";
+                            TvPTetris.Text = "테트리스";
+                            TvPTetrisPlus.Text = "테트리스 +";
+
+                            TvPClear.Text = "라인 클리어";
+                            TvPPerfectClear.Text = "퍼클";
+                            TvPTSpin.Text = "T-스핀";
+
+                            TvPCombo.Text = "콤보/렌";
+
+                        Puyo.Header = "뿌요뿌요";
+                            GarbageRate.Title = "방해뿌요 배율";
+                            AllClearMultiplier.Title = "올 클리어 배율";
+
+                            Chain.Text = "연쇄";
+
+                        MarginTime.Header = "마진 타임";
+                            Margin.Text = "값";
+                                Margin.ToolTip = "테트리스 VS 테트리스에서는 적용되지 않습니다.";
+
+                    GarbageHeader.Header = "방해 줄 / 방해 뿌요";
+                        Detection.Header = "     판정";
+                            TetrisB2B.Text = "백투백 테트리스";
+                                TetrisB2BDouble.Content = "백투백 테트리스시 2배로 공격";
+                                TetrisB2BAdd2.Content = "백투백 테트리스시 2줄 추가 공격";
+                                TetrisB2BCum.Content = "백투백 테트리스 스택 적용";
+                                    TetrisB2BCum.ToolTip = "백투백을 2번 할 때마다 공격력이 1씩 증가합니다. (끊김없이)";
+
+                            TspinB2B.Text = "백투백 T-스핀";
+                                TspinB2BDouble.Content = "백투백 T-스핀시 2배로 공격";
+                                TspinB2BAdd2.Content = "백투백 T-스핀시 2줄 추가 공격";
+                                TspinB2BCum.Content = "백투백 T-스핀 스택 적용";
+                                    TspinB2BCum.ToolTip = "백투백을 2번 할 때마다 공격력이 1씩 증가합니다. (끊김없이)";
+
+                            TspinDetection.Text = "T-스핀 판정";
+                                FullTmini.Content = "모든 T-스핀 미니를 일반 T-스핀으로 처리";
+                                NoT.Content = "T-스핀 없음";
+                                AllT.Content = "모든 스핀 -> T-스핀 판정";
+
+                        Behavior.Header = "적용";
+                            GarbageGeneration.Text = "방해 줄 생성";
+                            CleanGarbage.Title = "클린한 방해줄 확률";
+                                CleanGarbage.ToolTip = "일렬로 방해줄이 생성될 확룰을 퍼센트로 나타냅니다.";
+                            GarbageFilled.Title = "방해줄 타일";
+                                GarbageFilled.ToolTip = "8로 세팅하면 비워집니다.";
+                            GarbageEmpty.Title = "빈 줄 타일";
+                                GarbageEmpty.ToolTip = "8로 세팅하면 비워집니다.";
+                            ReceiveT.Title = "최대 테트리스 방해줄";
+                                ReceiveT.ToolTip = "드랍할때 한번에 방해줄이 올라오는 줄 수.\n" +
+                                                   "테트리스 VS 테트리스에서는 다른 스크립트 없이는 적용되지 않습니다.";
+                            ReceiveP.Title = "최대 방해뿌요";
+                                ReceiveP.ToolTip = "뿌요를 놓을 때 내려오는 최대 방해뿌요 갯수";
+                            ReceiveCap.Content = "테트리스 VS 테트리스 방해줄 적용";
+                                ReceiveCap.ToolTip = "\"최대 테트리스 방해줄\" 설정을 테트리스 VS 테트리스 게임에서 적용되게 해 줍니다.";
+                            GarbageModification.Text = "방해뿌요/줄 계산";
+                            SecretGradeGarbage.Content = "지그재그 방해줄";
+                                SecretGradeGarbage.ToolTip = "방해줄이 1줄마다 1칸씩 이동하며 생성됩니다.";
+                            GarbageBlocking.Content = "방해줄 차단";
+                            UnCappedPC.Content = "퍼펙트 클리어 대미지 추가 적용";
+                                UnCappedPC.ToolTip = "퍼펙트 클리어 데미지가 고정적용에서 추가적용으로 변경됩니다.\n" +
+                                                     "예시: 본 코드가 활성화될시, 테트리스 퍼클은 10(퍼클) + 4(테트리스) = 14줄을 보냅니다.\n" +
+                                                     "본 코드가 비활성화될시, 테트리스 퍼클은 10(퍼클) 줄만 보냅니다.\n" +
+                                                     "퍼펙트 클리어는 별도로 라인 클리어 딜레이가 적용됩니다.";
+                            ColorClear.Content = "컬러 클리어";
+                                ColorClear.ToolTip = "방해줄을 제외하고 퍼펙트 클리어를 하면 \"세미-퍼펙트 클리어\" 판정을 내려서 별도로 방해줄 5개를 보냅니다.\n" +
+                                                     "별도로 방해줄을 보내는 것데 대한 의미는  \"퍼펙트 클리어 대미지 추가 적용\" 툴팁을 참고하십시오.";
+                            AllSpin.Content = "올-스핀";
+                                AllSpin.ToolTip = "T-스핀 미니/미동 탐지가 없는 올 스핀 판정을 추가합니다.";
+
+                    OtherHeader.Header = "그 외";
+                        Timing.Header = "     타이밍";
+                            Delays.Text = "라인 딜레이";
+                                DelayBase.Text = "기본";
+                                    DelayBase.ToolTip = "줄을 지울때 다음과 같이 프레임 지연이 발생하고, 한번에 몇 줄이 지워졌는지에 따른 추가 지연이 있습니다.\n" +
+                                                        "방해줄/방해뿌요를 보낼 때도 프레임 지연이 있습니다. 이 값이 0이면 방해줄/방해뿌요가 줄을 지움과 동시에 전송됩니다.";
+                                DelaySingle.Text = "싱글";
+                                    DelaySingle.ToolTip = "1줄을 지웠을 때 추가로 적용되는 딜레이입니다.";
+                                DelayDouble.Text = "더블";
+                                    DelayDouble.ToolTip = "2줄을 지웠을 때 추가로 적용되는 딜레이입니다.";
+                                DelayTriple.Text = "트리플";
+                                    DelayTriple.ToolTip = "3줄을 지웠을 때 추가로 적용되는 딜레이입니다.";
+                                DelayTetris.Text = "테트리스";
+                                    DelayTetris.ToolTip = "4줄을 지웠을 때 추가로 적용되는 딜레이입니다.";
+                                DelayTetrisPlus.Text = "테트리스 +";
+                                    DelayTetrisPlus.ToolTip = "5줄 이상 지웠을 때 추가로 적용되는 딜레이입니다. (테트리스 플러스 등)";
+                                DAS.Title = "DAS";
+                                    DAS.ToolTip = "ARR이 활성화되기 전의 프레임.";
+                                Autolockdial.Title = "자동 드랍 타이머";
+                                    Autolockdial.ToolTip = "블록이 아래에 닿은 후 자동 드랍되기까지의 프레임을 나타낸 값입니다.";
+
+                        Gravity.Header = "중력";
+                            Level.Text = "레벨";
+                            GravityExplanation.Text = "값이 높을수록 보드의 맨 아래에 도달하는 데 걸리는 시간이 줄어듭니다. Sweet (달콤) / Mild (순함) / Normal (보통) / Hot (매콤) / Spicy (강렬) 핸디캡은 특정 레벨에 할당됩니다.\n" +
+                                                      "달콤은 레벨 1, 순함은 레벨 2, 보통은 레벨 3, 매콤은 레벨 5, 그리고 강렬은 레벨 7입니다.\n" +
+                                                      "스프린트 및 울트라와 같은 도전/챌린지 모드는 레벨 1로 계산됩니다.";
+                        Softdrop.Title = "소프트드랍 중력 배율";
+                            Softdrop.ToolTip = "기본적으로 소프트 드랍시 중력은 기본 중력 값에 20을 곱합니다. 여기서 이 값을 변경할 수 있습니다.";
+
+                    ResetButton.Content = "초기화";
+                    SaveButton.Content = "저장";
+                    LoadButton.Content = "열기";
+
+                    ofd = new OpenFileDialog() {
+                        Multiselect = false,
+                        Filter = "PPT-Sandbox 파일|*.pts|모든 파일|*.*",
+                        Title = "PPT-Sandbox 파일 열기"
+                    };
+
+                    sfd = new SaveFileDialog() {
+                        Filter = "PPT-Sandbox 파일|*.pts|모든 파일|*.*",
+                        Title = "PPT-Sandbox 파일 저장하기"
+                    };
+                    break;
+
                 //case "ja":
                 //    break;
-                    
+
                 default:
                     ScriptsHeader.Header = "      SCRIPTS";
                         Script1.Header = "     Page 1";
@@ -147,7 +381,7 @@ namespace Sandbox {
                                     bigsoftdrop.ToolTip = "Moves your piece one tile down, ignoring all collision.";
                         ARR.Content = "Instant ARR";
                             ARR.ToolTip = "Piece travels as far as it can horizontally once DAS is charged.";
-
+                    
                     AttackHeader.Header = "ATTACK";
                         TetrisVsTetris.Header = "     Tetris vs Tetris";
                             Attacks.Text = "Attacks";
@@ -190,56 +424,55 @@ namespace Sandbox {
                                 Margin.ToolTip = "Has no effect on Tetris vs Tetris games.";
 
                     GarbageHeader.Header = "GARBAGE";
-                    Detection.Header = "     Detection";
-                        TetrisB2B.Text = "Back-to-Back Tetris";
-                            TetrisB2BDouble.Content = "Tetris B2B doubles attack";
-                            TetrisB2BAdd2.Content = "Tetris B2B adds 2 attack";
-                            TetrisB2BCum.Content = "Tetris B2B stacks";
-                                TetrisB2BCum.ToolTip = "Garbage sent is increased by 1 for every two Back to Backs done without breaking.";
+                        Detection.Header = "     Detection";
+                            TetrisB2B.Text = "Back-to-Back Tetris";
+                                TetrisB2BDouble.Content = "Tetris B2B doubles attack";
+                                TetrisB2BAdd2.Content = "Tetris B2B adds 2 attack";
+                                TetrisB2BCum.Content = "Tetris B2B stacks";
+                                    TetrisB2BCum.ToolTip = "Garbage sent is increased by 1 for every two Back to Backs done without breaking.";
 
-                        TspinB2B.Text = "Back-to-Back T-Spin";
-                            TspinB2BDouble.Content = "T-Spin B2B doubles attack";
-                            TspinB2BAdd2.Content = "T-Spin B2B adds 2 attack";
-                            TspinB2BCum.Content = "T-Spin B2B stacks";
-                                TspinB2BCum.ToolTip = "Garbage sent is increased by 1 for every two Back to Backs done without breaking.";
+                            TspinB2B.Text = "Back-to-Back T-Spin";
+                                TspinB2BDouble.Content = "T-Spin B2B doubles attack";
+                                TspinB2BAdd2.Content = "T-Spin B2B adds 2 attack";
+                                TspinB2BCum.Content = "T-Spin B2B stacks";
+                                    TspinB2BCum.ToolTip = "Garbage sent is increased by 1 for every two Back to Backs done without breaking.";
 
-                        TspinDetection.Text = "T-Spin Detection";
-                            FullTmini.Content = "All T-Mini's are full";
-                            NoT.Content = "No T-Spins";
-                            AllT.Content = "Every Spin is a T-Spin";
+                            TspinDetection.Text = "T-Spin Detection";
+                                FullTmini.Content = "All T-Spin Mini's are full";
+                                NoT.Content = "No T-Spins";
+                                AllT.Content = "Every Spin is a T-Spin";
 
-                    Behavior.Header = "Behavior";
-                        GarbageGeneration.Text = "Garbage Generation";
-                            CleanGarbage.Title = "Clean Garbage Chance";
-                                CleanGarbage.ToolTip = "Percent chance that garbage will stay in the same column.";
-                            GarbageFilled.Title = "Filled Garbage Tile";
-                                GarbageFilled.ToolTip = "Set to 8 for empty.";
-                            GarbageEmpty.Title = "Empty Garbage Tile";
-                                GarbageEmpty.ToolTip = GarbageFilled.ToolTip;
-                            ReceiveT.Title = "Tetris Max Receival";
-                                ReceiveT.ToolTip = "Max garbage lines your matrix gets at once when your piece locks.\n" +
-                                                   "Does not work in Tetris vs Tetris games without another script.";
-                            ReceiveP.Title = "Puyo Max Receival";
-                                ReceiveP.ToolTip = "Max nuisance your board gets at once when you place a puyo";
-                            ReceiveCap.Content = "Tetris vs Tetris Garbage Capping";
-                                ReceiveCap.ToolTip = "Allows " + ReceiveT.Title + " to work in Tetris vs Tetris games.\n" +
-                                                     "See " + ReceiveT.Title + " tooltip for more info.";
+                        Behavior.Header = "Behavior";
+                            GarbageGeneration.Text = "Garbage Generation";
+                                CleanGarbage.Title = "Clean Garbage Chance";
+                                    CleanGarbage.ToolTip = "Percent chance that garbage will stay in the same column.";
+                                GarbageFilled.Title = "Filled Garbage Tile";
+                                    GarbageFilled.ToolTip = "Set to 8 for empty.";
+                                GarbageEmpty.Title = "Empty Garbage Tile";
+                                    GarbageEmpty.ToolTip = GarbageFilled.ToolTip;
+                                ReceiveT.Title = "Tetris Max Receival";
+                                    ReceiveT.ToolTip = "Max garbage lines your matrix gets at once when your piece locks.\n" +
+                                                       "Does not work in Tetris vs Tetris games without another script.";
+                                ReceiveP.Title = "Puyo Max Receival";
+                                    ReceiveP.ToolTip = "Max nuisance your board gets at once when you place a puyo";
+                                ReceiveCap.Content = "Tetris vs Tetris Garbage Capping";
+                                    ReceiveCap.ToolTip = "Allows " + ReceiveT.Title + " to work in Tetris vs Tetris games.\n";
 
-                        GarbageModification.Text = "Garbage Modification";
-                            SecretGradeGarbage.Content = "Secret Grade Garbage";
-                                SecretGradeGarbage.ToolTip = "Garbage forms a snaking pattern instead of a random one.";
-                            GarbageBlocking.Content = "Garbage Blocking";
-                            UnCappedPC.Content = "Remove Perfect Clear Damage Cap";
-                                UnCappedPC.ToolTip = "Perfect Clears are no longer capped at 10 garbage.\n" +
-                                                     "Example: With code active, a Tetris PC sends 10 (PC) + 4 (Tetris) = 14 garbage lines.\n" +
-                                                     "Without the code active, a Tetris PC sends 10 (PC) garbage lines.\n" +
-                                                     "Results in Perfect Clears having line delay";
-                            ColorClear.Content = "Color Clear";
-                                ColorClear.ToolTip = "If you clear every non-garbage mino from your matrix, you do a pseudo-Perfect Clear, sending 5 garbage with no cap.\n" +
-                                                     "See Remove Perfect Clear Damage Cap tooltip for more info on what it means to not be capped.";
-                            AllSpin.Content = "All Spins";
-                                AllSpin.ToolTip = "Adds All-Spin ruling with immobile detection and no mini penalty.\n" +
-                                                  "Regular T-Spin detection is still present so Fin-TSD still works.";
+                            GarbageModification.Text = "Garbage Modification";
+                                SecretGradeGarbage.Content = "Secret Grade Garbage";
+                                    SecretGradeGarbage.ToolTip = "Garbage forms a snaking pattern instead of a random one.";
+                                GarbageBlocking.Content = "Garbage Blocking";
+                                UnCappedPC.Content = "Remove Perfect Clear Damage Cap";
+                                    UnCappedPC.ToolTip = "Perfect Clears are no longer capped at 10 garbage.\n" +
+                                                         "Example: With code active, a Tetris PC sends 10 (PC) + 4 (Tetris) = 14 garbage lines.\n" +
+                                                         "Without the code active, a Tetris PC sends 10 (PC) garbage lines.\n" +
+                                                         "Results in Perfect Clears having line delay";
+                                ColorClear.Content = "Color Clear";
+                                    ColorClear.ToolTip = "If you clear every non-garbage mino from your matrix, you do a pseudo-Perfect Clear, sending 5 garbage with no cap.\n" +
+                                                         "See Remove Perfect Clear Damage Cap tooltip for more info on what it means to not be capped.";
+                                AllSpin.Content = "All Spins";
+                                    AllSpin.ToolTip = "Adds All-Spin ruling with immobile detection and no mini penalty.\n" +
+                                                      "Regular T-Spin detection is still present so Fin-TSD still works.";
 
                     OtherHeader.Header = "OTHER";
                         Timing.Header = "     Timings";
