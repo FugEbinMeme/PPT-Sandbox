@@ -279,8 +279,242 @@ namespace Sandbox {
                     };
                     break;
 
-                //case "ja":
-                //    break;
+                case "ja":
+                    ScriptsHeader.Header = "      スクリプト";
+                        Script1.Header = "     1ページ";
+                            General.Text = "全般";
+                                PentominoVersus.Content = "ペントミノ変化";
+                                    PentominoVersus.ToolTip = "それぞれのテトリミノをペントミノに変更する";
+                                RemoveLineClearDelay.Content = "ライン消去削除";
+                                UndoHold.Content = "ホールドを元に戻す";
+                                    UndoHold.ToolTip = "ハードドロップなしで、好きなだけホールドできる";
+                                FreezeSwap.Content = "スワップタイマー凍結";
+                                ColX.Content = "左右の衝突判定削除";
+                                    ColX.ToolTip = "横軸方向の衝突を無視する";
+                                ColM.Content = "ミノの衝突削除";
+                                    ColM.ToolTip = "他のミノとの全ての衝突を無視する";
+                                Lockout.Content = "ロックアウト削除";
+                                    Lockout.ToolTip = "21段目以上に置いても死なない";
+                                Invisible.Content = "盤面透明化";
+                                    Invisible.ToolTip = "おじゃまを除く全てのミノが見えなくなる";
+                                Input.Content = "入力処理改善";
+                                    Input.ToolTip = "デフォルトでは、ぷよテトはハードドロップしない場合、[回転->移動->重力]の順、する場合、[回転->ハードドロップ]の順に入力を処理する。\n" +
+                                                    "オンにすると、常に[移動->回転->(重力/ハードドロップ)]になり、よりスムーズな操作性と入力漏れの減少につながる" +
+                                                    "ホールドは常に最初に処理される";
+
+                                AutoLocking.Text = "自動接地";
+                                    RemoveAutoLock.Content = "自動接地を無効化";
+                                    TGMAutoLock.Content = "ARIKA式自動接地";
+                                        TGMAutoLock.ToolTip = "接地時間のタイマーは新しい最低の高さに来るときのみリセットされる\n" +
+                                                              "通常、接地時間のタイマーは回転と移動時にもリセットされる.";
+
+                        Script2.Header = "2ページ";
+                            Harddrop.Text = "ハードドロップ変更";
+                                Float.Content = "フローティングロック";
+                                    Float.ToolTip = "ゴーストの位置ではなく、現在の位置で固定する";
+                                Sonicdrop.Content = "ソニックドロップ";
+                                    Sonicdrop.ToolTip = "ミノは可能な限り落下するが、固定はしない。接地中にソフトドロップすると固定される";
+                                Sink.Content = "沈むミノ";
+                                    Sink.ToolTip = "ハードドロップすると、ゴーストの一つ下のマスで固定される";
+                                Up.Content = "ハードドロップで上昇";
+                                    Up.ToolTip = "ハードドロップを押すと、ミノが1マス上に移動し、ミノを固定できなくなる\n" +
+                                                 "自動接地がミノを固定する唯一の方法になった";
+                            Noghost.Content = "ゴースト削除";
+
+                            PreserveRot.Content = "ホールドされるミノの回転を保持する";
+                                PreserveRot.ToolTip = "ホールドしても回転はリセットされない";
+                            Unhold.Content = "ホールド時に位置を保持する";
+                                Unhold.ToolTip = "ホールドしても位置はリセットされない";
+                            Lockoutdial.Title = "ロックアウトの高さ";
+                                Lockoutdial.ToolTip = "ミノを置くとゲームオーバーになる高さ";
+
+                        Script3.Header = "回転法則";
+                            RotationSystems.Text = "キックテーブル";
+                                Ascension.Content = "Ascension";
+                                    Ascension.ToolTip = "Ascensionの回転法則\n" +
+                                                        "asc.winternebs.com";
+                                Cultris2.Content = "Cultris II";
+                                    Cultris2.ToolTip = "Cultris IIの回転法則\n" +
+                                                       "gewaltig.net/cultris2.aspx";
+                                h.Content = "h";
+                                    h.ToolTip = "例えぶつかっても、常に回転する";
+                                BONKERS.Content = "B.O.N.K.E.R.S.";
+                                    BONKERS.ToolTip = "もし最初の回転に失敗すると、ミノは盤面の下にキックされ、右に1つ、左に1つ、下から上にチェックする";
+                                jstrismeme.Content = "Jstris meme RS";
+                                    jstrismeme.ToolTip = "Jstrisの\"Oスピン\"設定のキックテーブル\n" +
+                                                         "Oミノ変化は含まれな";
+                                thenew.Content = "The New Tetris";
+                                    thenew.ToolTip = "NINTENDO64のThe New Tetrisの回転法則\n" +
+                                                     "The New Tetrisの回転状態コードとの併用が最適";
+                                jstris.Content = "Jstris 180 SRS";
+                                    jstris.ToolTip = "180度回転でJstrisの回転法則を使用する\n" +
+                                                     "[オフライン限定]タブで180度回転を有効にしてください";
+                                nullpo.Content = "Nullpomino 180 SRS";
+                                    nullpo.ToolTip = "180度回転でNullpominoの回転法則を使用する\n" +
+                                                     "[オフライン限定]タブで180度回転を有効にしてください";
+
+                            RotationStates.Text = "回転状態";
+                                ars.Content = "ARS";
+                                thenewrs.Content = thenew.Content;
+
+                        Offline.Header = "オフライン限定";
+                            Offline.ToolTip = "Puzzle LeagueまたはFree Playでは動かない";
+                            Rotate.Text = "特殊なキーバインド";
+                                Rotate.ToolTip = "右回転キーの3番目を使用して、効果を実行する";
+                            DoubleRotate.Content = "180度回転";
+                                DoubleRotate.ToolTip = "90度ではなく180度回転する";
+                            Cycle.Content = "ミノ循環";
+                                Cycle.ToolTip = "ミノは一回循環する。S -> Z -> J -> L -> T -> O -> I -> モノミノ -> S の順\n" +
+                                                "これは回転としてカウントされ、ミノは変換中にキックされる";
+                            Flip.Content = "ミノ反転";
+                                Flip.ToolTip = "ミノは水平方向に「反転」する\n" +
+                                               "S <-> Z, J <-> L は0度回転としてカウントする\n" +
+                                               "T, O, I は通常の180度回転を行う\n" +
+                                               "SRSの性質から、これと共にカスタム回転法則をおすすめする";
+                            Flip180.Content = "ミノ反転(180)";
+                                Flip180.ToolTip = "ミノ反転への異なるアプローチ。基本版とはわずかに異なる結果になります\n" +
+                                                  "詳細は\"ミノ反転\"のツールチップを参照してください";
+                            bigsoftdrop.Content = "スーパーソフトドロップ";
+                                bigsoftdrop.ToolTip = "すべての衝突を無視して、ミノを1マス下に移動する";
+                            ARR.Content = "インスタントARR";
+                                ARR.ToolTip = "DASが溜まっているとミノは即座に水平方向に移動する";
+
+                        AttackHeader.Header = "攻撃";
+                            TetrisVsTetris.Header = "     テト vs テト";
+                                Attacks.Text = "攻撃";
+
+                                Single.Text = "シングル";
+                                Double.Text = "ダブル";
+                                Triple.Text = "トリプル";
+                                Tetris.Text = "テトリス";
+                                TetrisPlus.Text = "テトリス プラス";
+
+                                Clear.Text = "消去";
+                                PerfectClear.Text = "パフェクリ";
+                                TSpin.Text = "T-Spin";
+
+                                Combo.Text = "REN";
+
+                            TetrisVsPuyo.Header = "テト vs ぷよ";
+                                TvPAttacks.Text = "攻撃";
+                                
+                                TvPSingle.Text = "シングル";
+                                TvPDouble.Text = "ダブル";
+                                TvPTriple.Text = "トリプル";
+                                TvPTetris.Text = "テトリス";
+                                TvPTetrisPlus.Text = "テトリス プラス";
+                                
+                                TvPClear.Text = "消去";
+                                TvPPerfectClear.Text = "パフェクリ";
+                                TvPTSpin.Text = "T-Spin";
+                                
+                                TvPCombo.Text = "REN";
+                    
+                    Puyo.Header = "ぷよ";
+                        GarbageRate.Title = "おじゃまぷよレート";
+                        AllClearMultiplier.Title = "全消しボーナス";
+
+                        Chain.Text = "連鎖";
+
+                        MarginTime.Header = "マージンタイム";
+                        Margin.Text = "値";
+                        Margin.ToolTip = "テト vs テトには影響しない";
+
+                    GarbageHeader.Header = "おじゃま";
+                        Detection.Header = "     検出";
+                            TetrisB2B.Text = "B2B付きのテト";
+                                TetrisB2BDouble.Content = "B2Bテトリスは攻撃を倍増する";
+                                TetrisB2BAdd2.Content = "B2Bテトリスは攻撃に2追加する";
+                                TetrisB2BCum.Content = "B2Bテトリスを積み重ねる";
+                                    TetrisB2BCum.ToolTip = "送るおじゃまは中断されることなく2回連続して実行されるごとに１つずつ増加する";
+
+                            TspinB2B.Text = "B2B付きのT-Spin";
+                                TspinB2BDouble.Content = "B2B T-Spinは攻撃を倍増する";
+                                TspinB2BAdd2.Content = "B2B T-Spinは攻撃に2を追加する";
+                                TspinB2BCum.Content = "B2B T-Spinを積み重ねる";
+                                    TspinB2BCum.ToolTip = "送るおじゃまは中断されることなく2回連続して実行されるごとに１つずつ増加する";
+
+                            TspinDetection.Text = "T-Spin検出";
+                                FullTmini.Content = "すべてのTspin miniをfullにする";
+                                NoT.Content = "Tspinオフ";
+                                AllT.Content = "すべてのスピンをT-Spinにする";
+
+                        Behavior.Header = "動作";
+                            GarbageGeneration.Text = "おじゃま生成";
+                                CleanGarbage.Title = "直列の確率";
+                                    CleanGarbage.ToolTip = "おじゃまが同じ列に留まる確率";
+                                GarbageFilled.Title = "おじゃまを埋めるミノ";
+                                    GarbageFilled.ToolTip = "空の場合は8にします";
+                                GarbageEmpty.Title = "おじゃまを開けるミノ";
+                                    GarbageEmpty.ToolTip = GarbageFilled.ToolTip;
+                                ReceiveT.Title = "テトリスせり上がり最大値";
+                                    ReceiveT.ToolTip = "ミノが固定されたとき、一度に受けるおじゃま段数\n" +
+                                                       "テトvsテトでは別のスクリプトがなければ機能しない";
+                                ReceiveP.Title = "おじゃまぷよを受ける最大値";
+                                    ReceiveP.ToolTip = "ぷよを置いたとき、一度に受ける最大のおじゃま数";
+                                ReceiveCap.Content = "テトvsテト おじゃまキャップ";
+                                    ReceiveCap.ToolTip = "テトvsテトで「テトリスせり上がり最大値」を有効化できる";
+
+                            GarbageModification.Text = "おじゃま変更";
+                                SecretGradeGarbage.Content = "秘密のおじゃま";
+                                    SecretGradeGarbage.ToolTip = "ランダムではなく蛇行するパターンを形成する";
+                                GarbageBlocking.Content = "おじゃまブロック";
+                                UnCappedPC.Content = "パフェクリダメージキャップ削除";
+                                    UnCappedPC.ToolTip = "パーフェクトクリアは10個のおじゃまで制限されない\n" +
+                                                         "例: コード有効時、テトリスパフェ 10 (PC) + 4 (テトリス) = 14段のおじゃまを送る\n" +
+                                                         "コード無効時、テトリスパフェは 10 (PC)段のおじゃまを送る\n" +
+                                                         "結果として、パフェはライン消去を持つ";
+                                ColorClear.Content = "カラークリア";
+                                    ColorClear.ToolTip = "おじゃま以外のすべてのミノを盤面から消したとき、実質パフェとなり、キャップなしで5段送る\n" +
+                                                         "キャップなしの意味は\"パフェクリダメージキャップ削除\"のツールチップを読んでください";
+                                AllSpin.Content = "オールスピン";
+                                    AllSpin.ToolTip = "動かないことの検出とminiペナルティなしのオールスピンルールを追加する";
+
+                        OtherHeader.Header = "その他";
+                            Timing.Header = "     タイミング";
+                                Delays.Text = "ライン消去";
+                                    DelayBase.Text = "基本";
+                                        DelayBase.ToolTip = "すべてのライン消去にはフレーム単位でこれだけの遅延があり、同時に一度に消去した数に基づいて余分な遅延がある\n" +
+                                                            "おじゃま送信の遅延もあるため、0の場合、ライン消去すると直ぐにおじゃまが送られる";
+                                    DelaySingle.Text = "シングル";
+                                        DelaySingle.ToolTip = "1ライン消されたときの余分な遅延";
+                                    DelayDouble.Text = "ダブル";
+                                        DelayDouble.ToolTip = "2ライン消されたときの余分な遅延";
+                                    DelayTriple.Text = "トリプル";
+                                        DelayTriple.ToolTip = "3ライン消されたときの余分な遅延";
+                                    DelayTetris.Text = "テトリス";
+                                        DelayTetris.ToolTip = "4ライン消されたときの余分な遅延";
+                                    DelayTetrisPlus.Text = "テトリス プラス";
+                                        DelayTetrisPlus.ToolTip = "5ライン以上消されたときの余分な遅延";
+                                    DAS.Title = "DAS";
+                                        DAS.ToolTip = "ARRに以降する前のフレーム";
+                                    Autolockdial.Title = "自動設置タイマー";
+                                        Autolockdial.ToolTip = "地面に触れたあと、ミノが固定されるまでのフレーム";
+
+                            Gravity.Header = "重力";
+                                Level.Text = "レベル";
+                                GravityExplanation.Text = "値が高いほど、盤面の下部に到達するまでの時間が短くなる。激甘/甘口/中辛/辛口/激辛のハンデがあるレベルに割り当てられる\n" +
+                                                          "激甘はレベル1、甘口はレベル2、中辛はレベル3、辛口はレベル5、激辛はレベル7\n" +
+                                                          "40LINEやウルトラのようなチャレンジモードはレベル1としてカウントされる";
+                                Softdrop.Title = "ソフトドロップ倍率";
+                                    Softdrop.ToolTip = "デフォルトでは、ソフトドロップは重力値を20倍する。この値はここで変更できる";
+
+
+                    ResetButton.Content = "リセット";
+                    SaveButton.Content = "保存";
+                    LoadButton.Content = "読込";
+
+                    ofd = new OpenFileDialog() {
+                        Multiselect = false,
+                        Filter = "PPT-Sandbox ファイル|*.pts|すべてのファイル|*.*",
+                        Title = "PPT-Sandbox Fileを開く"
+                    };
+
+                    sfd = new SaveFileDialog() {
+                        Filter = "PPT-Sandbox Files|*.pts|すべてのファイル|*.*",
+                        Title = "PPT-Sandbox Fileの保存"
+                    };
+                    break;
 
                 default:
                     ScriptsHeader.Header = "      SCRIPTS";
@@ -456,7 +690,7 @@ namespace Sandbox {
                                 ReceiveP.Title = "Puyo Max Receival";
                                     ReceiveP.ToolTip = "Max nuisance your board gets at once when you place a puyo";
                                 ReceiveCap.Content = "Tetris vs Tetris Garbage Capping";
-                                    ReceiveCap.ToolTip = "Allows " + ReceiveT.Title + " to work in Tetris vs Tetris games.\n";
+                                    ReceiveCap.ToolTip = "Allows " + ReceiveT.Title + " to work in Tetris vs Tetris games.";
 
                             GarbageModification.Text = "Garbage Modification";
                                 SecretGradeGarbage.Content = "Secret Grade Garbage";
