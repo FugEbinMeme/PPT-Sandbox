@@ -1309,21 +1309,21 @@ namespace Sandbox {
                         );
 
                     Game.WriteByteArray(
-                        new IntPtr(0x1402662D2),
+                        new IntPtr(0x1400A6D4B),
                         x
-                            ? ConvertByteString("E9 2F FC FF FF 90 90 90")
-                            : ConvertByteString("F6 84 19 68 01 00 00 80")
+                            ? ConvertByteString("E9 F6 F7 FF FF")
+                            : ConvertByteString("BF 00 00 00 00")
                         );
 
                     if (x) {
                         Game.WriteByteArray(
                             new IntPtr(0x140265F06),
-                            ConvertByteString("80 25 F6 D0 1F 00 01 F6 84 19 68 01 00 00 80 0F 84 C3 03 00 00 38 4B 5E 0F 85 B8 03 00 00 C6 05 D8 D0 1F 00 01 E9 AC 03 00 00")
+                            ConvertByteString("F6 84 19 68 01 00 00 80 0F 84 CA 03 00 00 38 4B 5E 0F 85 BF 03 00 00 C6 05 DF D0 1F 00 01 E9 B3 03")
                         );
 
                         Game.WriteByteArray(
-                            new IntPtr(0x140265F06),
-                            ConvertByteString("BF 00 00 00 00 0F 45 F9 80 3D AE CA 3B 00 01 0F 85 F8 07 00 00 C6 05 A1 CA 3B 00 00 57 8B F8 83 E7 20 83 FF 20 5F 0F 85 E1 07 00 00 41 8B 7E 30 8B BF C8 03 00 00 8B 47 08 83 F8 02 7D 08 83 F0 01 89 47 08 EB 11 83 F8 04 7D 0C 83 E8 02 83 F0 01 83 C0 02 89 47 08 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 07 BF 02 00 00 00 EB 05 BF FE FF FF FF E9 9B 07 00 00 31 FF E9 94 07 00 00 00 00 31 FF 41 80 BE 25 01 00 00 00 0F 85 94 07 00 00 B8 00 08 00 00 66 41 89 86 1E 01 00 00 E9 AC 07 00 00")
+                            new IntPtr(0x1400A6546),
+                            ConvertByteString("BF 00 00 00 00 0F 45 F9 80 3D AE CA 3B 00 01 0F 85 F8 07 00 00 C6 05 A1 CA 3B 00 00 57 8B F8 83 E7 20 83 FF 20 5F 0F 85 E1 07 00 00 41 8B 7E 30 8B BF C8 03 00 00 8B 47 08 83 F8 02 7D 08 83 F0 01 89 47 08 EB 11 83 F8 04 7D 0C 83 E8 02 83 F0 01 83 C0 02 89 47 08 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 07 BF 02 00 00 00 EB 05 BF FE FF FF FF E9 9B 07 00 00 31 FF E9 94 07 00 00")
                         );
                     }
                 }},
