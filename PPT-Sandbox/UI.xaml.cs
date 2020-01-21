@@ -88,7 +88,7 @@ namespace Sandbox {
                             Unhold.Content = "홀드 시 블록의 위치 유지";
                                 Unhold.ToolTip = "홀드 시 블록 위치 저장";
 
-                            Lockoutdial.Content = "블록 최대높이";
+                            Lockoutdial.Title = "블록 최대높이";
                                 Lockoutdial.ToolTip = "이 높이 위로 블록을 놓을 시 게임오버됩니다.";
 
                         Script3.Header = "회전 시스템";
