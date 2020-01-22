@@ -1524,14 +1524,6 @@ namespace Sandbox {
                     }
                 }},
                 {thenew, x => {
-                    Game.WriteByte(
-                        new IntPtr(0x1426CCEBE),
-                        (byte)(x
-                            ? 0x04
-                            : 0x05
-                        )
-                    );
-
                     Game.WriteByteArray(
                         new IntPtr(0x1426CCE8E),
                         x
