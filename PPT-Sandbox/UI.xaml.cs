@@ -737,7 +737,9 @@ namespace Sandbox {
                             Softdrop.Title = "Softdrop Multiplier";
                                 Softdrop.ToolTip = "By default, Softdropping multiplies your gravity value by 20. You can change this value here";
 
-                    
+                        Piece.Header = "Piece";
+                            ypos.Title = "Spawn Height";
+
                     ResetButton.Content = "Reset";
                     SaveButton.Content = "Save";
                     LoadButton.Content = "Load";
@@ -1633,6 +1635,14 @@ namespace Sandbox {
                         );
                         Game.WriteInt32(new IntPtr(0x142892DC3), x);//change the 20 to what you actually want
                     }
+                }},
+                {ypos, x => {
+                    byte ok = 0;    //your guess is as good as mine
+                    if (x != 20)
+                        ok++;
+                    Game.WriteInt32(new IntPtr(0x14278EFA3), x);
+                    Game.WriteByte(new IntPtr(0x14278F097), (byte)(0xF - (20 - x)));
+                    Game.WriteByte(new IntPtr(0x140018961), (byte)(23 - x + ok));
                 }}
             };
 
@@ -1773,6 +1783,7 @@ namespace Sandbox {
                 Autolockdial,
                 GravityTable,
                 Softdrop,
+                ypos
             };
         }
 

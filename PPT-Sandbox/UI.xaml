@@ -651,6 +651,15 @@
                                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
+                            <TabItem x:Name="Piece">
+                                <StackPanel Margin="10 5 10 0">
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="20" Default="20" Unit="" x:Name="ypos" Changed="DialHandle" />
+
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                </StackPanel>
+                            </TabItem>
                         </TabControl>
                     </StackPanel>
                 </TabItem>
