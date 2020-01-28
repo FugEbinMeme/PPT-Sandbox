@@ -730,6 +730,7 @@ namespace Sandbox {
                                 Softdrop.ToolTip = "By default, Softdropping multiplies your gravity value by 20. You can change this value here";
 
                         Piece.Header = "Piece";
+                            xpos.Title = "Spawn X";//TODO - placeholder name
                             ypos.Title = "Spawn Height";
 
                     ResetButton.Content = "Reset";
@@ -1632,9 +1633,17 @@ namespace Sandbox {
                     byte ok = 0;    //your guess is as good as mine
                     if (x != 20)
                         ok++;
+                    byte sega = Game.ReadByte(new IntPtr(0x14278F08D)); //god I fucking hate how this game got compiled
                     Game.WriteInt32(new IntPtr(0x14278EFA3), x);
-                    Game.WriteByte(new IntPtr(0x14278F097), (byte)(0xF - (20 - x)));
+                    Game.WriteByte(new IntPtr(0x14278F097), (byte)((0xF - (sega - 4)) - (20 - x)));
                     Game.WriteByte(new IntPtr(0x140018961), (byte)(23 - x + ok));
+                }},
+                {xpos, x => {
+                    Game.WriteInt32(new IntPtr(0x14278EFB2), x);
+                    Game.WriteInt32(new IntPtr(0x14278F08D), x);
+                    Game.WriteByte(new IntPtr(0x140018DE1), (byte)x);
+
+                    DialHandle(ypos, ypos.RawValue);    //update y pos dial because sega
                 }}
             };
 
@@ -1775,6 +1784,7 @@ namespace Sandbox {
                 Autolockdial,
                 GravityTable,
                 Softdrop,
+                xpos,
                 ypos
             };
         }
