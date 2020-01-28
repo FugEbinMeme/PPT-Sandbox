@@ -732,6 +732,7 @@ namespace Sandbox {
                         Piece.Header = "Piece";
                             xpos.Title = "Spawn X";//TODO - placeholder name
                             ypos.Title = "Spawn Height";
+                            xposp.Title = "Spawn X (Puyo)";//TODO - placeholder name
 
                     ResetButton.Content = "Reset";
                     SaveButton.Content = "Save";
@@ -1630,13 +1631,24 @@ namespace Sandbox {
                     }
                 }},
                 {ypos, x => {
-                    byte ok = 0;    //your guess is as good as mine
-                    if (x != 20)
-                        ok++;
                     byte sega = Game.ReadByte(new IntPtr(0x14278F08D)); //god I fucking hate how this game got compiled
                     Game.WriteInt32(new IntPtr(0x14278EFA3), x);
                     Game.WriteByte(new IntPtr(0x14278F097), (byte)((0xF - (sega - 4)) - (20 - x)));
-                    Game.WriteByte(new IntPtr(0x140018961), (byte)(23 - x + ok));
+                    Game.WriteByte(new IntPtr(0x140018961), (byte)(23 - x + Convert.ToInt32(x != 20)));
+
+                    if (x == 20 && xposp.RawValue == xposp.Default) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1417D4045),
+                            ConvertByteString("FF 90 20 01 00 00")
+                        );
+                    } else {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1417D4045),
+                            ConvertByteString("B0 03 90 90 90 90")
+                        );
+
+                        Game.WriteByte(new IntPtr(0x1417D4046), (byte)xposp.RawValue);
+                    }
                 }},
                 {xpos, x => {
                     Game.WriteInt32(new IntPtr(0x14278EFB2), x);
@@ -1644,6 +1656,22 @@ namespace Sandbox {
                     Game.WriteByte(new IntPtr(0x140018DE1), (byte)x);
 
                     DialHandle(ypos, ypos.RawValue);    //update y pos dial because sega
+                }},
+                {xposp, x => {
+                    if (x == 3 && ypos.RawValue == ypos.Default) {  //check for all defaults
+                        Game.WriteByteArray(
+                            new IntPtr(0x1417D4045),
+                            ConvertByteString("FF 90 20 01 00 00")  //set default code
+                        );
+                    } else {
+                        Game.WriteByteArray(                        //else, set custom code
+                            new IntPtr(0x1417D4045),
+                            ConvertByteString("B0 03 90 90 90 90")
+                        );
+
+                        Game.WriteByte(new IntPtr(0x1417D4046), (byte)x);  //write value to custom code
+                    }
+                }},
                 }}
             };
 
@@ -1785,7 +1813,8 @@ namespace Sandbox {
                 GravityTable,
                 Softdrop,
                 xpos,
-                ypos
+                ypos,
+                xposp
             };
         }
 
