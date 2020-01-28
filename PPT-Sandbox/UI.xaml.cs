@@ -674,10 +674,8 @@ namespace Sandbox {
                                     CleanGarbage.ToolTip = "Percent chance that garbage will stay in the same column.";
                                 GarbageFilled.Title = "Filled Garbage Tile";
                                     GarbageFilled.Enums = "S (Green),Z (Red),J (Blue),L (Orange),T (Purple),O (Yellow),I (Cyan),Monomino (Gold),Empty,Garbage (White)";
-                                    GarbageFilled.ToolTip = "Set to 8 for empty.";
                                 GarbageEmpty.Title = "Empty Garbage Tile";
                                     GarbageEmpty.Enums = GarbageFilled.Enums;
-                                    GarbageEmpty.ToolTip = GarbageFilled.ToolTip;
                                 ReceiveT.Title = "Tetris Max Receival";
                                     ReceiveT.ToolTip = "Max garbage lines your matrix gets at once when your piece locks.\n" +
                                                        "Does not work in Tetris vs Tetris games without another script.";
@@ -685,6 +683,9 @@ namespace Sandbox {
                                     ReceiveP.ToolTip = "Max nuisance your board gets at once when you place a puyo";
                                 ReceiveCap.Content = "Tetris vs Tetris Garbage Capping";
                                     ReceiveCap.ToolTip = "Allows " + ReceiveT.Title + " to work in Tetris vs Tetris games.";
+                                NuisanceType.Title = "Nuisance Type";
+                                    NuisanceType.Enums = "Nuisance,Frozen Nuisance,Star,Frozen Red Puyo,Frozen Green Puyo,Frozen Blue Puyo,Frozen Yellow Puyo,Frozen Purple Puyo";
+                                    NuisanceType.ToolTip = "Changes what falls into your board when you receive garbage puyos.";
                                 ForceGarbage.Title = "Force Garbage Column";
                                     ForceGarbage.ToolTip = "Garbage will always spawn in this column.";
                                     ForceGarbage.MaximumOverride = "Default";
@@ -1690,6 +1691,10 @@ namespace Sandbox {
                             : ConvertByteString("7F 19 48 8B")
                         );
                      Game.WriteByte(new IntPtr(0x1427F836E), (byte)(x-1));  //write value to custom code
+                }},
+                {NuisanceType, x => {
+                    Game.WriteInt32(new IntPtr(0x14031DB38), x);    //This overwrites the next value
+                    Game.WriteInt32(new IntPtr(0x140441940), x);    //This is what's actually used, and it gets overwritten rarely, which is why I write to both
                 }}
             };
 
@@ -1820,6 +1825,7 @@ namespace Sandbox {
                 ReceiveT,
                 ReceiveP,
                 ReceiveCap, 
+                NuisanceType,
                 ForceGarbage,
                 SecretGradeGarbage,
                 GarbageBlocking,
