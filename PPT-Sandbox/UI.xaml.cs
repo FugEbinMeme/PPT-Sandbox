@@ -723,6 +723,8 @@ namespace Sandbox {
                                     DAS.ToolTip = "Frames before ARR activates.";
                                 Autolockdial.Title = "Auto-Lock Timer";
                                     Autolockdial.ToolTip = "Frames before a piece locks after touching the ground.";
+                                PuyoDelaySpeed.Title = "Puyo Delay Speed Modifier";
+                                    PuyoDelaySpeed.ToolTip = "Exponentially change the speed of puyo animations, such as nuisance dropping and chain advancing.";
 
                         Gravity.Header = "Gravity";
                             Level.Text = "Level";
@@ -1675,6 +1677,9 @@ namespace Sandbox {
                         Game.WriteByte(new IntPtr(0x1417D4046), (byte)x);  //write value to custom code
                     }
                 }},
+                {PuyoDelaySpeed, x => 
+                    Game.WriteByte(new IntPtr(0x1412BAD5F), (byte)x)
+                },
                 {ForceGarbage, x => {
                     Game.WriteByteArray(
                         new IntPtr(0x1427F836D),    //write custom code if not default
@@ -1822,6 +1827,7 @@ namespace Sandbox {
                 DelayTable,
                 DAS,
                 Autolockdial,
+                PuyoDelaySpeed,
                 GravityTable,
                 Softdrop,
                 xpos,
