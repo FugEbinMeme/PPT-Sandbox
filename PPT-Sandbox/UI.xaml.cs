@@ -673,8 +673,10 @@ namespace Sandbox {
                                 CleanGarbage.Title = "Clean Garbage Chance";
                                     CleanGarbage.ToolTip = "Percent chance that garbage will stay in the same column.";
                                 GarbageFilled.Title = "Filled Garbage Tile";
+                                    GarbageFilled.Enums = "S (Green),Z (Red),J (Blue),L (Orange),T (Purple),O (Yellow),I (Cyan),Monomino (Gold),Empty,Garbage (White)";
                                     GarbageFilled.ToolTip = "Set to 8 for empty.";
                                 GarbageEmpty.Title = "Empty Garbage Tile";
+                                    GarbageEmpty.Enums = GarbageFilled.Enums;
                                     GarbageEmpty.ToolTip = GarbageFilled.ToolTip;
                                 ReceiveT.Title = "Tetris Max Receival";
                                     ReceiveT.ToolTip = "Max garbage lines your matrix gets at once when your piece locks.\n" +

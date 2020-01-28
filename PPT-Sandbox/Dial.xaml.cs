@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -175,7 +177,16 @@ namespace Sandbox {
             }
         }
 
-        string ValueString => (MaximumOverride != "" && RawValue == Maximum)? MaximumOverride : $"{RawValue}{Unit}";
+        List<string> enums = new List<string>();
+        public string Enums {
+            get => string.Join(",", enums);
+            set {
+                enums = value.Split(',').ToList();
+                DrawArcMain();
+            }
+        }
+
+        string ValueString => (enums.Count > 0)? enums[(int)(RawValue - Minimum)] : ((MaximumOverride != "" && RawValue == Maximum)? MaximumOverride : $"{RawValue}{Unit}");
 
         void DrawArc(Path Arc, double value, bool overrideBase) {
             double angle_starting = FillStart? angle_start : angle_start - Math.Abs(angle_end - angle_start) * value * 0.9;
@@ -313,6 +324,9 @@ namespace Sandbox {
 
         void DisplayPressed(object sender, MouseButtonEventArgs e) {
             if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2 && Enabled && AllowPrecise) {
+                Display.Opacity = 0;
+                Display.IsEnabled = Display.IsHitTestVisible = false;
+
                 Input.Text = RawValue.ToString();
 
                 Input.CaretIndex = Input.Text.Length;
@@ -328,6 +342,9 @@ namespace Sandbox {
         }
         
         void InputLostFocus(object sender, RoutedEventArgs e) {
+            Display.Opacity = 1;
+            Display.IsEnabled = Display.IsHitTestVisible = true;
+
             Input.Opacity = 0;
             Input.IsEnabled = Input.IsHitTestVisible = false;
 
