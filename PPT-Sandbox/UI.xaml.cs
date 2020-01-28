@@ -683,6 +683,9 @@ namespace Sandbox {
                                     ReceiveP.ToolTip = "Max nuisance your board gets at once when you place a puyo";
                                 ReceiveCap.Content = "Tetris vs Tetris Garbage Capping";
                                     ReceiveCap.ToolTip = "Allows " + ReceiveT.Title + " to work in Tetris vs Tetris games.";
+                                ForceGarbage.Title = "Force Garbage Column";
+                                    ForceGarbage.ToolTip = "Garbage will always spawn in this column.";
+                                    ForceGarbage.MaximumOverride = "Default";
 
                             GarbageModification.Text = "Garbage Modification";
                                 SecretGradeGarbage.Content = "Secret Grade Garbage";
@@ -1672,6 +1675,14 @@ namespace Sandbox {
                         Game.WriteByte(new IntPtr(0x1417D4046), (byte)x);  //write value to custom code
                     }
                 }},
+                {ForceGarbage, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x1427F836D),    //write custom code if not default
+                        (x != 11)
+                            ? ConvertByteString("B3 00 EB 17")
+                            : ConvertByteString("7F 19 48 8B")
+                        );
+                     Game.WriteByte(new IntPtr(0x1427F836E), (byte)(x-1));  //write value to custom code
                 }}
             };
 
@@ -1802,6 +1813,7 @@ namespace Sandbox {
                 ReceiveT,
                 ReceiveP,
                 ReceiveCap, 
+                ForceGarbage,
                 SecretGradeGarbage,
                 GarbageBlocking,
                 UnCappedPC,
