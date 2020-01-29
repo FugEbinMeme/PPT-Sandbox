@@ -644,6 +644,8 @@ namespace Sandbox {
                             AllClearMultiplier.Title = "All Clear Multiplier";
                             StarBonus.Title = "Star Bonus Damage Multiplier";   //TODO - this name is terrible
                                 StarBonus.ToolTip = "Increases attack multiplier when star puyos are cleared.";
+                            StarBonusChain.Content = "Star Bonus on chains >1";
+                                StarBonusChain.ToolTip = "By default, clearing a star puyo only gives extra damage if done on the first chain. This removes that limitation.";
 
                             Chain.Text = "Chain";
 
@@ -1568,7 +1570,16 @@ namespace Sandbox {
                             ConvertByteString("00 00 00 FF 01 00 FF FF 00 00 00 FF FF 00 01 FF 00 00 01 00 FF 00 FF 01 00 00 FF 00 01 00 01 01 00 00 00 01 FF 00 01 00 00 00 FF 00 00 FF FF FF 00 00 01 00 FE 00 FF 00 00 00 00 FF 01 FF 01 FE 00 00 00 FF FF FF FF FE 00 00 00 FF 00 01 01 01 00 00 00 01 00 FF 01 FF 00 00 00 FF 01 00 00 01 00 00 FF 00 00 FF FF FF 00 00 00 FF 00 01 00 02 00 00 00 FF 01 00 FF FF 00 00 00 FF FF 00 01 FF 00 01 01 01 01 00 FF 01 00 01 01 01 FF 00 FF 01 00 01 01 01 FF 01 00 00 00 00 FF 00 00 FF FF FF 00 00 01 00 FE 00 FF 00 00 00 00 FF 01 FF 01 FE 00 00 00 FF FF FF FF FE 00 00 00 FF 00 01 FF FF 00 00 00 01 00 FF FF 01 00 00 00 FF FF 00 00 01 00 00 FF 00 00 FF FF FF 00 00 00 FF 00 01 00 02")
                         );
                     }
-                }}
+                }},
+                {StarBonusChain, x =>
+                    Game.WriteByte(
+                        new IntPtr(0x141A5D480),
+                        (byte)(x
+                            ? 0x7C
+                            : 0x75
+                        )
+                    )
+                }
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
@@ -1816,6 +1827,7 @@ namespace Sandbox {
                 GarbageRate,
                 AllClearMultiplier,
                 StarBonus,
+                StarBonusChain,
                 PvPChainTable,
                 MarginTimeTable,
                 new List<OptionalRadioButton>() {
