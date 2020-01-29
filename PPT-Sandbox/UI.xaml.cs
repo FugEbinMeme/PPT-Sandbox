@@ -642,6 +642,8 @@ namespace Sandbox {
                         Puyo.Header = "Puyo";
                             GarbageRate.Title = "Garbage Rate";
                             AllClearMultiplier.Title = "All Clear Multiplier";
+                            StarBonus.Title = "Star Bonus Damage Multiplier";   //TODO - this name is terrible
+                                StarBonus.ToolTip = "Increases attack multiplier when star puyos are cleared.";
 
                             Chain.Text = "Chain";
 
@@ -1163,7 +1165,7 @@ namespace Sandbox {
                     Game.WriteByte(new IntPtr(0x14280D09C), Convert.ToByte(!x));//so it never registers a t spin
                     Game.WriteByte(new IntPtr(0x14280C1B7), Convert.ToByte(!x));
                     Game.WriteByte(new IntPtr(0x14280C1C0), Convert.ToByte(!x));
-                }},                                                             
+                }},
                 {AllT, x =>
                     Game.WriteByteArray(
                         new IntPtr(0x1400A4200),
@@ -1695,6 +1697,17 @@ namespace Sandbox {
                 {NuisanceType, x => {
                     Game.WriteInt32(new IntPtr(0x14031DB38), x);    //This overwrites the next value
                     Game.WriteInt32(new IntPtr(0x140441940), x);    //This is what's actually used, and it gets overwritten rarely, which is why I write to both
+                }},
+                {StarBonus, x => {
+                    Game.WriteByteArray(
+                        new IntPtr(0x141A5D480),
+                        (x != 2)
+                            ? ConvertByteString("44 01 C0 66 69 C9 02 00 01 C8 90")
+                            : ConvertByteString("42 8D 04 01 44 8D 04 48 41 8B C0")
+                        );
+                    if (x != 2) {
+                        Game.WriteInt16(new IntPtr(0x141A5D486), (short)x);
+                    }
                 }}
             };
 
@@ -1802,6 +1815,7 @@ namespace Sandbox {
                 TvPComboTable,
                 GarbageRate,
                 AllClearMultiplier,
+                StarBonus,
                 PvPChainTable,
                 MarginTimeTable,
                 new List<OptionalRadioButton>() {

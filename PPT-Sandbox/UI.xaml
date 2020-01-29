@@ -346,6 +346,8 @@
 
                                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="200" Default="30" Exponent="1.5" Unit="" x:Name="AllClearMultiplier" Changed="DialHandle" />
 
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="200" Default="2" Unit="" x:Name="StarBonus" Changed="DialHandle" />
+
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                                     <UniformGrid Rows="6" Columns="6" Margin="0 0 0 5" Height="150" x:Name="PvPChainTable">
