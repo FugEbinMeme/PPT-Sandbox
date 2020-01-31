@@ -348,7 +348,7 @@
 
                                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="200" Default="2" Unit="" x:Name="StarBonus" Changed="DialHandle" />
 
-                                    <CheckBox Margin="0 5 0 5" x:Name="StarBonusChain" Click="CheckBoxHandle" />
+                                    <CheckBox Margin="0 0 0 5" x:Name="StarBonusChain" Click="CheckBoxHandle" />
 
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
@@ -672,6 +672,45 @@
                                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="1" Maximum="10" Default="3" Unit="" FillStart="False" x:Name="xposp" Changed="DialHandle" />
 
                                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem x:Name="RulesHeader">
+                                <StackPanel Margin="10 5">
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                    <TabControl Background="Transparent" Focusable="False">
+                                        <TabControl.Resources>
+                                            <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                                                <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="12" />
+                                            </Style>
+                                        </TabControl.Resources>
+
+                                        <TabItem x:Name="Versusrule">
+                                            <StackPanel Margin="10 5 10 0">
+                                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                                <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="1" Maximum="10" Default="2" Unit="" x:Name="vsWincount" Changed="DialHandle" />
+
+                                                <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="2" Maximum="10" Default="4" Unit="" x:Name="vsPopNum" Changed="DialHandle" />
+
+                                                <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="1" Maximum="19" Default="1" Unit="" x:Name="vsMinchain" Changed="DialHandle" />
+
+                                                <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="1000" Default="96" Unit="" x:Name="vsMargintime" Changed="DialHandle" />
+
+                                                <CheckBox Margin="0 0 0 5" x:Name="vsQuickdrop" Click="CheckBoxHandle" />
+
+                                                <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                            </StackPanel>
+                                        </TabItem>
+
+                                        <TabItem x:Name="Swaprule">
+                                            <StackPanel Margin="10 5 10 0">
+                                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                                <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                            </StackPanel>
+                                        </TabItem>
+                                    </TabControl>
                                 </StackPanel>
                             </TabItem>
                         </TabControl>

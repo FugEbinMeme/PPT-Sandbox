@@ -746,6 +746,17 @@ namespace Sandbox {
                             ypos.Title = "Spawn Height";
                             xposp.Title = "Spawn X (Puyo)";//TODO - placeholder name
 
+                        RulesHeader.Header = "Settings";
+                            Versusrule.Header = "     Versus";
+                                vsWincount.Title = "Win Count";
+                                vsPopNum.Title = "Pop Number";
+                                vsMinchain.Title = "Minimum Chain";
+                                vsMargintime.Title = "Margin Time";
+                                vsQuickdrop.Content = "Quick Drop";
+                                    vsQuickdrop.ToolTip = "Works in Puyo vs Tetris.";
+
+                            Swaprule.Header = "Swap";
+
                     ResetButton.Content = "Reset";
                     SaveButton.Content = "Save";
                     LoadButton.Content = "Load";
@@ -1579,7 +1590,24 @@ namespace Sandbox {
                             : 0x75
                         )
                     )
-                }
+                },
+                {vsQuickdrop, x => {
+                    Game.WriteByte(new IntPtr(0x14044194C),         //Puyo vs Tetris Values
+                        (byte)(x
+                            ? 0x01
+                            : 0xFE  //default is -2 for some reason
+                        )
+                    );
+                    Game.WriteByte(new IntPtr(0x14031DB44),         //Despite not being able to change it in game they exist
+                        (byte)(x
+                            ? 0x01
+                            : 0xFE
+                        )
+                    );
+
+                    Game.WriteBoolean(new IntPtr(0x14044194E), x);  //Puyo vs Puyo Values
+                    Game.WriteBoolean(new IntPtr(0x14031DB46), x);  //These you can change in game
+                }}
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
@@ -1719,6 +1747,22 @@ namespace Sandbox {
                     if (x != 2) {
                         Game.WriteInt16(new IntPtr(0x141A5D486), (short)x);
                     }
+                }},
+                {vsWincount, x => {
+                    Game.WriteByte(new IntPtr(0x140441938), (byte)x);    //same deal as nuisance type here, one is actually used, the other writes to it rarely
+                    Game.WriteByte(new IntPtr(0x14031DB30), (byte)x);
+                }},
+                {vsPopNum, x => {
+                    Game.WriteByte(new IntPtr(0x140441939), (byte)x);
+                    Game.WriteByte(new IntPtr(0x14031DB31), (byte)x);
+                }},
+                {vsMinchain, x => {
+                    Game.WriteByte(new IntPtr(0x14044193A), (byte)x);
+                    Game.WriteByte(new IntPtr(0x14031DB32), (byte)x);
+                }},
+                {vsMargintime, x => {
+                    Game.WriteUInt16(new IntPtr(0x14044193E), (ushort)x);
+                    Game.WriteUInt16(new IntPtr(0x14031DB36), (ushort)x);
                 }}
             };
 
@@ -1866,7 +1910,12 @@ namespace Sandbox {
                 Softdrop,
                 xpos,
                 ypos,
-                xposp
+                xposp,
+                vsWincount,
+                vsPopNum,
+                vsMinchain,
+                vsMargintime,
+                vsQuickdrop
             };
         }
 
