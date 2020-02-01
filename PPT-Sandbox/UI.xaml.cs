@@ -1768,19 +1768,26 @@ namespace Sandbox {
 
             TableScripts = new Dictionary<UniformGrid, Action<int, int>>() {
                 {TvTAttackTable, (i, x) => {
+                    long o = 0;             //swap
                     if (i < 4) {
-                        i += 0x24;
+                        i += 0x24;          //clears
+                        o = 0x14031E5C5;
                     } else if (i < 9) {
-                        i += 0x16;
+                        i += 0x16;          //Perfect Clears
                     } else {
-                        i -= 0xA;
+                        i -= 0xA;           //T-Spins
+                        o = 0x14031DF8D;
                     }
 
                     Game.WriteByte(new IntPtr(0x1403200B5 + i), (byte)x);
+                    if (o != 0) {
+                        Game.WriteByte(new IntPtr(o + i), (byte)x);     //swap has different addresses for these values, except perfect clears
+                    }
                 }},
-                {TvTComboTable, (i, x) =>
-                    Game.WriteByte(new IntPtr(0x1403200BB + i), (byte)x)
-                },
+                {TvTComboTable, (i, x) => {
+                    Game.WriteByte(new IntPtr(0x1403200B9 + i), (byte)x);
+                    Game.WriteByte(new IntPtr(0x14031E279 + i), (byte)x);
+                }},
                 {TvPAttackTable, (i, x) => {
                     if (i < 5) {
                         i = i*2 + 0x26B;
@@ -1795,9 +1802,10 @@ namespace Sandbox {
                 {TvPComboTable, (i, x) =>
                     Game.WriteByte(new IntPtr(0x140432C17 + i), (byte)x)
                 },
-                {PvPChainTable, (i, x) =>
-                    Game.WriteUInt16(new IntPtr(0x14031DAC0 + i*2), (ushort)x)
-                },
+                {PvPChainTable, (i, x) => {
+                    Game.WriteUInt16(new IntPtr(0x14031DAC0 + i*2), (ushort)x);
+                    Game.WriteUInt16(new IntPtr(0x14031E628 + i*2), (ushort)x);
+                }},
                 {DelayTable, (i, x) => {
                     if (i == 0) {
                         Game.WriteByte(new IntPtr(0x142724DFC), (byte)x);
@@ -1809,7 +1817,7 @@ namespace Sandbox {
                     Game.WriteUInt16(new IntPtr(0x1403201A6 + i*2), (ushort)x)
                 },
                 {GravityTable, (i, x) => {
-                    if (i == 0) {                                                   
+                    if (i == 0) {
                         Game.WriteUInt16(new IntPtr(0x1403200E8), (ushort)x);       //in memory the first two values are both 17, but correspond to different things for no good reason
                         Game.WriteUInt16(new IntPtr(0x1403200EA), (ushort)x);       //one is for the "Sweet" setting, and the other is for Challenge Modes / Level 1
                     } else {                                                        //To reduce confusion I'm editing both at the same time since they are, after all, the same value
