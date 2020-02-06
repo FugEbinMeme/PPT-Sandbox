@@ -1611,9 +1611,10 @@ namespace Sandbox {
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
-                {GarbageRate, x =>
-                    Game.WriteUInt16(new IntPtr(0x14044193C), (ushort)x)
-                },
+                {GarbageRate, x => {
+                    Game.WriteUInt16(new IntPtr(0x14031DB34), (ushort)x);
+                    Game.WriteUInt16(new IntPtr(0x14044193C), (ushort)x);
+                }},
                 {AllClearMultiplier, x => {
                     Game.WriteByteArray(
                         new IntPtr(0x1411372F0),
