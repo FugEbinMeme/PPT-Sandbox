@@ -557,6 +557,9 @@ namespace Sandbox {
                             Lockoutdial.Title = "Lock Out Height";
                                 Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
 
+                        PuyoScripts.Header = "Puyo";
+                            PuyoAutoLock.Content = "Remove Puyo Auto-Placing";
+
                         Script3.Header = "Rotation System";
                             RotationSystems.Text = "Kick Table";
                                 Ascension.Content = "Ascension";
@@ -1607,7 +1610,10 @@ namespace Sandbox {
 
                     Game.WriteBoolean(new IntPtr(0x14044194E), x);  //Puyo vs Puyo Values
                     Game.WriteBoolean(new IntPtr(0x14031DB46), x);  //These you can change in game
-                }}
+                }},
+                {PuyoAutoLock, x => 
+                    Game.WriteByte(new IntPtr(0x1417E7B64), Convert.ToByte(!x))
+                }
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
@@ -1851,6 +1857,7 @@ namespace Sandbox {
                 Unhold,
                 PreserveRot,
                 Lockoutdial,
+                PuyoAutoLock,
                 new List<OptionalRadioButton>() {
                     Ascension,
                     Cultris2,

@@ -95,7 +95,17 @@
                                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
                             </TabItem>
-                            
+
+                            <TabItem x:Name="PuyoScripts">
+                                <StackPanel Margin="10 5 10 0">
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="PuyoAutoLock" Click="CheckBoxHandle" />
+
+                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+                                </StackPanel>
+                            </TabItem>
+
                             <TabItem x:Name="Script3">
                                 <StackPanel Margin="10 5 10 0">
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
