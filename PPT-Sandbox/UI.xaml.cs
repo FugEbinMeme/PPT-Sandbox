@@ -559,6 +559,8 @@ namespace Sandbox {
 
                         PuyoScripts.Header = "Puyo";
                             PuyoAutoLock.Content = "Remove Puyo Auto-Placing";
+                            Wobble.Title = "Wobble";
+                                Wobble.ToolTip = "Changes how much your board shakes in various situations. 985 enables dust.";
 
                         Script3.Header = "Rotation System";
                             RotationSystems.Text = "Kick Table";
@@ -1770,6 +1772,12 @@ namespace Sandbox {
                 {vsMargintime, x => {
                     Game.WriteUInt16(new IntPtr(0x14044193E), (ushort)x);
                     Game.WriteUInt16(new IntPtr(0x14031DB36), (ushort)x);
+                }},
+                {Wobble, x => {
+                    Game.WriteInt32(new IntPtr(0x141188969), x);    //wobble for <18 and >=18 nuisance have different values
+                    if (x == 192)                                   //to make things simple and easier to reset to defaults, I do this
+                        x += 63;                                    //in all cases but default (192), both values are the same
+                    Game.WriteInt32(new IntPtr(0x141188963), x);
                 }}
             };
 
@@ -1858,6 +1866,7 @@ namespace Sandbox {
                 PreserveRot,
                 Lockoutdial,
                 PuyoAutoLock,
+                Wobble,
                 new List<OptionalRadioButton>() {
                     Ascension,
                     Cultris2,
