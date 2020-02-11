@@ -561,8 +561,14 @@ namespace Sandbox {
                             PuyoAutoLock.Content = "Remove Puyo Auto-Placing";
                             Wobble.Title = "Wobble";
                                 Wobble.ToolTip = "Changes how much your board shakes in various situations. 985 enables dust.";
+                            vsKillSquare.Content = "Change Kill Squares (Versus)";
+                            Column.Text = "Column";
+                            Active.Text = "Active";
+                            tpKillSquare.Content = "Change Kill Squares (Tiny Puyo)";
+                            Columntp.Text = "Column";
+                            Activetp.Text = "Active";
 
-                        Script3.Header = "Rotation System";
+                    Script3.Header = "Rotation System";
                             RotationSystems.Text = "Kick Table";
                                 Ascension.Content = "Ascension";
                                     Ascension.ToolTip = "Rotation system used by Ascension.\n" +
@@ -1615,7 +1621,45 @@ namespace Sandbox {
                 }},
                 {PuyoAutoLock, x => 
                     Game.WriteByte(new IntPtr(0x1417E7B64), Convert.ToByte(!x))
-                }
+                },
+                {vsKillSquare, x => {
+                    vsKillSquareTable.Height = (Convert.ToInt32(x)*70);
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x14002D2BA),
+                        x
+                            ? ConvertByteString("E9 D7 83 29 00 90 90 90 90 90 90")
+                            : ConvertByteString("48 8B 86 E8 00 00 00 C6 40 03 01")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1402C5696),
+                            ConvertByteString("48 8B 86 E8 00 00 00 48 B9 00 00 00 00 00 00 00 00 48 89 08 E9 10 7C D6 FF")
+                        );
+                    } else {
+                        Reset(vsKillSquareTable);
+                    }
+                }},
+                {tpKillSquare, x => {
+                    tpKillSquareTable.Height = (Convert.ToInt32(x)*70);
+
+                    Game.WriteByteArray(
+                        new IntPtr(0x141A68B52),
+                        x
+                            ? ConvertByteString("E9 59 CB 85 FE 90 90 90 90 90 90 90 90 90 90")
+                            : ConvertByteString("E9 59 CB 85 FE 90 90 90 90 90 90 90 90 90 90")
+                        );
+
+                    if (x) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1402C56B0),
+                            ConvertByteString("48 BA 00 00 00 00 00 00 00 00 48 89 50 01 66 BA 00 00 66 89 50 09 E9 8C 34 7A 01")
+                        );
+                    } else {
+                        Reset(tpKillSquareTable);
+                    }
+                }}
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
@@ -1838,6 +1882,14 @@ namespace Sandbox {
                     } else {                                                        //To reduce confusion I'm editing both at the same time since they are, after all, the same value
                         Game.WriteUInt16(new IntPtr(0x1403200EA + i*2), (ushort)x);
                     }
+                }},
+                {vsKillSquareTable, (i, x) =>
+                    Game.WriteByte(new IntPtr(0x1402C56A0+i), (byte)x)
+                },
+                {tpKillSquareTable, (i, x) => {
+                    if (i > 7)
+                        i += 6;
+                    Game.WriteByte(new IntPtr(0x1402C56B2+i), (byte)x);
                 }}
             };
 
@@ -1867,6 +1919,10 @@ namespace Sandbox {
                 Lockoutdial,
                 PuyoAutoLock,
                 Wobble,
+                vsKillSquare,
+                vsKillSquareTable,
+                tpKillSquare,
+                tpKillSquareTable,
                 new List<OptionalRadioButton>() {
                     Ascension,
                     Cultris2,
