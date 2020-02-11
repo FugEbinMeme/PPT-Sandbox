@@ -558,15 +558,15 @@ namespace Sandbox {
                                 Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
 
                         PuyoScripts.Header = "Puyo";
-                            PuyoAutoLock.Content = "Remove Puyo Auto-Placing";
-                            Wobble.Title = "Wobble";
-                                Wobble.ToolTip = "Changes how much your board shakes in various situations. 985 enables dust.";
-                            vsKillSquare.Content = "Change Kill Squares (Versus)";
-                            Column.Text = "Column";
-                            Active.Text = "Active";
-                            tpKillSquare.Content = "Change Kill Squares (Tiny Puyo)";
-                            Columntp.Text = "Column";
-                            Activetp.Text = "Active";
+                            PuyoAutoLock.Content = "Remove Puyo Auto-Placing";                                                  //TRANSLATE
+                            Wobble.Title = "Wobble";                                                                            //TRANSLATE
+                                Wobble.ToolTip = "Changes how much your board shakes in various situations. 985 enables dust."; //TRANSLATE
+                            vsKillSquare.Content = "Change Kill Squares (Versus)";                                              //TRANSLATE
+                            Column.Text = "Column";                                                                             //TRANSLATE
+                            Active.Text = "Active";                                                                             //TRANSLATE
+                            tpKillSquare.Content = "Change Kill Squares (Tiny Puyo)";                                           //TRANSLATE
+                            Columntp.Text = Column.Text;                                                                        //TRANSLATE
+                            Activetp.Text = Active.Text;                                                                        //TRANSLATE
 
                     Script3.Header = "Rotation System";
                             RotationSystems.Text = "Kick Table";
@@ -653,10 +653,10 @@ namespace Sandbox {
                         Puyo.Header = "Puyo";
                             GarbageRate.Title = "Garbage Rate";
                             AllClearMultiplier.Title = "All Clear Multiplier";
-                            StarBonus.Title = "Star Bonus Damage Multiplier";   //TODO - this name is terrible
-                                StarBonus.ToolTip = "Increases attack multiplier when star puyos are cleared.";
-                            StarBonusChain.Content = "Star Bonus on chains >1";
-                                StarBonusChain.ToolTip = "By default, clearing a star puyo only gives extra damage if done on the first chain. This removes that limitation.";
+                            StarBonus.Title = "Star Bonus Damage Multiplier";   //TODO - this name is terrible//TRANSLATE
+                                StarBonus.ToolTip = "Increases attack multiplier when star puyos are cleared.";//TRANSLATE
+                            StarBonusChain.Content = "Star Bonus on chains >1";//TRANSLATE
+                                StarBonusChain.ToolTip = "By default, clearing a star puyo only gives extra damage if done on the first chain. This removes that limitation.";//TRANSLATE
 
                             Chain.Text = "Chain";
 
@@ -741,8 +741,8 @@ namespace Sandbox {
                                     DAS.ToolTip = "Frames before ARR activates.";
                                 Autolockdial.Title = "Auto-Lock Timer";
                                     Autolockdial.ToolTip = "Frames before a piece locks after touching the ground.";
-                                PuyoDelaySpeed.Title = "Puyo Delay Speed Modifier";
-                                    PuyoDelaySpeed.ToolTip = "Exponentially change the speed of puyo animations, such as nuisance dropping and chain advancing.";
+                                PuyoDelaySpeed.Title = "Puyo Delay Speed Modifier";//TRANSLATE
+                                    PuyoDelaySpeed.ToolTip = "Exponentially change the speed of puyo animations, such as nuisance dropping and chain advancing.";//TRANSLATE
 
                         Gravity.Header = "Gravity";
                             Level.Text = "Level";
@@ -752,22 +752,22 @@ namespace Sandbox {
                             Softdrop.Title = "Softdrop Multiplier";
                                 Softdrop.ToolTip = "By default, Softdropping multiplies your gravity value by 20. You can change this value here";
 
-                        Piece.Header = "Piece";
-                            xpos.Title = "Spawn X";//TODO - placeholder name
-                            ypos.Title = "Spawn Height";
-                            xposp.Title = "Spawn X (Puyo)";//TODO - placeholder name
-                            yposp.Title = "Spawn Height (Puyo)";
+                        Piece.Header = "Piece";                                                 //TRANSLATE
+                            xpos.Title = "Spawn X";//TODO - placeholder name                    //TRANSLATE
+                            ypos.Title = "Spawn Height";                                        //TRANSLATE
+                            xposp.Title = "Spawn X (Puyo)";//TODO - placeholder name            //TRANSLATE
+                            yposp.Title = "Spawn Height (Puyo)";                                //TRANSLATE
 
-                        RulesHeader.Header = "Settings";
-                            Versusrule.Header = "     Versus";
-                                vsWincount.Title = "Win Count";
-                                vsPopNum.Title = "Pop Number";
-                                vsMinchain.Title = "Minimum Chain";
-                                vsMargintime.Title = "Margin Time";
-                                vsQuickdrop.Content = "Quick Drop";
-                                    vsQuickdrop.ToolTip = "Works in Puyo vs Tetris.";
+                        RulesHeader.Header = "Settings";                                        //TRANSLATE
+                            Versusrule.Header = "     Versus";                                  //TRANSLATE
+                                vsWincount.Title = "Win Count";                                 //TRANSLATE
+                                vsPopNum.Title = "Pop Number";                                  //TRANSLATE
+                                vsMinchain.Title = "Minimum Chain";                             //TRANSLATE
+                                vsMargintime.Title = "Margin Time";                             //TRANSLATE
+                                vsQuickdrop.Content = "Quick Drop";                             //TRANSLATE
+                                    vsQuickdrop.ToolTip = "Works in Puyo vs Tetris.";           //TRANSLATE
 
-                            Swaprule.Header = "Swap";
+                            Swaprule.Header = "Swap";                                           //TRANSLATE
 
                     ResetButton.Content = "Reset";
                     SaveButton.Content = "Save";
