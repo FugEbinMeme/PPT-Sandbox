@@ -2026,7 +2026,15 @@ namespace Sandbox {
 
         private void CheckBoxHandle(object sender, RoutedEventArgs e) {
             CheckBox source = (CheckBox)sender;
-            Scripts[source].Invoke(source.IsChecked == true);
+            if (source.Parent is UniformGrid grid) {
+                int index = grid.Children.IndexOf(source);
+
+                TableScripts[grid].Invoke(
+                    (index / grid.Columns - 1) * (grid.Columns - 1) + (index % grid.Columns - 1),
+                    Convert.ToInt32(source.IsChecked)
+                );
+
+            } else Scripts[source].Invoke(source.IsChecked == true);
         }
 
         private void RadioButtonHandle(object sender, RoutedEventArgs e) {
