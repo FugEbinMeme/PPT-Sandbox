@@ -756,6 +756,7 @@ namespace Sandbox {
                             xpos.Title = "Spawn X";//TODO - placeholder name
                             ypos.Title = "Spawn Height";
                             xposp.Title = "Spawn X (Puyo)";//TODO - placeholder name
+                            yposp.Title = "Spawn Height (Puyo)";
 
                         RulesHeader.Header = "Settings";
                             Versusrule.Header = "     Versus";
@@ -1738,18 +1739,32 @@ namespace Sandbox {
                     Game.WriteByte(new IntPtr(0x14278F097), (byte)((0xF - (sega - 4)) - (20 - x)));
                     Game.WriteByte(new IntPtr(0x140018961), (byte)(23 - x + Convert.ToInt32(x != 20)));
 
-                    if (x == 20 && xposp.RawValue == xposp.Default) {
-                        Game.WriteByteArray(
-                            new IntPtr(0x1417D4045),
-                            ConvertByteString("FF 90 20 01 00 00")
-                        );
-                    } else {
-                        Game.WriteByteArray(
-                            new IntPtr(0x1417D4045),
-                            ConvertByteString("B0 03 90 90 90 90")
-                        );
+                    if (x == 20) {
+                        if (xposp.RawValue == xposp.Default) {
+                            Game.WriteByteArray(
+                                new IntPtr(0x1417D4045),
+                                ConvertByteString("FF 90 20 01 00 00")
+                            );
+                        } else {
+                            Game.WriteByteArray(
+                                new IntPtr(0x1417D4045),
+                                ConvertByteString("B0 03 90 90 90 90")
+                            );
 
-                        Game.WriteByte(new IntPtr(0x1417D4046), (byte)xposp.RawValue);
+                            Game.WriteByte(new IntPtr(0x1417D4046), (byte)xposp.RawValue);
+                        }
+                        if (yposp.RawValue == yposp.Default) {
+                            Game.WriteByteArray(
+                                new IntPtr(0x1417D4045),
+                                ConvertByteString("FF 90 28 01 00 00")
+                            );
+                        } else {
+                            Game.WriteByteArray(
+                                new IntPtr(0x1417D4058),
+                                ConvertByteString("B0 03 90 90 90 90")
+                            );
+                            Game.WriteByte(new IntPtr(0x1417D4059), (byte)yposp.RawValue);
+                        }
                     }
                 }},
                 {xpos, x => {
@@ -1774,7 +1789,22 @@ namespace Sandbox {
                         Game.WriteByte(new IntPtr(0x1417D4046), (byte)x);  //write value to custom code
                     }
                 }},
-                {PuyoDelaySpeed, x => 
+                {yposp, x => {
+                    if (x == 3 && ypos.RawValue == ypos.Default) {  //check for all defaults
+                        Game.WriteByteArray(
+                            new IntPtr(0x1417D4058),
+                            ConvertByteString("FF 90 28 01 00 00")  //set default code
+                        );
+                    } else {
+                        Game.WriteByteArray(                        //else, set custom code
+                            new IntPtr(0x1417D4058),
+                            ConvertByteString("B0 03 90 90 90 90")
+                        );
+
+                        Game.WriteByte(new IntPtr(0x1417D4059), (byte)x);  //write value to custom code
+                    }
+                }},
+                {PuyoDelaySpeed, x =>
                     Game.WriteByte(new IntPtr(0x1412BAD5F), (byte)x)
                 },
                 {ForceGarbage, x => {
@@ -1992,6 +2022,7 @@ namespace Sandbox {
                 xpos,
                 ypos,
                 xposp,
+                yposp,
                 vsWincount,
                 vsPopNum,
                 vsMinchain,
