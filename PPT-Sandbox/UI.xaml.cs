@@ -1638,6 +1638,13 @@ namespace Sandbox {
                             ? ConvertByteString("E9 D7 83 29 00 90 90 90 90 90 90")
                             : ConvertByteString("48 8B 86 E8 00 00 00 C6 40 03 01")
                         );
+                    Game.WriteByte(
+                        new IntPtr(0x14002D2D7),
+                        (byte)(x
+                            ? 0xEB
+                            : 0x74
+                        )
+                    );
 
                     if (x) {
                         Game.WriteByteArray(
