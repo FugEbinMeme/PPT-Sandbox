@@ -651,7 +651,6 @@ namespace Sandbox {
                             TvPCombo.Text = "Combos";
 
                         Puyo.Header = "Puyo";
-                            GarbageRate.Title = "Garbage Rate";
                             AllClearMultiplier.Title = "All Clear Multiplier";
                             StarBonus.Title = "Star Bonus Damage Multiplier";   //TODO - this name is terrible//TRANSLATE
                                 StarBonus.ToolTip = "Increases attack multiplier when star puyos are cleared.";//TRANSLATE
@@ -763,11 +762,18 @@ namespace Sandbox {
                                 vsWincount.Title = "Win Count";                                 //TRANSLATE
                                 vsPopNum.Title = "Pop Number";                                  //TRANSLATE
                                 vsMinchain.Title = "Minimum Chain";                             //TRANSLATE
+                                GarbageRate.Title = "Garbage Rate";
                                 vsMargintime.Title = "Margin Time";                             //TRANSLATE
                                 vsQuickdrop.Content = "Quick Drop";                             //TRANSLATE
                                     vsQuickdrop.ToolTip = "Works in Puyo vs Tetris.";           //TRANSLATE
 
                             Swaprule.Header = "Swap";                                           //TRANSLATE
+                                swWincount.Title = vsWincount.Title;
+                                swPopNum.Title = vsPopNum.Title;
+                                swMinChain.Title = vsMinchain.Title;
+                                swGarbageRate.Title = GarbageRate.Title;
+                                swMarginTime.Title = vsMargintime.Title;
+                                swQuickdrop.Content = vsQuickdrop.Content;
 
                     ResetButton.Content = "Reset";
                     SaveButton.Content = "Save";
@@ -1660,6 +1666,20 @@ namespace Sandbox {
                     } else {
                         Reset(tpKillSquareTable);
                     }
+                }},
+                {swQuickdrop, x => {
+                    Game.WriteByte(new IntPtr(0x140441C66), //theres no variance in swap, so only the one value needs to be changed
+                        (byte)(x
+                            ? 0x01
+                            : 0xFE
+                        )
+                    );
+                    Game.WriteByte(new IntPtr(0x14031E60E), //well, two since the game writes to the above value from here sometimes, but the above value is what's actually used
+                        (byte)(x
+                            ? 0x01
+                            : 0xFE
+                        )
+                    );
                 }}
             };
 
@@ -1819,6 +1839,8 @@ namespace Sandbox {
                 {NuisanceType, x => {
                     Game.WriteInt32(new IntPtr(0x14031DB38), x);    //This overwrites the next value
                     Game.WriteInt32(new IntPtr(0x140441940), x);    //This is what's actually used, and it gets overwritten rarely, which is why I write to both
+                    Game.WriteInt32(new IntPtr(0x140441C60), x);    //swap values
+                    Game.WriteInt32(new IntPtr(0x14031E608), x);
                 }},
                 {StarBonus, x => {
                     Game.WriteByteArray(
@@ -1852,7 +1874,27 @@ namespace Sandbox {
                     if (x == 192)                                   //to make things simple and easier to reset to defaults, I do this
                         x += 63;                                    //in all cases but default (192), both values are the same
                     Game.WriteInt32(new IntPtr(0x141188963), x);
-                }}
+                }},
+                {swPopNum, x => {
+                    Game.WriteByte(new IntPtr(0x140441C58), (byte)x);
+                    Game.WriteByte(new IntPtr(0x14031E600), (byte)x);
+                }},
+                {swMinChain, x => {
+                    Game.WriteByte(new IntPtr(0x140441C59), (byte)x);
+                    Game.WriteByte(new IntPtr(0x14031E601), (byte)x);
+                }},
+                {swGarbageRate, x => {
+                    Game.WriteUInt16(new IntPtr(0x140441C5A), (ushort)x);
+                    Game.WriteUInt16(new IntPtr(0x14031E602), (ushort)x);
+                }},
+                {swMarginTime, x => {
+                    Game.WriteUInt16(new IntPtr(0x140441C5C), (ushort)x);
+                    Game.WriteUInt16(new IntPtr(0x14031E604), (ushort)x);
+                }},
+                {swWincount, x => {
+                    Game.WriteByte(new IntPtr(0x140441C64), (byte)x);
+                    Game.WriteByte(new IntPtr(0x14031E60C), (byte)x);
+                }},
             };
 
             TableScripts = new Dictionary<UniformGrid, Action<int, int>>() {
@@ -1979,7 +2021,6 @@ namespace Sandbox {
                 TvTComboTable,
                 TvPAttackTable,
                 TvPComboTable,
-                GarbageRate,
                 AllClearMultiplier,
                 StarBonus,
                 StarBonusChain,
@@ -2026,8 +2067,15 @@ namespace Sandbox {
                 vsWincount,
                 vsPopNum,
                 vsMinchain,
+                GarbageRate,
                 vsMargintime,
-                vsQuickdrop
+                vsQuickdrop,
+                swWincount,
+                swPopNum,
+                swMinChain,
+                swGarbageRate,
+                swMarginTime,
+                swQuickdrop
             };
         }
 
