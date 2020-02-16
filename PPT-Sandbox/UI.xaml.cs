@@ -758,22 +758,14 @@ namespace Sandbox {
                             yposp.Title = "Spawn Height (Puyo)";                                //TRANSLATE
 
                         RulesHeader.Header = "Settings";                                        //TRANSLATE
-                            Versusrule.Header = "     Versus";                                  //TRANSLATE
-                                vsWincount.Title = "Win Count";                                 //TRANSLATE
-                                vsPopNum.Title = "Pop Number";                                  //TRANSLATE
-                                vsMinchain.Title = "Minimum Chain";                             //TRANSLATE
+                            GlobalRule.Header = "     All Modes";                                  //TRANSLATE
+                                Wincount.Title = "Win Count";                                 //TRANSLATE
+                                PopNum.Title = "Pop Number";                                  //TRANSLATE
+                                Minchain.Title = "Minimum Chain";                             //TRANSLATE
                                 GarbageRate.Title = "Garbage Rate";
-                                vsMargintime.Title = "Margin Time";                             //TRANSLATE
-                                vsQuickdrop.Content = "Quick Drop";                             //TRANSLATE
-                                    vsQuickdrop.ToolTip = "Works in Puyo vs Tetris.";           //TRANSLATE
-
-                            Swaprule.Header = "Swap";                                           //TRANSLATE
-                                swWincount.Title = vsWincount.Title;
-                                swPopNum.Title = vsPopNum.Title;
-                                swMinChain.Title = vsMinchain.Title;
-                                swGarbageRate.Title = GarbageRate.Title;
-                                swMarginTime.Title = vsMargintime.Title;
-                                swQuickdrop.Content = vsQuickdrop.Content;
+                                Margintime.Title = "Margin Time";                             //TRANSLATE
+                                Quickdrop.Content = "Quick Drop";                             //TRANSLATE
+                                    Quickdrop.ToolTip = "Works in Puyo vs Tetris.";           //TRANSLATE
 
                     ResetButton.Content = "Reset";
                     SaveButton.Content = "Save";
@@ -1609,7 +1601,7 @@ namespace Sandbox {
                         )
                     )
                 },
-                {vsQuickdrop, x => {
+                {Quickdrop, x => {
                     Game.WriteByte(new IntPtr(0x14044194C),         //Puyo vs Tetris Values
                         (byte)(x
                             ? 0x01
@@ -1617,6 +1609,19 @@ namespace Sandbox {
                         )
                     );
                     Game.WriteByte(new IntPtr(0x14031DB44),         //Despite not being able to change it in game they exist
+                        (byte)(x
+                            ? 0x01
+                            : 0xFE
+                        )
+                    );
+
+                    Game.WriteByte(new IntPtr(0x140441C66), //swap values
+                        (byte)(x
+                            ? 0x01
+                            : 0xFE
+                        )
+                    );
+                    Game.WriteByte(new IntPtr(0x14031E60E),
                         (byte)(x
                             ? 0x01
                             : 0xFE
@@ -1674,26 +1679,15 @@ namespace Sandbox {
                         Reset(tpKillSquareTable);
                     }
                 }},
-                {swQuickdrop, x => {
-                    Game.WriteByte(new IntPtr(0x140441C66), //theres no variance in swap, so only the one value needs to be changed
-                        (byte)(x
-                            ? 0x01
-                            : 0xFE
-                        )
-                    );
-                    Game.WriteByte(new IntPtr(0x14031E60E), //well, two since the game writes to the above value from here sometimes, but the above value is what's actually used
-                        (byte)(x
-                            ? 0x01
-                            : 0xFE
-                        )
-                    );
-                }}
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
                 {GarbageRate, x => {
-                    Game.WriteUInt16(new IntPtr(0x14031DB34), (ushort)x);
+                    Game.WriteUInt16(new IntPtr(0x14031DB34), (ushort)x);   //versus
                     Game.WriteUInt16(new IntPtr(0x14044193C), (ushort)x);
+
+                    Game.WriteUInt16(new IntPtr(0x140441C5A), (ushort)x);   //swap
+                    Game.WriteUInt16(new IntPtr(0x14031E602), (ushort)x);
                 }},
                 {AllClearMultiplier, x => {
                     Game.WriteByteArray(
@@ -1860,48 +1854,40 @@ namespace Sandbox {
                         Game.WriteInt16(new IntPtr(0x141A5D486), (short)x);
                     }
                 }},
-                {vsWincount, x => {
-                    Game.WriteByte(new IntPtr(0x140441938), (byte)x);    //same deal as nuisance type here, one is actually used, the other writes to it rarely
-                    Game.WriteByte(new IntPtr(0x14031DB30), (byte)x);
+                {Wincount, x => {
+                    Game.WriteByte(new IntPtr(0x140441938), (byte)x);   //same deal as nuisance type here, one is actually used, the other writes to it rarely
+                    Game.WriteByte(new IntPtr(0x14031DB30), (byte)x);   //versus
+
+                    Game.WriteByte(new IntPtr(0x140441C64), (byte)x);   //swap
+                    Game.WriteByte(new IntPtr(0x14031E60C), (byte)x);
                 }},
-                {vsPopNum, x => {
-                    Game.WriteByte(new IntPtr(0x140441939), (byte)x);
+                {PopNum, x => {
+                    Game.WriteByte(new IntPtr(0x140441939), (byte)x);   //versus
                     Game.WriteByte(new IntPtr(0x14031DB31), (byte)x);
+
+                    Game.WriteByte(new IntPtr(0x140441C58), (byte)x);   //swap
+                    Game.WriteByte(new IntPtr(0x14031E600), (byte)x);
                 }},
-                {vsMinchain, x => {
-                    Game.WriteByte(new IntPtr(0x14044193A), (byte)x);
+                {Minchain, x => {
+                    Game.WriteByte(new IntPtr(0x14044193A), (byte)x);   //versus
                     Game.WriteByte(new IntPtr(0x14031DB32), (byte)x);
+
+                    Game.WriteByte(new IntPtr(0x140441C59), (byte)x);   //swap
+                    Game.WriteByte(new IntPtr(0x14031E601), (byte)x);
                 }},
-                {vsMargintime, x => {
-                    Game.WriteUInt16(new IntPtr(0x14044193E), (ushort)x);
+                {Margintime, x => {
+                    Game.WriteUInt16(new IntPtr(0x14044193E), (ushort)x);   //versus
                     Game.WriteUInt16(new IntPtr(0x14031DB36), (ushort)x);
+
+                    Game.WriteUInt16(new IntPtr(0x140441C5C), (ushort)x);   //swap
+                    Game.WriteUInt16(new IntPtr(0x14031E604), (ushort)x);
                 }},
                 {Wobble, x => {
                     Game.WriteInt32(new IntPtr(0x141188969), x);    //wobble for <18 and >=18 nuisance have different values
                     if (x == 192)                                   //to make things simple and easier to reset to defaults, I do this
                         x += 63;                                    //in all cases but default (192), both values are the same
                     Game.WriteInt32(new IntPtr(0x141188963), x);
-                }},
-                {swPopNum, x => {
-                    Game.WriteByte(new IntPtr(0x140441C58), (byte)x);
-                    Game.WriteByte(new IntPtr(0x14031E600), (byte)x);
-                }},
-                {swMinChain, x => {
-                    Game.WriteByte(new IntPtr(0x140441C59), (byte)x);
-                    Game.WriteByte(new IntPtr(0x14031E601), (byte)x);
-                }},
-                {swGarbageRate, x => {
-                    Game.WriteUInt16(new IntPtr(0x140441C5A), (ushort)x);
-                    Game.WriteUInt16(new IntPtr(0x14031E602), (ushort)x);
-                }},
-                {swMarginTime, x => {
-                    Game.WriteUInt16(new IntPtr(0x140441C5C), (ushort)x);
-                    Game.WriteUInt16(new IntPtr(0x14031E604), (ushort)x);
-                }},
-                {swWincount, x => {
-                    Game.WriteByte(new IntPtr(0x140441C64), (byte)x);
-                    Game.WriteByte(new IntPtr(0x14031E60C), (byte)x);
-                }},
+                }}
             };
 
             TableScripts = new Dictionary<UniformGrid, Action<int, int>>() {
@@ -2071,18 +2057,12 @@ namespace Sandbox {
                 ypos,
                 xposp,
                 yposp,
-                vsWincount,
-                vsPopNum,
-                vsMinchain,
+                Wincount,
+                PopNum,
+                Minchain,
                 GarbageRate,
-                vsMargintime,
-                vsQuickdrop,
-                swWincount,
-                swPopNum,
-                swMinChain,
-                swGarbageRate,
-                swMarginTime,
-                swQuickdrop
+                Margintime,
+                Quickdrop
             };
         }
 
