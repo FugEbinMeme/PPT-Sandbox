@@ -777,6 +777,47 @@
 
                                                 <CheckBox Margin="0 0 0 5" x:Name="Quickdrop" Click="CheckBoxHandle" />
 
+                                                <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
+                                                <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="Handicap" />
+
+                                                <UniformGrid Rows="4" Columns="6" Margin="0 0 0 5" Height="120" x:Name="HandicapTable">
+                                                    <UniformGrid.Resources>
+                                                        <Style TargetType="{x:Type TextBlock}">
+                                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                                        </Style>
+                                                    </UniformGrid.Resources>
+
+                                                    <TextBlock HorizontalAlignment="Center" Text=""/>
+                                                    <TextBlock HorizontalAlignment="Center" x:Name="Sweet"/>
+                                                    <TextBlock HorizontalAlignment="Center" x:Name="Mild"/>
+                                                    <TextBlock HorizontalAlignment="Center" x:Name="Medium"/>
+                                                    <TextBlock HorizontalAlignment="Center" x:Name="Hot"/>
+                                                    <TextBlock HorizontalAlignment="Center" x:Name="Spicy"/>
+
+                                                    <TextBlock HorizontalAlignment="Center" x:Name="PuyoColors"/>
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="3" Maximum="5" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="3" Maximum="5" Exponent="1.5" Default="3" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="3" Maximum="5" Exponent="1.5" Default="4" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="3" Maximum="5" Exponent="1.5" Default="5" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="3" Maximum="5" Exponent="1.5" Default="5" Unit="" Changed="DialHandle" />
+
+                                                    <TextBlock HorizontalAlignment="Center" x:Name="PuyoScore"/>
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="500" Exponent="1.5" Default="100" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="500" Exponent="1.5" Default="100" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="500" Exponent="1.5" Default="100" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="500" Exponent="1.5" Default="100" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="500" Exponent="1.5" Default="100" Unit="" Changed="DialHandle" />
+
+                                                    <TextBlock HorizontalAlignment="Center" x:Name="PuyoNuisance"/>
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="70" Exponent="1.5" Default="0" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="70" Exponent="1.5" Default="0" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="70" Exponent="1.5" Default="0" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="70" Exponent="1.5" Default="5" Unit="" Changed="DialHandle" />
+                                                    <Sandbox:Dial Margin="10 0 0 0" Scale="0.5" Minimum="0" Maximum="70" Exponent="1.5" Default="12" Unit="" Changed="DialHandle" />
+
+                                                </UniformGrid>
+
                                                 <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                             </StackPanel>
                                         </TabItem>

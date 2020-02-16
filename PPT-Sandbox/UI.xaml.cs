@@ -688,7 +688,7 @@ namespace Sandbox {
                                 CleanGarbage.Title = "Clean Garbage Chance";
                                     CleanGarbage.ToolTip = "Percent chance that garbage will stay in the same column.";
                                 GarbageFilled.Title = "Filled Garbage Tile";
-                                    GarbageFilled.Enums = "S (Green),Z (Red),J (Blue),L (Orange),T (Purple),O (Yellow),I (Cyan),Monomino (Gold),Empty,Garbage (White)";
+                                    GarbageFilled.Enums = "S (Green),Z (Red),J (Blue),L (Orange),T (Purple),O (Yellow),I (Cyan),Monomino (Gold),Empty,Garbage (White)"; //TRANSLATE
                                 GarbageEmpty.Title = "Empty Garbage Tile";
                                     GarbageEmpty.Enums = GarbageFilled.Enums;
                                 ReceiveT.Title = "Tetris Max Receival";
@@ -767,6 +767,16 @@ namespace Sandbox {
                                 Margintime.Title = "Margin Time";                             //TRANSLATE
                                 Quickdrop.Content = "Quick Drop";                             //TRANSLATE
                                     Quickdrop.ToolTip = "Works in Puyo vs Tetris.";           //TRANSLATE
+
+                                Handicap.Text = "Handicap Settings";                          //TRANSLATE
+                                    Sweet.Text = "Sweet";                                     //TRANSLATE
+                                    Mild.Text = "Mild";                                       //TRANSLATE
+                                    Medium.Text = "Medium";                                   //TRANSLATE
+                                    Hot.Text = "Hot";                                         //TRANSLATE
+                                    Spicy.Text = "Spicy";                                     //TRANSLATE
+                                    PuyoColors.Text = "Color Count";                          //TRANSLATE
+                                    PuyoScore.Text = "Score";                                 //TRANSLATE
+                                    PuyoNuisance.Text = "Nuisance";                           //TRANSLATE
 
                     ResetButton.Content = "Reset";
                     SaveButton.Content = "Save";
@@ -1964,6 +1974,19 @@ namespace Sandbox {
                     if (i > 7)
                         i += 6;
                     Game.WriteByte(new IntPtr(0x1402C56B2+i), (byte)x);
+                }},
+                {HandicapTable, (i, x) => {
+                    long baseOffset = 0x14031DB60;          //base handicap offset
+                    int handicapOffset = (i % 5) * 0x10;    //Align to correct handicap             
+                    int dataOffset = (i / 5) * 2;           //Align to data within handicap
+                    IntPtr FinalOffset = new IntPtr(baseOffset + handicapOffset + dataOffset);
+                    //I COULD shove all of this into a few lines but I could also remember how it works in the future
+                    
+                    if (dataOffset == 2) {
+                        Game.WriteUInt16(FinalOffset, (ushort)x);
+                    } else {
+                        Game.WriteByte(FinalOffset, (byte)x);
+                    }
                 }}
             };
 
@@ -2072,7 +2095,8 @@ namespace Sandbox {
                 Minchain,
                 GarbageRate,
                 Margintime,
-                Quickdrop
+                Quickdrop,
+                HandicapTable
             };
         }
 
