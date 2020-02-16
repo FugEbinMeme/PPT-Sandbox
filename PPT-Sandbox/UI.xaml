@@ -101,6 +101,8 @@
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
                                     <CheckBox Margin="0 0 0 5" x:Name="PuyoAutoLock" Click="CheckBoxHandle" />
+                                    
+                                    <CheckBox Margin="0 0 0 5" x:Name="ScoreMultiEnable" Click="CheckBoxHandle" />
 
                                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="30000" Default="192" Unit="" x:Name="Wobble" Changed="DialHandle" />
 

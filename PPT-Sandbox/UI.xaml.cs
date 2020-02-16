@@ -559,6 +559,7 @@ namespace Sandbox {
 
                         PuyoScripts.Header = "Puyo";
                             PuyoAutoLock.Content = "Remove Puyo Auto-Placing";                                                  //TRANSLATE
+                            ScoreMultiEnable.Content = "Enable Score Multiplier in Versus";                                     //TRANSLATE
                             Wobble.Title = "Wobble";                                                                            //TRANSLATE
                                 Wobble.ToolTip = "Changes how much your board shakes in various situations. 985 enables dust."; //TRANSLATE
                             vsKillSquare.Content = "Change Kill Squares (Versus)";                                              //TRANSLATE
@@ -1679,6 +1680,14 @@ namespace Sandbox {
                         Reset(tpKillSquareTable);
                     }
                 }},
+                {ScoreMultiEnable, x => 
+                    Game.WriteByteArray(
+                        new IntPtr(0x1418B9A66),
+                        x
+                            ? ConvertByteString("90 90 90 90")
+                            : ConvertByteString("44 0F 44 D0")
+                        )
+                }
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
@@ -1983,6 +1992,7 @@ namespace Sandbox {
                 PreserveRot,
                 Lockoutdial,
                 PuyoAutoLock,
+                ScoreMultiEnable,
                 Wobble,
                 vsKillSquare,
                 vsKillSquareTable,
