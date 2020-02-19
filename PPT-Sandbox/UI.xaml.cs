@@ -1861,6 +1861,11 @@ namespace Sandbox {
                     Game.WriteInt32(new IntPtr(0x140441940), x);    //This is what's actually used, and it gets overwritten rarely, which is why I write to both
                     Game.WriteInt32(new IntPtr(0x140441C60), x);    //swap values
                     Game.WriteInt32(new IntPtr(0x14031E608), x);
+                    Game.WriteInt32(new IntPtr(0x140441F38), x);    //tiny puyo
+                    Game.WriteInt32(new IntPtr(0x14031DF88), x);
+                    Game.WriteInt32(new IntPtr(0x140442578), x);    //fusion
+                    Game.WriteInt32(new IntPtr(0x14031E8D0), x);
+                    Game.WriteInt32(new IntPtr(0x1411371A1), x);    //player struct, used for party and probably others where unspecified
                 }},
                 {StarBonus, x => {
                     Game.WriteByteArray(
@@ -1879,6 +1884,9 @@ namespace Sandbox {
 
                     Game.WriteByte(new IntPtr(0x140441C64), (byte)x);   //swap
                     Game.WriteByte(new IntPtr(0x14031E60C), (byte)x);
+
+                    Game.WriteByte(new IntPtr(0x14031E8C8), (byte)x);   //fusion
+                    Game.WriteByte(new IntPtr(0x140442570), (byte)x);
                 }},
                 {PopNum, x => {
                     Game.WriteByte(new IntPtr(0x140441939), (byte)x);   //versus
@@ -1886,6 +1894,16 @@ namespace Sandbox {
 
                     Game.WriteByte(new IntPtr(0x140441C58), (byte)x);   //swap
                     Game.WriteByte(new IntPtr(0x14031E600), (byte)x);
+
+                    Game.WriteByte(new IntPtr(0x14031DF80), (byte)x);   //tiny puyo
+                    Game.WriteByte(new IntPtr(0x140441F30), (byte)x);
+
+                    Game.WriteByte(new IntPtr(0x14031E8CA), (byte)x);   //fusion
+                    Game.WriteByte(new IntPtr(0x140442572), (byte)x);
+
+                    Game.WriteByte(new IntPtr(0x140318A8C), (byte)x);   //big bang
+
+                    Game.WriteByte(new IntPtr(0x140318E14), (byte)x);   //party
                 }},
                 {Minchain, x => {
                     Game.WriteByte(new IntPtr(0x14044193A), (byte)x);   //versus
@@ -1893,6 +1911,18 @@ namespace Sandbox {
 
                     Game.WriteByte(new IntPtr(0x140441C59), (byte)x);   //swap
                     Game.WriteByte(new IntPtr(0x14031E601), (byte)x);
+
+                    Game.WriteByte(new IntPtr(0x14031DF81), (byte)x);   //tiny puyo
+                    Game.WriteByte(new IntPtr(0x140441F31), (byte)x);
+
+                    Game.WriteByte(new IntPtr(0x14031E8CB), (byte)x);   //fusion
+                    Game.WriteByte(new IntPtr(0x140442573), (byte)x);
+
+                    Game.WriteByte(new IntPtr(0x140318A78), (byte)x);   //big bang
+                    Game.WriteByte(new IntPtr(0x14043DCC0), (byte)x);
+
+                    Game.WriteByte(new IntPtr(0x140318DB0), (byte)x);   //party
+                    Game.WriteByte(new IntPtr(0x14043DF28), (byte)x);
                 }},
                 {Margintime, x => {
                     Game.WriteUInt16(new IntPtr(0x14044193E), (ushort)x);   //versus
@@ -1900,6 +1930,12 @@ namespace Sandbox {
 
                     Game.WriteUInt16(new IntPtr(0x140441C5C), (ushort)x);   //swap
                     Game.WriteUInt16(new IntPtr(0x14031E604), (ushort)x);
+
+                    Game.WriteUInt16(new IntPtr(0x14031E8CE), (ushort)x);   //fusion
+                    Game.WriteUInt16(new IntPtr(0x140442576), (ushort)x);
+
+                    Game.WriteUInt16(new IntPtr(0x14031DF84), (ushort)x);   //tiny puyo
+                    Game.WriteUInt16(new IntPtr(0x140441F34), (ushort)x);
                 }},
                 {Wobble, x => {
                     Game.WriteInt32(new IntPtr(0x141188969), x);    //wobble for <18 and >=18 nuisance have different values
