@@ -759,24 +759,23 @@ namespace Sandbox {
                             yposp.Title = "Spawn Height (Puyo)";                                //TRANSLATE
 
                         RulesHeader.Header = "Settings";                                        //TRANSLATE
-                            GlobalRule.Header = "     All Modes";                                  //TRANSLATE
-                                Wincount.Title = "Win Count";                                 //TRANSLATE
-                                PopNum.Title = "Pop Number";                                  //TRANSLATE
-                                Minchain.Title = "Minimum Chain";                             //TRANSLATE
-                                GarbageRate.Title = "Garbage Rate";
-                                Margintime.Title = "Margin Time";                             //TRANSLATE
-                                Quickdrop.Content = "Quick Drop";                             //TRANSLATE
-                                    Quickdrop.ToolTip = "Works in Puyo vs Tetris.";           //TRANSLATE
+                            Wincount.Title = "Win Count";                                 //TRANSLATE
+                            PopNum.Title = "Pop Number";                                  //TRANSLATE
+                            Minchain.Title = "Minimum Chain";                             //TRANSLATE
+                            GarbageRate.Title = "Garbage Rate";
+                            Margintime.Title = "Margin Time";                             //TRANSLATE
+                            Quickdrop.Content = "Quick Drop";                             //TRANSLATE
+                                Quickdrop.ToolTip = "Works in Puyo vs Tetris.";           //TRANSLATE
 
-                                Handicap.Text = "Handicap Settings";                          //TRANSLATE
-                                    Sweet.Text = "Sweet";                                     //TRANSLATE
-                                    Mild.Text = "Mild";                                       //TRANSLATE
-                                    Medium.Text = "Medium";                                   //TRANSLATE
-                                    Hot.Text = "Hot";                                         //TRANSLATE
-                                    Spicy.Text = "Spicy";                                     //TRANSLATE
-                                    PuyoColors.Text = "Color Count";                          //TRANSLATE
-                                    PuyoScore.Text = "Score";                                 //TRANSLATE
-                                    PuyoNuisance.Text = "Nuisance";                           //TRANSLATE
+                            Handicap.Text = "Handicap Settings";                          //TRANSLATE
+                                Sweet.Text = "Sweet";                                     //TRANSLATE
+                                Mild.Text = "Mild";                                       //TRANSLATE
+                                Medium.Text = "Medium";                                   //TRANSLATE
+                                Hot.Text = "Hot";                                         //TRANSLATE
+                                Spicy.Text = "Spicy";                                     //TRANSLATE
+                                PuyoColors.Text = "Color Count";                          //TRANSLATE
+                                PuyoScore.Text = "Score (%)";                             //TRANSLATE
+                                PuyoNuisance.Text = "Nuisance";                           //TRANSLATE
 
                     ResetButton.Content = "Reset";
                     SaveButton.Content = "Save";
