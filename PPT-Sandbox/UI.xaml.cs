@@ -370,6 +370,18 @@ namespace Sandbox {
                             Lockoutdial.Title = "ロックアウトの高さ";
                                 Lockoutdial.ToolTip = "ミノを置くとゲームオーバーになる高さ";
 
+                        PuyoScripts.Header = "ぷよ";
+                            PuyoAutoLock.Content = "ぷよ自動設置削除";
+                            ScoreMultiEnable.Content = "VSでスコア倍率を有効";
+                            Wobble.Title = "揺れ";
+                                Wobble.ToolTip = "様々な場面で、盤面がどれだけ揺れるかを変更する。985は光を有効にする。";
+                            vsKillSquare.Content = "致死判定";
+                            Column.Text = "列";
+                            Active.Text = "動作";
+                            tpKillSquare.Content = "致死判定 (ちびぷよ)";
+                            Columntp.Text = Column.Text;
+                            Activetp.Text = Active.Text;
+
                         Script3.Header = "回転法則";
                             RotationSystems.Text = "キックテーブル";
                                 Ascension.Content = "Ascension";
@@ -453,14 +465,17 @@ namespace Sandbox {
                                 TvPCombo.Text = "REN";
                     
                     Puyo.Header = "ぷよ";
-                        GarbageRate.Title = "おじゃまぷよレート";
                         AllClearMultiplier.Title = "全消しボーナス";
+                        StarBonus.Title = "スターボーナスダメージ倍率";
+                            StarBonus.ToolTip = "スターぷよが消えたときの攻撃倍率を増やす";
+                        StarBonusChain.Content = "連鎖数>1のときにスターボーナス";
+                            StarBonusChain.ToolTip = "デフォルトでは、スターぷよの特別ボーナスは1連鎖目に消されたときのみ与えられる。これはその制限を取り除く。";
 
-                        Chain.Text = "連鎖";
+                    Chain.Text = "連鎖";
 
-                        MarginTime.Header = "マージンタイム";
+                    MarginTime.Header = "マージンタイム";
                         Margin.Text = "値";
-                        Margin.ToolTip = "テト vs テトには影響しない";
+                            Margin.ToolTip = "テト vs テトには影響しない";
 
                     GarbageHeader.Header = "おじゃま";
                         Detection.Header = "     検出";
@@ -486,9 +501,9 @@ namespace Sandbox {
                                 CleanGarbage.Title = "直列の確率";
                                     CleanGarbage.ToolTip = "おじゃまが同じ列に留まる確率";
                                 GarbageFilled.Title = "おじゃまを埋めるミノ";
-                                    GarbageFilled.ToolTip = "空の場合は8にします";
+                                    GarbageFilled.Enums = "S (緑),Z (赤),J (青),L (オレンジ),T (紫),O (黄色),I (水色),Monomino (金),空洞,おじゃま (白)";
                                 GarbageEmpty.Title = "おじゃまを開けるミノ";
-                                    GarbageEmpty.ToolTip = GarbageFilled.ToolTip;
+                                    GarbageEmpty.Enums = GarbageFilled.Enums;
                                 ReceiveT.Title = "テトリスせり上がり最大値";
                                     ReceiveT.ToolTip = "ミノが固定されたとき、一度に受けるおじゃま段数\n" +
                                                        "テトvsテトでは別のスクリプトがなければ機能しない";
@@ -496,9 +511,15 @@ namespace Sandbox {
                                     ReceiveP.ToolTip = "ぷよを置いたとき、一度に受ける最大のおじゃま数";
                                 ReceiveCap.Content = "テトvsテト おじゃまキャップ";
                                     ReceiveCap.ToolTip = "テトvsテトで「テトリスせり上がり最大値」を有効化できる";
+                                NuisanceType.Title = "おじゃまの種類";
+                                    NuisanceType.Enums = "おじゃま,凍ったおじゃま,スター,凍った赤ぷよ,凍った緑ぷよ,凍った青ぷよ,凍った黄ぷよ,凍った紫ぷよ";
+                                    NuisanceType.ToolTip = "おじゃまぷよを受けたとき、盤面に落ちてくるぷよを変える";
+                                ForceGarbage.Title = "おじゃま列固定";
+                                    ForceGarbage.ToolTip = "下穴が常にこの列に発生する";
+                                    ForceGarbage.MaximumOverride = "デフォルト";
 
                             GarbageModification.Text = "おじゃま変更";
-                                SecretGradeGarbage.Content = "秘密のおじゃま";
+                                SecretGradeGarbage.Content = "裏GM風おじゃま";
                                     SecretGradeGarbage.ToolTip = "ランダムではなく蛇行するパターンを形成する";
                                 GarbageBlocking.Content = "おじゃまブロック";
                                 UnCappedPC.Content = "パフェクリダメージキャップ削除";
@@ -532,6 +553,8 @@ namespace Sandbox {
                                         DAS.ToolTip = "ARRに以降する前のフレーム";
                                     Autolockdial.Title = "自動設置タイマー";
                                         Autolockdial.ToolTip = "地面に触れたあと、ミノが固定されるまでのフレーム";
+                                    PuyoDelaySpeed.Title = "ぷよ遅延速度変更";
+                                        PuyoDelaySpeed.ToolTip = "おじゃまの落下や連鎖速度のようなぷよのアニメーションを指数関数的に変更する";
 
                             Gravity.Header = "重力";
                                 Level.Text = "レベル";
@@ -540,6 +563,31 @@ namespace Sandbox {
                                                           "40LINEやウルトラのようなチャレンジモードはレベル1としてカウントされる";
                                 Softdrop.Title = "ソフトドロップ倍率";
                                     Softdrop.ToolTip = "デフォルトでは、ソフトドロップは重力値を20倍する。この値はここで変更できる";
+
+                        Piece.Header = "ツモ";
+                            xpos.Title = "出現位置 X座標";
+                            ypos.Title = "出現位置 高さ";
+                            xposp.Title = "出現位置 X座標 (ぷよ)";
+                            yposp.Title = "出現位置 高さ (ぷよ)";
+
+                        RulesHeader.Header = "ゲーム設定";
+                            Wincount.Title = "WIN 数";
+                            PopNum.Title = "ぷよを消せる個数";
+                            Minchain.Title = "連鎖しばり";
+                            GarbageRate.Title = "おじゃまぷよレート";
+                            Margintime.Title = "マージンタイム";
+                            Quickdrop.Content = "クイックドロップ";
+                            Quickdrop.ToolTip = "ぷよvsテトで動く";
+
+                        Handicap.Text = "ハンデ設定";
+                            Sweet.Text = "激甘";
+                            Mild.Text = "甘口";
+                            Medium.Text = "中辛";
+                            Hot.Text = "辛口";
+                            Spicy.Text = "激辛";
+                            PuyoColors.Text = "ぷよの色数";
+                            PuyoScore.Text = "スコア (%)";
+                            PuyoNuisance.Text = "おじゃま";
 
 
                     ResetButton.Content = "リセット";
@@ -608,16 +656,16 @@ namespace Sandbox {
                                 Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
 
                         PuyoScripts.Header = "Puyo";
-                            PuyoAutoLock.Content = "Remove Puyo Auto-Placing";                                                  //TRANSLATE
-                            ScoreMultiEnable.Content = "Enable Score Multiplier in Versus";                                     //TRANSLATE
-                            Wobble.Title = "Wobble";                                                                            //TRANSLATE
-                                Wobble.ToolTip = "Changes how much your board shakes in various situations. 985 enables dust."; //TRANSLATE
-                            vsKillSquare.Content = "Change Kill Squares (Versus)";                                              //TRANSLATE
-                            Column.Text = "Column";                                                                             //TRANSLATE
-                            Active.Text = "Active";                                                                             //TRANSLATE
-                            tpKillSquare.Content = "Change Kill Squares (Tiny Puyo)";                                           //TRANSLATE
-                            Columntp.Text = Column.Text;                                                                        //TRANSLATE
-                            Activetp.Text = Active.Text;                                                                        //TRANSLATE
+                            PuyoAutoLock.Content = "Remove Puyo Auto-Placing";
+                            ScoreMultiEnable.Content = "Enable Score Multiplier in Versus";
+                            Wobble.Title = "Wobble";
+                                Wobble.ToolTip = "Changes how much your board shakes in various situations. 985 enables dust.";
+                            vsKillSquare.Content = "Change Kill Squares";
+                            Column.Text = "Column";
+                            Active.Text = "Active";
+                            tpKillSquare.Content = "Change Kill Squares (Tiny Puyo)";
+                            Columntp.Text = Column.Text;
+                            Activetp.Text = Active.Text;
 
                     Script3.Header = "Rotation System";
                             RotationSystems.Text = "Kick Table";
@@ -703,10 +751,10 @@ namespace Sandbox {
 
                         Puyo.Header = "Puyo";
                             AllClearMultiplier.Title = "All Clear Multiplier";
-                            StarBonus.Title = "Star Bonus Damage Multiplier";   //TODO - this name is terrible//TRANSLATE
-                                StarBonus.ToolTip = "Increases attack multiplier when star puyos are cleared.";//TRANSLATE
-                            StarBonusChain.Content = "Star Bonus on chains >1";//TRANSLATE
-                                StarBonusChain.ToolTip = "By default, clearing a star puyo only gives extra damage if done on the first chain. This removes that limitation.";//TRANSLATE
+                            StarBonus.Title = "Star Bonus Damage Multiplier";
+                                StarBonus.ToolTip = "Increases attack multiplier when star puyos are cleared.";
+                            StarBonusChain.Content = "Star Bonus on chains >1";
+                                StarBonusChain.ToolTip = "By default, clearing a star puyo only gives extra damage if done on the first chain. This removes that limitation.";
 
                             Chain.Text = "Chain";
 
@@ -738,7 +786,7 @@ namespace Sandbox {
                                 CleanGarbage.Title = "Clean Garbage Chance";
                                     CleanGarbage.ToolTip = "Percent chance that garbage will stay in the same column.";
                                 GarbageFilled.Title = "Filled Garbage Tile";
-                                    GarbageFilled.Enums = "S (Green),Z (Red),J (Blue),L (Orange),T (Purple),O (Yellow),I (Cyan),Monomino (Gold),Empty,Garbage (White)"; //TRANSLATE
+                                    GarbageFilled.Enums = "S (Green),Z (Red),J (Blue),L (Orange),T (Purple),O (Yellow),I (Cyan),Monomino (Gold),Empty,Garbage (White)";
                                 GarbageEmpty.Title = "Empty Garbage Tile";
                                     GarbageEmpty.Enums = GarbageFilled.Enums;
                                 ReceiveT.Title = "Tetris Max Receival";
@@ -791,8 +839,8 @@ namespace Sandbox {
                                     DAS.ToolTip = "Frames before ARR activates.";
                                 Autolockdial.Title = "Auto-Lock Timer";
                                     Autolockdial.ToolTip = "Frames before a piece locks after touching the ground.";
-                                PuyoDelaySpeed.Title = "Puyo Delay Speed Modifier";//TRANSLATE
-                                    PuyoDelaySpeed.ToolTip = "Exponentially change the speed of puyo animations, such as nuisance dropping and chain advancing.";//TRANSLATE
+                                PuyoDelaySpeed.Title = "Puyo Delay Speed Modifier";
+                                    PuyoDelaySpeed.ToolTip = "Exponentially change the speed of puyo animations, such as nuisance dropping and chain advancing.";
 
                         Gravity.Header = "Gravity";
                             Level.Text = "Level";
@@ -802,30 +850,30 @@ namespace Sandbox {
                             Softdrop.Title = "Softdrop Multiplier";
                                 Softdrop.ToolTip = "By default, Softdropping multiplies your gravity value by 20. You can change this value here";
 
-                        Piece.Header = "Piece";                                                 //TRANSLATE
-                            xpos.Title = "Spawn X";//TODO - placeholder name                    //TRANSLATE
-                            ypos.Title = "Spawn Height";                                        //TRANSLATE
-                            xposp.Title = "Spawn X (Puyo)";//TODO - placeholder name            //TRANSLATE
-                            yposp.Title = "Spawn Height (Puyo)";                                //TRANSLATE
+                        Piece.Header = "Piece";
+                            xpos.Title = "Spawn X";
+                            ypos.Title = "Spawn Height";
+                            xposp.Title = "Spawn X (Puyo)";
+                            yposp.Title = "Spawn Height (Puyo)";
 
-                        RulesHeader.Header = "Settings";                                        //TRANSLATE
-                            Wincount.Title = "Win Count";                                 //TRANSLATE
-                            PopNum.Title = "Pop Number";                                  //TRANSLATE
-                            Minchain.Title = "Minimum Chain";                             //TRANSLATE
+                        RulesHeader.Header = "Settings";
+                            Wincount.Title = "Win Count";
+                            PopNum.Title = "Pop Number";
+                            Minchain.Title = "Minimum Chain";
                             GarbageRate.Title = "Garbage Rate";
-                            Margintime.Title = "Margin Time";                             //TRANSLATE
-                            Quickdrop.Content = "Quick Drop";                             //TRANSLATE
-                                Quickdrop.ToolTip = "Works in Puyo vs Tetris.";           //TRANSLATE
+                            Margintime.Title = "Margin Time";
+                            Quickdrop.Content = "Quick Drop";
+                                Quickdrop.ToolTip = "Works in Puyo vs Tetris.";
 
-                            Handicap.Text = "Handicap Settings";                          //TRANSLATE
-                                Sweet.Text = "Sweet";                                     //TRANSLATE
-                                Mild.Text = "Mild";                                       //TRANSLATE
-                                Medium.Text = "Medium";                                   //TRANSLATE
-                                Hot.Text = "Hot";                                         //TRANSLATE
-                                Spicy.Text = "Spicy";                                     //TRANSLATE
-                                PuyoColors.Text = "Color Count";                          //TRANSLATE
-                                PuyoScore.Text = "Score (%)";                             //TRANSLATE
-                                PuyoNuisance.Text = "Nuisance";                           //TRANSLATE
+                            Handicap.Text = "Handicap Settings";
+                                Sweet.Text = "Sweet";
+                                Mild.Text = "Mild";
+                                Medium.Text = "Medium";
+                                Hot.Text = "Hot";
+                                Spicy.Text = "Spicy";
+                                PuyoColors.Text = "Color Count";
+                                PuyoScore.Text = "Score (%)";
+                                PuyoNuisance.Text = "Nuisance";
 
                     ResetButton.Content = "Reset";
                     SaveButton.Content = "Save";
