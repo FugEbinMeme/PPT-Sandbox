@@ -83,6 +83,18 @@ namespace Sandbox {
                             Lockoutdial.Title = "블록 최대높이";
                                 Lockoutdial.ToolTip = "이 높이 위로 블록을 놓을 시 게임오버됩니다.";
 
+                        PuyoScripts.Header = "뿌요뿌요";
+                            PuyoAutoLock.Content = "뿌요 자동 놓기 해제";
+                            ScoreMultiEnable.Content = "VS 모드에서 점수 배율 활성화";
+                            Wobble.Title = "흔들림";
+                                Wobble.ToolTip = "다양한 상황에서 보드가 얼마나 많이 흔들리는지를 설정합니다. 985 이상은 주위에 먼지를 발생시킵니다..";
+                            vsKillSquare.Content = "게임오버 위치 변경";
+                            Column.Text = "위치";
+                            Active.Text = "활성화";
+                            tpKillSquare.Content = "게임오버 위치 변경 (미니뿌요)";
+                            Columntp.Text = Column.Text;
+                            Activetp.Text = Active.Text;
+
                         Script3.Header = "회전 시스템";
                             RotationSystems.Text = "킥 테이블 시스템";
                                 Ascension.Content = "Ascension";
@@ -168,10 +180,13 @@ namespace Sandbox {
                             TvPCombo.Text = "콤보/렌";
 
                         Puyo.Header = "뿌요뿌요";
-                            GarbageRate.Title = "방해뿌요 배율";
                             AllClearMultiplier.Title = "올 클리어 배율";
+                            StarBonus.Title = "스타 방해뿌요 제거 보너스 배율";
+                                StarBonus.ToolTip = "스타 뿌요를 제거할 시 공격 배율이 증가합니다.";
+                            StarBonusChain.Content = "스타 방해뿌요 제거 보너스";
+                                StarBonusChain.ToolTip = "기본적으로, 첫 연쇄에서만 스타 방해뿌요 제거 보너스를 줍니다. 이것으로 인해 제한이 사라집니다.";
 
-                            Chain.Text = "연쇄";
+                        Chain.Text = "연쇄";
 
                         MarginTime.Header = "마진 타임";
                             Margin.Text = "값";
@@ -201,9 +216,9 @@ namespace Sandbox {
                             CleanGarbage.Title = "클린한 방해줄 확률";
                                 CleanGarbage.ToolTip = "일렬로 방해줄이 생성될 확룰을 퍼센트로 나타냅니다.";
                             GarbageFilled.Title = "방해줄 타일";
-                                GarbageFilled.ToolTip = "8로 세팅하면 비워집니다.";
+                                GarbageFilled.Enums = "S (초록색), Z (빨강색), J (파랑색), L (주황색), T (보라색), O (노랑색), I (하늘색), 모노미노/한칸미노 (금색), 빈 공간, 방해 줄(흰색)";
                             GarbageEmpty.Title = "빈 줄 타일";
-                                GarbageEmpty.ToolTip = "8로 세팅하면 비워집니다.";
+                                GarbageEmpty.Enums = GarbageFilled.Enums;
                             ReceiveT.Title = "최대 테트리스 방해줄";
                                 ReceiveT.ToolTip = "드랍할때 한번에 방해줄이 올라오는 줄 수.\n" +
                                                    "테트리스 VS 테트리스에서는 다른 스크립트 없이는 적용되지 않습니다.";
@@ -211,7 +226,15 @@ namespace Sandbox {
                                 ReceiveP.ToolTip = "뿌요를 놓을 때 내려오는 최대 방해뿌요 갯수";
                             ReceiveCap.Content = "테트리스 VS 테트리스 방해줄 적용";
                                 ReceiveCap.ToolTip = "\"최대 테트리스 방해줄\" 설정을 테트리스 VS 테트리스 게임에서 적용되게 해 줍니다.";
-                            GarbageModification.Text = "방해뿌요/줄 계산";
+                            NuisanceType.Title = "방해뿌요 타입";
+                                NuisanceType.Enums = "방해 뿌요,냉각된 방해 뿌요, 스타 방해뿌요, 냉각된 빨강 뿌요, 냉각된 초록 뿌요, 냉각된 파랑 뿌요, 냉각된 노랑 뿌요, 냉각된 보라 뿌요";
+                                NuisanceType.ToolTip = "방해뿌요를 받을 때 무엇이 보드 위에 떨어질 지 변경할 수 있습니다.";
+                            ForceGarbage.Title = "강제 방해줄 위치 고정";
+                                ForceGarbage.ToolTip = "해당 위치에만 방해줄의 빈 공간이 생성됩니다. ";
+                                ForceGarbage.MaximumOverride = "기본값";
+
+
+                        GarbageModification.Text = "방해뿌요/줄 계산";
                             SecretGradeGarbage.Content = "지그재그 방해줄";
                                 SecretGradeGarbage.ToolTip = "방해줄이 1줄마다 1칸씩 이동하며 생성됩니다.";
                             GarbageBlocking.Content = "방해줄 차단";
@@ -246,6 +269,8 @@ namespace Sandbox {
                                     DAS.ToolTip = "ARR이 활성화되기 전의 프레임.";
                                 Autolockdial.Title = "자동 드랍 타이머";
                                     Autolockdial.ToolTip = "블록이 아래에 닿은 후 자동 드랍되기까지의 프레임을 나타낸 값입니다.";
+                                PuyoDelaySpeed.Title = "뿌요 딜레이 속도 변경";
+                                    PuyoDelaySpeed.ToolTip = "불쾌감 감소 & 연쇄 진행을 위해 뿌요 애니메이션의 속도를 기하급수적으로 변경합니다.";
 
                         Gravity.Header = "중력";
                             Level.Text = "레벨";
@@ -254,6 +279,31 @@ namespace Sandbox {
                                                       "스프린트 및 울트라와 같은 도전/챌린지 모드는 레벨 1로 계산됩니다.";
                         Softdrop.Title = "소프트드랍 중력 배율";
                             Softdrop.ToolTip = "기본적으로 소프트 드랍시 중력은 기본 중력 값에 20을 곱합니다. 여기서 이 값을 변경할 수 있습니다.";
+
+                        Piece.Header = "테트리미노/뿌요 위치";
+                            xpos.Title = "스폰 위치 (가로)";
+                            ypos.Title = "스폰 높이";
+                            xposp.Title = "스폰 위치 (가로)(뿌요)";
+                            yposp.Title = "스폰 높이 (뿌요)";
+
+                        RulesHeader.Header = "세부 설정";
+                            Wincount.Title = "승리 카운트 (별 갯수)";
+                            PopNum.Title = "뿌요 삭제 개수 / n팝 뿌요";
+                            Minchain.Title = "연쇄 묶음/최소 연쇄";
+                            GarbageRate.Title = "방해뿌요 배율";
+                            Margintime.Title = "마진 타임";
+                            Quickdrop.Content = "퀵 드롭";
+                                Quickdrop.ToolTip = "뿌요뿌요 vs 테트리스에서도 적용";
+
+                        Handicap.Text = "핸디캡 설정";
+                            Sweet.Text = "달콤";
+                            Mild.Text = "순함";
+                            Medium.Text = "보통";
+                            Hot.Text = "매콤";
+                            Spicy.Text = "강렬";
+                            PuyoColors.Text = "n색 뿌요";
+                            PuyoScore.Text = "점수 배율 (%)";
+                            PuyoNuisance.Text = "패널티 뿌요";
 
                     ResetButton.Content = "초기화";
                     SaveButton.Content = "저장";
