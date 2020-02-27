@@ -87,6 +87,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="OptionalRadioButton.cs" />
+    <Compile Include="Error.xaml.cs">
+      <DependentUpon>Error.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI.xaml.cs">
       <DependentUpon>UI.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,10 @@
     <Compile Include="Dial.xaml.cs">
       <DependentUpon>Dial.xaml</DependentUpon>
     </Compile>
+    <Page Include="Error.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

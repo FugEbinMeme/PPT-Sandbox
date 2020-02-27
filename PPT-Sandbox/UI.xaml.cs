@@ -20,8 +20,6 @@ namespace Sandbox {
         private Dictionary<UniformGrid, Action<int, int>> TableScripts;
         private List<object> EncodingList;
 
-        static readonly int Version = Assembly.GetExecutingAssembly().GetName().Version.Minor;
-
         private byte[] ConvertByteString(string bytes) =>
             bytes.Split(' ').Select(i => Convert.ToByte(i, 16)).ToArray();
 
@@ -31,7 +29,7 @@ namespace Sandbox {
 
             ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(Int32.MaxValue)); //tooltips no longer yeet after 5 seconds
 
-            VersionText.Text = $"PPT-Sandbox-{Version} by {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName}";
+            VersionText.Text = $"{App.VersionString} by {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName}";
 
             switch (CultureInfo.CurrentCulture.TwoLetterISOLanguageName) {
                 case "ko":
@@ -2387,7 +2385,7 @@ namespace Sandbox {
             if (!reader.ReadBytes(4).Select(i => (char)i).SequenceEqual(new char[] {'P', 'T', 'S', 'B'}))
                 throw new InvalidDataException("The selected file is not a PPT-Sandbox file.");
 
-            if (reader.ReadInt32() != Version)
+            if (reader.ReadInt32() != App.Version)
                 throw new InvalidDataException("The version of the file doesn't match the version of PPT-Sandbox.");
         }
 
