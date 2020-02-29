@@ -3,10 +3,8 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:Sandbox="clr-namespace:Sandbox"
-                      TitleCharacterCasing="Normal" Title="PPT-Sandbox"
-                      WindowStartupLocation="CenterScreen"
-                      Width="500" SizeToContent="Height" BorderThickness="0" ResizeMode="NoResize"
-                      Background="#0A0A0A" Foreground="#DCDCDC" GlowBrush="{DynamicResource AccentColorBrush}">
+                      Style="{StaticResource SandboxWindow}"
+                      Title="PPT-Sandbox" WindowStartupLocation="CenterScreen" Width="500">
 
     <Grid>
         <StackPanel Margin="5 10">
