@@ -1225,6 +1225,13 @@ namespace Sandbox {
                             : ConvertByteString("48 8B 5C 24 40")
                         );
 
+                    Game.WriteByteArray(
+                        new IntPtr(0x14271DF6A),    //spin tetris jump
+                        x
+                            ? ConvertByteString("EB 17")
+                            : ConvertByteString("0F B6")
+                        );
+
                     if (x) {
                         Game.WriteByteArray(
                             new IntPtr(0x140010077),//sfx patching
@@ -1244,6 +1251,11 @@ namespace Sandbox {
                         Game.WriteByteArray(
                             new IntPtr(0x14000FF8A),//find player
                             ConvertByteString("45 31 FF 44 8B 35 8C 1B 45 00 45 8B B6 78 03 00 00 45 8B B6 A8 00 00 00 45 8B B6 C8 03 00 00 49 39 F6 75 01 C3 44 8B 35 6A 1B 45 00 45 8B B6 80 03 00 00 45 85 F6 74 17 45 8B B6 A8 00 00 00 45 8B B6 C8 03 00 00 49 39 F6 75 05 41 83 C7 01 C3 44 8B 35 3F 1B 45 00 45 8B B6 88 03 00 00 45 85 F6 74 17 45 8B B6 A8 00 00 00 45 8B B6 C8 03 00 00 49 39 F6 75 05 41 83 C7 02 C3 44 8B 35 14 1B 45 00 45 8B B6 90 03 00 00 45 85 F6 74 04 41 83 C7 03 C3")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x14271DF83),//override damage sent if tspin && 4 lines cleared
+                            ConvertByteString("0F B6 8C 11 B4 00 32 00 81 FD 00 00 14 00 77 0E 41 80 BE F8 02 00 00 04 75 D5 B1 08 EB D1 80 BB F8 02 00 00 04 75 C8 B1 08 EB C4")
                         );
                     }
                 }},
