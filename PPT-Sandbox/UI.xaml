@@ -603,7 +603,7 @@
 
                                     <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="40" Default="7" Unit="" FillStart="False" x:Name="ReceiveT" Changed="DialHandle" />
 
-                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="70" Default="30" Unit="" FillStart="False" x:Name="ReceiveP" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="180" Default="30" Unit="" FillStart="False" x:Name="ReceiveP" Changed="DialHandle" />
 
                                     <CheckBox Margin="0 0 0 5" x:Name="ReceiveCap" Click="CheckBoxHandle" />
 
