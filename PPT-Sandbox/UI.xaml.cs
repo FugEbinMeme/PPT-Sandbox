@@ -1998,6 +1998,7 @@ namespace Sandbox {
                 {PopNum, x => {
                     Game.WriteByte(new IntPtr(0x140441939), (byte)x);   //versus
                     Game.WriteByte(new IntPtr(0x14031DB31), (byte)x);
+                    Game.WriteByte(new IntPtr(0x144C5349E), (byte)x);
 
                     Game.WriteByte(new IntPtr(0x140441C58), (byte)x);   //swap
                     Game.WriteByte(new IntPtr(0x14031E600), (byte)x);
@@ -2015,6 +2016,7 @@ namespace Sandbox {
                 {Minchain, x => {
                     Game.WriteByte(new IntPtr(0x14044193A), (byte)x);   //versus
                     Game.WriteByte(new IntPtr(0x14031DB32), (byte)x);
+                    Game.WriteByte(new IntPtr(0x144C5349F), (byte)x);
 
                     Game.WriteByte(new IntPtr(0x140441C59), (byte)x);   //swap
                     Game.WriteByte(new IntPtr(0x14031E601), (byte)x);
