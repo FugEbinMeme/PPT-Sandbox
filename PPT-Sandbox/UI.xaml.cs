@@ -2269,31 +2269,31 @@ namespace Sandbox {
             }
 
             Game.WriteByteArray(//x
-               new IntPtr(0x1426D5EF4),
+               new IntPtr(0x1426D5EF1),
                x
-                   ? ConvertByteString("48 8B 05 05 DF D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 C3")
-                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 1E E0 D8 FD 8B 44 C8 04 44 01")
+                   ? ConvertByteString("48 8B 05 08 DF D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 44 88 44 24 E0 C3")
+                   : ConvertByteString("48 63 C2 48 6B C9 1C 48 01 C1 48 8B 05 1E E0 D8 FD 8B 44 C8 04 44 01 C0 C3")
                );
 
             Game.WriteByteArray(
-               new IntPtr(0x1426D5ED7),
+               new IntPtr(0x1426D5ED4),
                x
-                   ? ConvertByteString("48 8B 05 2A DF D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 C3")
-                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 3B E0 D8 FD 8B 44 C8 08 44 01")
+                   ? ConvertByteString("48 8B 05 2D DF D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 44 88 44 24 E0 C3")
+                   : ConvertByteString("48 63 C2 48 6B C9 1C 48 01 C1 48 8B 05 3B E0 D8 FD 8B 44 C8 08 44 01 C0 C3")
                );
 
             Game.WriteByteArray(
-               new IntPtr(0x1426D5E09),
+               new IntPtr(0x1426D5E06),
                x
-                   ? ConvertByteString("48 8B 05 00 E0 D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 C3")
-                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 09 E1 D8 FD 44 2B 44 C8 04 44")
+                   ? ConvertByteString("48 8B 05 03 E0 D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 44 88 44 24 E0 C3")
+                   : ConvertByteString("48 63 C2 48 6B C9 1C 48 01 C1 48 8B 05 09 E1 D8 FD 44 2B 44 C8 04 44 89 C0 C3")
                );
 
             Game.WriteByteArray(
-               new IntPtr(0x1426D5DEB),
+               new IntPtr(0x1426D5DE8),
                x
-                   ? ConvertByteString("48 8B 05 26 E0 D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 C3")
-                   : ConvertByteString("48 6B C9 1C 48 01 C1 48 8B 05 27 E1 D8 FD 44 2B 44 C8 08 44")
+                   ? ConvertByteString("48 8B 05 29 E0 D8 FD 48 8D 04 50 44 2A 04 C8 41 0F BE C0 44 88 44 24 E0 C3")
+                   : ConvertByteString("48 63 C2 48 6B C9 1C 48 01 C1 48 8B 05 27 E1 D8 FD 44 2B 44 C8 08 44 89 C0 C3")
                );
 
             Game.WriteByteArray(//y
