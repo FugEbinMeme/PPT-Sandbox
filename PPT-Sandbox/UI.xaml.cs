@@ -1629,12 +1629,12 @@ namespace Sandbox {
                     if (x) {
                         Game.WriteByteArray(
                             new IntPtr(0x14001DFE6),
-                            ConvertByteString("80 3D 17 50 44 00 00 0F 84 1D 8D 08 00 0F BE 0D 0A 50 44 00 C6 05 03 50 44 00 00 48 8B 44 24 68 48 8B 80 C8 03 00 00 01 48 0C 48 31 C0 48 8B CB E9 F5 8C 08 00")
+                            ConvertByteString("48 8B 7C 24 68 80 BF 90 03 00 00 00 0F 84 18 8D 08 00 0F BE 8F 90 03 00 00 C6 87 90 03 00 00 00 48 8B 87 C8 03 00 00 01 48 0C 48 31 C0 48 8B CB E9 F5 8C 08 00")
                         );
 
                         Game.WriteByteArray(
                             new IntPtr(0x1400A7797),
-                            ConvertByteString("44 88 3D 66 B8 3B 00 45 00 BE 00 01 00 00 E9 97 FE FF FF")
+                            ConvertByteString("48 8B 91 A8 00 00 00 44 88 BA 90 03 00 00 45 00 BE 00 01 00 00 E9 90 FE FF FF")
                         );
                     }
                 }},
