@@ -841,6 +841,8 @@ namespace Sandbox {
                                     Autolockdial.ToolTip = "Frames before a piece locks after touching the ground.";
                                 PuyoDelaySpeed.Title = "Puyo Delay Speed Modifier";
                                     PuyoDelaySpeed.ToolTip = "Exponentially change the speed of puyo animations, such as nuisance dropping and chain advancing.";
+                                EntryT.Title = "Entry Delay (Tetris)";
+                                EntryP.Title = "Entry Delay (Puyo)";
 
                         Gravity.Header = "Gravity";
                             Level.Text = "Level";
@@ -2043,6 +2045,34 @@ namespace Sandbox {
                     if (x == 192)                                   //to make things simple and easier to reset to defaults, I do this
                         x += 63;                                    //in all cases but default (192), both values are the same
                     Game.WriteInt32(new IntPtr(0x141188963), x);
+                }},
+                {EntryT, x => {
+                    if (x == 2) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x142835A4E),
+                            ConvertByteString("FF 90 20 03 00 00")
+                        );
+                    } else {
+                        Game.WriteByteArray(
+                            new IntPtr(0x142835A4E),
+                            ConvertByteString("B8 02 00 00 00 90")
+                        );
+                        Game.WriteInt32(new IntPtr(0x142835A4F),x);
+                    }
+                }},
+                {EntryP, x => {
+                    if (x == 7) {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1416CC14E),
+                            ConvertByteString("FF 90 20 03 00 00")
+                        );
+                    } else {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1416CC14E),
+                            ConvertByteString("B8 07 00 00 00 90")
+                        );
+                        Game.WriteInt32(new IntPtr(0x1416CC14F),x);
+                    }
                 }}
             };
 
@@ -2222,6 +2252,8 @@ namespace Sandbox {
                 DAS,
                 Autolockdial,
                 PuyoDelaySpeed,
+                EntryT,
+                EntryP,
                 GravityTable,
                 Softdrop,
                 xpos,
