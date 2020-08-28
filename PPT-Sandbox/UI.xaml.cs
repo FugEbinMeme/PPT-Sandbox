@@ -54,6 +54,7 @@ namespace Sandbox {
                                     Input.ToolTip = "기본적으로, 뿌요뿌요 테트리스는 하드 드롭하지 않으면 [회전-> 이동-> 중력] 순서대로 입력을 처리하고, 그렇지 않으면 [회전-> 하드 드롭] 순서로 입력을 처리합니다.\n" +
                                                     "이 옵션을 키면, 항상 [이동 -> 회전 -> (중력 / 하드드롭] 순으로 처리하여 입력 수를 줄이고 부드러운 입력을 보여줍니다.\n" +
                                                     "홀드는 항상 다른 것보다 먼저 처리됩니다.";
+                                TG.Content = "20G";
 
                                 AutoLocking.Text = "블록 자동 놓기";
                                     RemoveAutoLock.Content = "블록 자동 놓기 해제";
@@ -341,6 +342,7 @@ namespace Sandbox {
                                     Input.ToolTip = "デフォルトでは、ぷよテトはハードドロップしない場合、[回転->移動->重力]の順、する場合、[回転->ハードドロップ]の順に入力を処理する。\n" +
                                                     "オンにすると、常に[移動->回転->(重力/ハードドロップ)]になり、よりスムーズな操作性と入力漏れの減少につながる" +
                                                     "ホールドは常に最初に処理される";
+                                TG.Content = "20G";
 
                                 AutoLocking.Text = "自動接地";
                                     RemoveAutoLock.Content = "自動接地を無効化";
@@ -627,6 +629,8 @@ namespace Sandbox {
                                     Input.ToolTip = "By default, PPT processes inputs in the order of [Rotation -> Movement -> Gravity] if you don't harddrop, and [Rotation -> Harddrop] if you do.\n" +
                                                     "With this, it now always does [Movement -> Rotate -> (Gravity / Harddrop)], leading to a smoother experience and less \"dropped\" inputs.\n" +
                                                     "Hold is always processed first, before anything else.";
+                                TG.Content = "20G";
+                                    TG.ToolTip = "Doesn't work on CPU players";
 
                             AutoLocking.Text = "Piece Auto-Locking";
                                 RemoveAutoLock.Content = "Disable Auto-Locking";
@@ -1798,7 +1802,50 @@ namespace Sandbox {
                         new IntPtr(0x1428A335F), 
                         x ? ConvertByteString("90 90") : ConvertByteString("75 59")
                     )
-                }
+                },
+                {TG, x => {
+                    if (x) {
+                        Game.WriteByteArray(                //20G
+                            new IntPtr(0x142835AE2),
+                            ConvertByteString("EB 33 90 90 90")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x142835B17),
+                            ConvertByteString("48 8B 5C 24 30 E8 03 00 00 00 EB C4 C3 48 8B 4B 40 48 8B 01 48 8B B3 A8 00 00 00 48 8B B6 C8 03 00 00 48 83 EC 20 FF 90 F0 00 00 00 48 83 C4 20 84 C0 75 D8 FF 4E 10 75 D4 C3")
+                        );
+
+                        Game.WriteByteArray(                //Fix visual bug
+                            new IntPtr(0x14284C68F),
+                            ConvertByteString("90 90 FF 8B")
+                        );
+                        Game.WriteByteArray(                //Better input handling code, since otherwise pieces will merge occasionally
+                            new IntPtr(0x14001DFE6),
+                            ConvertByteString("48 8B 7C 24 68 80 BF 90 03 00 00 00 0F 84 18 8D 08 00 0F BE 8F 90 03 00 00 C6 87 90 03 00 00 00 48 8B 87 C8 03 00 00 01 48 0C 48 31 C0 48 8B CB E9 F5 8C 08 00")
+                        );
+                        Game.WriteByteArray(                //This is why you can't have both activated, since 20G needs it to work
+                            new IntPtr(0x1400A763A),        //I took only what I needed from the better input handlnig code and threw it here
+                            ConvertByteString("E9 58 01 00 00 90 90")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400A7797),
+                            ConvertByteString("48 8B 91 A8 00 00 00 44 88 BA 90 03 00 00 45 00 BE 00 01 00 00 48 8B 92 C8 03 00 00 44 00 7A 0C E9 85 FE FF FF")
+                        );
+                    } else {
+                        Game.WriteByteArray(
+                            new IntPtr(0x142835AE2),
+                            ConvertByteString("48 8B 5C 24 30")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x14284C68F),
+                            ConvertByteString("75 06 FF 83")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400A763A),
+                            ConvertByteString("45 00 BE 00 01 00 00")
+                        );
+                    }
+                }}
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
@@ -2166,7 +2213,10 @@ namespace Sandbox {
                 ColM,
                 Lockout,
                 Invisible,
-                Input,
+                new List<OptionalRadioButton>() {
+                    Input,
+                    TG
+                },
                 new List<OptionalRadioButton>() {
                     RemoveAutoLock,
                     TGMAutoLock

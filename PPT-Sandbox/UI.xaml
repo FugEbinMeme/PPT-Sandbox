@@ -49,7 +49,9 @@
 
                                     <CheckBox Margin="0 0 0 5" x:Name="Invisible" Click="CheckBoxHandle" />
 
-                                    <CheckBox Margin="0 0 0 5" x:Name="Input" Click="CheckBoxHandle" />
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Inputs" x:Name="Input" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
+
+                                    <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Inputs" x:Name="TG" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
