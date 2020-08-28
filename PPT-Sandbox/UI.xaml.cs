@@ -1207,63 +1207,51 @@ namespace Sandbox {
                     }
                 }},
                 {AllSpin, x => {
-                    Game.WriteByte(
-                        new IntPtr(0x14280D093),    //remove mini
-                        Convert.ToByte(!x)
-                    );
-
-                    Game.WriteByteArray(
-                        new IntPtr(0x141A70306),    //jump to sfx patching
-                        x
-                            ? ConvertByteString("E9 6C FD 59 FE")
-                            : ConvertByteString("89 FA 48 89 D9")
-                        );
-
-                    Game.WriteByteArray(
-                        new IntPtr(0x1426CCECD),    //jump to immobile detection
-                        x
-                            ? ConvertByteString("E9 17 30 94 FD 90")
-                            : ConvertByteString("8D 47 01 89 46 28")
-                        );
-
-                    Game.WriteByteArray(
-                        new IntPtr(0x1400A7625),    //jump to flag reset on movement
-                        x
-                            ? ConvertByteString("E9 99 8A F6 FF")
-                            : ConvertByteString("48 8B 5C 24 40")
-                        );
-
-                    Game.WriteByteArray(
-                        new IntPtr(0x14271DF6A),    //spin tetris jump
-                        x
-                            ? ConvertByteString("EB 17")
-                            : ConvertByteString("0F B6")
-                        );
-
                     if (x) {
+                        Game.WriteByte(new IntPtr(0x1400A4201), 0x48);  //Remove Mini
+
+                        Game.WriteByteArray(                            //SFX, Immobile Spins trigger T-Spin sound
+                            new IntPtr(0x141A70306),
+                            ConvertByteString("E9 27 00 00 00")
+                        );
                         Game.WriteByteArray(
-                            new IntPtr(0x140010077),//sfx patching
-                            ConvertByteString("48 83 FF 51 75 3B 41 56 56 41 57 49 8B F7 E8 00 FF FF FF 4A 8D 14 FD 78 03 00 00 41 5F 4C 8B 35 85 1A 45 00 4E 8B 34 32 4D 8B B6 A8 00 00 00 41 80 BE E5 03 00 00 00 74 05 BF 57 00 00 00 5E 41 5E 8B D7 48 8B CB E9 49 02 A6 01")
+                            new IntPtr(0x141A70332),
+                            ConvertByteString("48 83 FF 51 0F 85 17 00 00 00 48 8B 8C 24 00 01 00 00 80 B9 E5 03 00 00 00 B9 57 00 00 00 0F 45 F9 8B D7 48 8B CB EB B1")
+                        );
+
+                        Game.WriteByteArray(                            //Reset T-Spin flag on movement
+                            new IntPtr(0x1400A7625),
+                            ConvertByteString("E9 CC 00 00 00")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400A76F6),
+                            ConvertByteString("48 8B 5C 24 40 84 C0 0F 85 74 FF FF FF 48 8B 8C 24 A0 00 00 00 C6 81 E5 03 00 00 00 E9 17 FF FF FF")
+                        );
+
+                        Game.WriteByteArray(                            //Immobile Detection
+                            new IntPtr(0x1426CCECD),
+                            ConvertByteString("E9 17 30 94 FD 90")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x14000FEE9),
+                            ConvertByteString("8D 47 01 89 46 28 4C 8D 25 FA 20 45 00 31 DB 0F B6 C3 45 0F BE 34 44 45 0F BE 7C 44 01 48 8B CE 8B 56 0C 44 01 F2 44 8B 46 10 45 01 F8 44 8B CD E8 92 09 09 00 00 C7 FE C3 80 FB 03 7C D1 80 FF 03 41 0F 94 C0 4C 8B 34 25 F0 F9 14 00 45 88 86 E5 03 00 00 E9 90 CF 6B 02")
+                        );
+
+                        Game.WriteByteArray(                            //Immobile Kick Data
+                            new IntPtr(0x140461FF0),
+                            ConvertByteString("FF 00 01 00 00 01")
+                        );
+                    } else {
+                        Game.WriteByte(new IntPtr(0x1400A4201), 0x21);
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x141A70306),
+                            ConvertByteString("89 FA 48 89 D9")
                         );
 
                         Game.WriteByteArray(
-                            new IntPtr(0x1400100C3),//reset flag
-                            ConvertByteString("48 8B 5C 24 40 84 C0 0F 85 5C 75 09 00 49 8B C6 49 8B D7 48 8B CE 48 8B 74 24 10 E8 A7 FE FF FF 48 8B F1 4A 8D 0C FD 78 03 00 00 44 8B 35 2B 1A 45 00 46 8B 34 31 45 8B B6 A8 00 00 00 41 C6 86 E5 03 00 00 00 4C 8B FA 4C 8B F0 E9 1B 75 09 00")
-                        );
-
-                        Game.WriteByteArray(
-                            new IntPtr(0x14000FEE9),//immobile detection
-                            ConvertByteString("C6 05 12 31 45 00 00 8D 47 01 89 46 28 31 DB 41 BE FF FF FF FF 45 31 FF EB 23 83 FB 01 75 08 41 BE 01 00 00 00 EB 16 83 FB 02 75 08 41 BF 01 00 00 00 EB 06 41 BF FF FF FF FF 45 31 F6 8B 56 0C 44 01 F2 44 8B 46 10 45 01 F8 44 8B CD 4F 8D 24 89 48 8B CE E8 6E 09 09 00 84 C0 74 06 FF 05 B6 30 45 00 FF C3 83 FB 04 7C B0 E8 32 00 00 00 83 3D A3 30 45 00 04 41 0F 94 C0 4A 8D 04 FD 78 03 00 00 44 8B 35 AE 1B 45 00 46 8B 34 30 45 8B B6 A8 00 00 00 45 88 86 E5 03 00 00 E9 49 CF 6B 02")
-                        );
-
-                        Game.WriteByteArray(
-                            new IntPtr(0x14000FF8A),//find player
-                            ConvertByteString("44 0F B6 3C 25 98 FA 14 00 C3")
-                        );
-
-                        Game.WriteByteArray(
-                            new IntPtr(0x14271DF83),//override damage sent if tspin && 4 lines cleared
-                            ConvertByteString("0F B6 8C 11 B4 00 32 00 81 FD 00 00 14 00 77 0E 41 80 BE F8 02 00 00 04 75 D5 B1 08 EB D1 80 BB F8 02 00 00 04 75 C8 B1 08 EB C4")
+                            new IntPtr(0x1400A7625),
+                            ConvertByteString("48 8B 5C 24 40")
                         );
                     }
                 }},
