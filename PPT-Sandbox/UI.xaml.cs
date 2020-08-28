@@ -760,6 +760,7 @@ namespace Sandbox {
                         MarginTime.Header = "Margin Time";
                             Margin.Text = "Value";
                                 Margin.ToolTip = "Has no effect on Tetris vs Tetris games.";
+                            MargarineTime.Content = "Enable Margin Time in Tetris vs Tetris";
 
                     GarbageHeader.Header = "GARBAGE";
                         Detection.Header = "     Detection";
@@ -1789,7 +1790,13 @@ namespace Sandbox {
                             ConvertByteString("89 70 18 89 70 28")
                         );
                     }
-                }}
+                }},
+                {MargarineTime, x => 
+                    Game.WriteByteArray(
+                        new IntPtr(0x1428A335F), 
+                        x ? ConvertByteString("90 90") : ConvertByteString("75 59")
+                    )
+                }
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
@@ -2182,6 +2189,7 @@ namespace Sandbox {
                 StarBonusChain,
                 PvPChainTable,
                 MarginTimeTable,
+                MargarineTime,
                 new List<OptionalRadioButton>() {
                     TetrisB2BDouble,
                     TetrisB2BAdd2,
