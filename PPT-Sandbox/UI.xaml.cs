@@ -920,11 +920,19 @@ namespace Sandbox {
                         Game.WriteInt32(addr + 0x564, -2);
                     }
                 }},
-                {RemoveLineClearDelay, x =>
-                    Game.WriteByte(
-                        new IntPtr(0x1400A26F4),
-                        Convert.ToByte(!x)
-                    )
+                {RemoveLineClearDelay, x => {
+                        Game.WriteByte(
+                            new IntPtr(0x1400A26F4),
+                            Convert.ToByte(!x)
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x1400A26F8),
+                            x
+                                ? ConvertByteString("90 90 90 90 90")
+                                : ConvertByteString("E9 6A 01 00 00")
+                        );
+                        
+                    }
                 },
                 {UndoHold, x => {
                     byte[] write = x
