@@ -236,6 +236,9 @@ namespace Sandbox {
         double lastY;
 
         void Down(object sender, MouseButtonEventArgs e) {
+            if (Enabled && e.ChangedButton == MouseButton.Middle) {
+                RawValue = Default;
+            }
             if (!Enabled || e.ChangedButton != MouseButton.Left) return;
 
             if (e.ClickCount == 2 && AllowPrecise) {
