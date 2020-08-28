@@ -938,15 +938,15 @@ namespace Sandbox {
                     Game.WriteByteArray(
                         new IntPtr(0x14009F480),
                         x
-                            ? ConvertByteString("8A 1D 7A 3B 3C 00 80 3D 74 3B 3C 00 00 75 08 FF 05 6B 3B 3C 00 EB 06 FF 0D 63 3B 3C 00 80 3D 5D 3B 3C 00 00 75 10 80 3D 53 3B 3C 00 09 7C 27 C6 05 4B 3B 3C 00 01 80 3D 43 3B 3C 00 00 75 17 C6 05 3B 3B 3C 00 00 80 3D 33 3B 3C 00 0A 72 07 C6 05 2A 3B 3C 00 00 E9 85 3B 61 02")
+                            ? ConvertByteString("48 8B 44 24 28 0F B6 98 DE 03 00 00 80 B8 DF 03 00 00 00 0F 85 0B 00 00 00 FF 80 DE 03 00 00 E9 06 00 00 00 FF 88 DE 03 00 00 80 B8 DF 03 00 00 00 0F 85 14 00 00 00 80 B8 DE 03 00 00 09 0F 8C 2F 00 00 00 C6 80 DF 03 00 00 01 80 B8 DE 03 00 00 00 0F 85 1B 00 00 00 C6 80 DF 03 00 00 00 80 B8 DE 03 00 00 0A 0F 82 07 00 00 00 C6 80 DE 03 00 00 00 E9 68 3B 61 02")
                             : ConvertByteString("E9 DB 3B 61 02")
                     );
 
                     Game.WriteByteArray(
-                        new IntPtr(0x140061010),
+                        new IntPtr(0x14272602B),
                         x
-                            ? ConvertByteString("66 C7 05 E7 1F 40 00 00 00 E9 A2 79 91 01")
-                            : ConvertByteString("E9 AB 79 91 01")
+                            ? ConvertByteString("89 B3 DC 03 00 00 90")
+                            : ConvertByteString("66 89 B3 DC 03 00 00")
                     );
                 }},
                 {GarbageBlocking, x =>
