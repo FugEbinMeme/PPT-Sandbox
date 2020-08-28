@@ -68,6 +68,16 @@
                                 <StackPanel Margin="10 5 10 0">
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
+                                    <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="General2" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="Noghost" Click="CheckBoxHandle" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="Unhold" Click="CheckBoxHandle" />
+
+                                    <CheckBox Margin="0 0 0 5" x:Name="PreserveRot" Click="CheckBoxHandle" />
+
+                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
+
                                     <TextBlock Margin="0 0 0 5" Foreground="#707070" x:Name="Harddrop" />
 
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Sonicdrop" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
@@ -77,18 +87,6 @@
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Sink" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
 
                                     <Sandbox:OptionalRadioButton Margin="0 0 0 5" GroupName="Harddropmod" x:Name="Up" Checked="RadioButtonHandle" Unchecked="RadioButtonHandle" />
-
-                                    <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-                                    
-                                    <CheckBox Margin="0 5 0 5" x:Name="Noghost" Click="CheckBoxHandle" />
-
-                                    <CheckBox Margin="0 0 0 5" x:Name="Unhold" Click="CheckBoxHandle" />
-
-                                    <CheckBox Margin="0 0 0 5" x:Name="PreserveRot" Click="CheckBoxHandle" />
-
-                                    <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
-                                    
-                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="30" Default="20" Unit="" x:Name="Lockoutdial" Changed="DialHandle" />
 
                                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>
@@ -737,13 +735,15 @@
                                 <StackPanel Margin="10 5 10 0">
                                     <Border Margin="0 0 0 5" BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
 
-                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="1" Maximum="10" Default="4" Unit="" FillStart="False" x:Name="xpos" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="1" Maximum="10" Default="4" Unit="" x:Name="xpos" Changed="DialHandle" />
 
-                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="20" Default="20" Unit="" FillStart="False" x:Name="ypos" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="20" Default="20" Unit="" x:Name="ypos" Changed="DialHandle" />
 
-                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="1" Maximum="9" Default="3" Unit="" FillStart="False" x:Name="xposp" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="1" Maximum="9" Default="3" Unit="" x:Name="xposp" Changed="DialHandle" />
 
-                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="20" Default="3" Unit="" FillStart="False" x:Name="yposp" Changed="DialHandle" />
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="20" Default="3" Unit="" x:Name="yposp" Changed="DialHandle" />
+
+                                    <Sandbox:Dial Margin="0 0 0 5" Scale="0.5" Minimum="0" Maximum="30" Default="20" Unit="" x:Name="Lockoutdial" Changed="DialHandle" />
 
                                     <Border BorderBrush="#202020" Height="1" BorderThickness="0 0 0 1" />
                                 </StackPanel>

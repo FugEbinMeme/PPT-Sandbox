@@ -62,6 +62,13 @@ namespace Sandbox {
                                                       "일반적으로 자동 놓기 타이머는 회전 & 이동시에도 재설정됩니다.";
 
                     Script2.Header = "페이지 2";
+                        General2.Text = General.Text;
+                            Noghost.Content = "고스트 모양 삭제";
+                            PreserveRot.Content = "홀드 시 블록의 회전상태 유지";
+                                PreserveRot.ToolTip = "홀드 시 블록 회전 저장";
+                            Unhold.Content = "홀드 시 블록의 위치 유지";
+                                Unhold.ToolTip = "홀드 시 블록 위치 저장";
+
                         Harddrop.Text = "하드드롭 변형";
                             Float.Content = "떠있는 상태로 놓기";
                                 Float.ToolTip = "블록을 아래 고스트 위치에 놓지 않고 현재 위치에 놓습니다.";
@@ -71,15 +78,6 @@ namespace Sandbox {
                                 Sink.ToolTip = "아래 있는 블록을 무시하고 블록을 놓습니다.";
                             Up.Content = "하드드랍 -> 위로 올리기";
                                 Up.ToolTip = "하드드랍 키를 누를 시 블록이 1칸 위로 이동합니다.";
-                            Noghost.Content = "고스트 모양 삭제";
-
-                            PreserveRot.Content = "홀드 시 블록의 회전상태 유지";
-                                PreserveRot.ToolTip = "홀드 시 블록 회전 저장";
-                            Unhold.Content = "홀드 시 블록의 위치 유지";
-                                Unhold.ToolTip = "홀드 시 블록 위치 저장";
-
-                            Lockoutdial.Title = "블록 최대높이";
-                                Lockoutdial.ToolTip = "이 높이 위로 블록을 놓을 시 게임오버됩니다.";
 
                         PuyoScripts.Header = "뿌요뿌요";
                             PuyoAutoLock.Content = "뿌요 자동 놓기 해제";
@@ -283,6 +281,8 @@ namespace Sandbox {
                             ypos.Title = "스폰 높이";
                             xposp.Title = "스폰 위치 (가로)(뿌요)";
                             yposp.Title = "스폰 높이 (뿌요)";
+                            Lockoutdial.Title = "블록 최대높이";
+                                Lockoutdial.ToolTip = "이 높이 위로 블록을 놓을 시 게임오버됩니다.";
 
                         RulesHeader.Header = "세부 설정";
                             Wincount.Title = "승리 카운트 (별 갯수)";
@@ -349,6 +349,13 @@ namespace Sandbox {
                                                               "通常、接地時間のタイマーは回転と移動時にもリセットされる.";
 
                         Script2.Header = "2ページ";
+                            General2.Text = General.Text;
+                                Noghost.Content = "ゴースト削除";
+                                PreserveRot.Content = "ホールドされるミノの回転を保持する";
+                                    PreserveRot.ToolTip = "ホールドしても回転はリセットされない";
+                                Unhold.Content = "ホールド時に位置を保持する";
+                                    Unhold.ToolTip = "ホールドしても位置はリセットされない";
+
                             Harddrop.Text = "ハードドロップ変更";
                                 Float.Content = "フローティングロック";
                                     Float.ToolTip = "ゴーストの位置ではなく、現在の位置で固定する";
@@ -359,14 +366,6 @@ namespace Sandbox {
                                 Up.Content = "ハードドロップで上昇";
                                     Up.ToolTip = "ハードドロップを押すと、ミノが1マス上に移動し、ミノを固定できなくなる\n" +
                                                  "自動接地がミノを固定する唯一の方法になった";
-                            Noghost.Content = "ゴースト削除";
-
-                            PreserveRot.Content = "ホールドされるミノの回転を保持する";
-                                PreserveRot.ToolTip = "ホールドしても回転はリセットされない";
-                            Unhold.Content = "ホールド時に位置を保持する";
-                                Unhold.ToolTip = "ホールドしても位置はリセットされない";
-                            Lockoutdial.Title = "ロックアウトの高さ";
-                                Lockoutdial.ToolTip = "ミノを置くとゲームオーバーになる高さ";
 
                         PuyoScripts.Header = "ぷよ";
                             PuyoAutoLock.Content = "ぷよ自動設置削除";
@@ -567,6 +566,8 @@ namespace Sandbox {
                             ypos.Title = "出現位置 高さ";
                             xposp.Title = "出現位置 X座標 (ぷよ)";
                             yposp.Title = "出現位置 高さ (ぷよ)";
+                            Lockoutdial.Title = "ロックアウトの高さ";
+                                Lockoutdial.ToolTip = "ミノを置くとゲームオーバーになる高さ";
 
                         RulesHeader.Header = "ゲーム設定";
                             Wincount.Title = "WIN 数";
@@ -634,6 +635,13 @@ namespace Sandbox {
                                                           "Normally, Auto-Lock timer is reset upon rotate and movement as well.";
 
                         Script2.Header = "Page 2";
+                            General2.Text = General.Text;
+                                Noghost.Content = "Remove Ghost";
+                                PreserveRot.Content = "Preserve Rotation on Hold";
+                                    PreserveRot.ToolTip = "Rotation doesn't reset on hold";
+                                Unhold.Content = "Preserve Position on Hold";
+                                    Unhold.ToolTip = "Position doesn't reset on hold.";
+
                             Harddrop.Text = "Hard-Drop Modification";
                                 Float.Content = "Floating Lock";
                                     Float.ToolTip = "Piece locks at its current position rather than at the ghost position.";
@@ -644,14 +652,6 @@ namespace Sandbox {
                                 Up.Content = "Hard Drop Goes Up";
                                     Up.ToolTip = "Pressing Harddrop now makes your piece move 1 tile up, and can no longer lock your piece.\n" +
                                                  "Auto-Lock is now the only way to place a piece.";
-                            Noghost.Content = "Remove Ghost";
-                            
-                            PreserveRot.Content = "Preserve Rotation on Hold";
-                                PreserveRot.ToolTip = "Rotation doesn't reset on hold";
-                            Unhold.Content = "Preserve Position on Hold";
-                                Unhold.ToolTip = "Position doesn't reset on hold.";
-                            Lockoutdial.Title = "Lock Out Height";
-                                Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
 
                         PuyoScripts.Header = "Puyo";
                             PuyoAutoLock.Content = "Remove Puyo Auto-Placing";
@@ -853,6 +853,8 @@ namespace Sandbox {
                             ypos.Title = "Spawn Height";
                             xposp.Title = "Spawn X (Puyo)";
                             yposp.Title = "Spawn Height (Puyo)";
+                            Lockoutdial.Title = "Lock Out Height";
+                                    Lockoutdial.ToolTip = "Height at which locking a piece at will cause a game over.";
 
                         RulesHeader.Header = "Settings";
                             Wincount.Title = "Win Count";
@@ -2084,7 +2086,7 @@ namespace Sandbox {
             };
 
             EncodingList = new List<object>() {
-                PentominoVersus,
+                PentominoVersus,    //page 1
                 RemoveLineClearDelay,
                 UndoHold,
                 FreezeSwap,
@@ -2097,16 +2099,15 @@ namespace Sandbox {
                     RemoveAutoLock,
                     TGMAutoLock
                 },
+                Noghost,    //page 2
+                Unhold,
+                PreserveRot,
                 new List<OptionalRadioButton>() {
                     Sonicdrop,
                     Float,
                     Sink,
                     Up
                 },
-                Noghost,
-                Unhold,
-                PreserveRot,
-                Lockoutdial,
                 PuyoAutoLock,
                 ScoreMultiEnable,
                 Wobble,
@@ -2183,6 +2184,7 @@ namespace Sandbox {
                 ypos,
                 xposp,
                 yposp,
+                Lockoutdial,
                 Wincount,
                 PopNum,
                 Minchain,
