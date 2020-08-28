@@ -641,6 +641,7 @@ namespace Sandbox {
                                     PreserveRot.ToolTip = "Rotation doesn't reset on hold";
                                 Unhold.Content = "Preserve Position on Hold";
                                     Unhold.ToolTip = "Position doesn't reset on hold.";
+                                IRS.Content = "Allow IRS & IHS";
 
                             Harddrop.Text = "Hard-Drop Modification";
                                 Float.Content = "Floating Lock";
@@ -934,8 +935,7 @@ namespace Sandbox {
                                 : ConvertByteString("E9 6A 01 00 00")
                         );
                         
-                    }
-                },
+                }},
                 {UndoHold, x => {
                     byte[] write = x
                         ? ConvertByteString("90 90 90 90 90 90") //enable
@@ -1754,7 +1754,42 @@ namespace Sandbox {
                             ? ConvertByteString("90 90 90 90")
                             : ConvertByteString("44 0F 44 D0")
                         )
-                }
+                },
+                {IRS, x => {
+                    if (x) {
+                        Game.WriteByteArray(                                //remove conflicting irs thing
+                            new IntPtr(0x14285F891),
+                            ConvertByteString("90 90 90 90 90 90 90 90")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x14285F876),
+                            ConvertByteString("90 90 90 90")
+                        );
+
+                        Game.WriteByteArray(                                //Process IRS and IHS
+                            new IntPtr(0x14278EFB6),
+                            ConvertByteString("E9 6F 6F AD FD 90")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x140265F2A),
+                            ConvertByteString("89 70 18 89 70 28 48 8B 74 24 70 48 8B B6 B0 00 00 00 48 8B 76 2C 48 8B EE 48 83 E6 40 48 83 FE 40 75 2E 48 8B F5 48 8B 93 D0 03 00 00 48 85 D2 74 1F 8B 6A 08 89 4A 08 89 68 08 48 8B 4B 78 48 8B 49 40 FF 81 48 01 00 00 FF 81 4C 01 00 00 EB 03 48 8B F5 48 83 E6 10 48 83 FE 10 75 07 C7 40 18 03 00 00 00 48 8B F5 48 83 E6 20 48 83 FE 20 75 07 C7 40 18 01 00 00 00 48 31 F6 E9 11 90 52 02")
+                        );
+                    } else {
+                        Game.WriteByteArray(
+                            new IntPtr(0x14285F891),
+                            ConvertByteString("66 83 8B 98 00 00 00 10")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x14285F876),
+                            ConvertByteString("66 83 C8 20")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x14278EFB6),
+                            ConvertByteString("89 70 18 89 70 28")
+                        );
+                    }
+                }}
             };
 
             DialScripts = new Dictionary<Dial, Action<int>>() {
@@ -2102,6 +2137,7 @@ namespace Sandbox {
                 Noghost,    //page 2
                 Unhold,
                 PreserveRot,
+                IRS,
                 new List<OptionalRadioButton>() {
                     Sonicdrop,
                     Float,
