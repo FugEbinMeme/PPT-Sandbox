@@ -1416,60 +1416,12 @@ namespace Sandbox {
                         );
                     }
                 }},
-                {Flip, x => {
-                    Game.WriteByteArray(
-                        new IntPtr(0x1400A6D4B),
-                        x
-                            ? ConvertByteString("E9 F6 F7 FF FF")
-                            : ConvertByteString("BF 00 00 00 00")
-                        );
-
-                    Game.WriteByteArray(
-                        new IntPtr(0x1402662D2),
-                        x
-                            ? ConvertByteString("E9 2F FC FF FF 90 90 90")
-                            : ConvertByteString("F6 84 19 68 01 00 00 80")
-                        );
-
-                    if (x) {
-                        Game.WriteByteArray(
-                            new IntPtr(0x140265F06),
-                            ConvertByteString("F6 84 19 68 01 00 00 80 0F 84 CA 03 00 00 38 4B 5E 0F 85 BF 03 00 00 C6 05 DF D0 1F 00 01 E9 B3 03 00 00")
-                        );
-
-                        Game.WriteByteArray(
-                            new IntPtr(0x1400A6546),
-                            ConvertByteString("BF 00 00 00 00 0F 45 F9 80 3D AE CA 3B 00 01 0F 85 F8 07 00 00 C6 05 A1 CA 3B 00 00 57 8B F8 83 E7 20 83 FF 20 5F 0F 85 E1 07 00 00 41 8B 7E 30 8B BF C8 03 00 00 8B 47 08 83 F8 02 7D 08 83 F0 01 89 47 08 EB 3B 83 F8 04 7D 0E 83 E8 02 83 F0 01 83 C0 02 89 47 08 EB 28 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 07 BF 02 00 00 00 EB 05 BF FE FF FF FF E9 99 07 00 00 31 FF E9 92 07 00 00 31 FF 41 80 BE 25 01 00 00 00 0F 85 94 07 00 00 B8 00 08 00 00 66 41 89 86 1E 01 00 00 E9 AC 07 00 00")
-                        );
-                    }
-                }},
-                {Flip180, x => {
-                    Game.WriteByteArray(
-                        new IntPtr(0x1402662D2),
-                        x
-                            ? ConvertByteString("E9 2F FC FF FF 90 90 90")
-                            : ConvertByteString("F6 84 19 68 01 00 00 80")
-                        );
-
-                    Game.WriteByteArray(
-                        new IntPtr(0x1400A6D4B),
-                        x
-                            ? ConvertByteString("E9 F6 F7 FF FF")
-                            : ConvertByteString("BF 00 00 00 00")
-                        );
-
-                    if (x) {
-                        Game.WriteByteArray(
-                            new IntPtr(0x140265F06),
-                            ConvertByteString("F6 84 19 68 01 00 00 80 0F 84 CA 03 00 00 38 4B 5E 0F 85 BF 03 00 00 C6 05 DF D0 1F 00 01 E9 B3 03")
-                        );
-
-                        Game.WriteByteArray(
-                            new IntPtr(0x1400A6546),
-                            ConvertByteString("BF 00 00 00 00 0F 45 F9 80 3D AE CA 3B 00 01 0F 85 F8 07 00 00 C6 05 A1 CA 3B 00 00 57 8B F8 83 E7 20 83 FF 20 5F 0F 85 E1 07 00 00 41 8B 7E 30 8B BF C8 03 00 00 8B 47 08 83 F8 02 7D 08 83 F0 01 89 47 08 EB 11 83 F8 04 7D 0C 83 E8 02 83 F0 01 83 C0 02 89 47 08 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 74 07 BF 02 00 00 00 EB 05 BF FE FF FF FF E9 9B 07 00 00 31 FF E9 94 07 00 00")
-                        );
-                    }
-                }},
+                {Flip, x => 
+                    FlipBase(x, false)
+                },
+                {Flip180, x => 
+                    FlipBase(x, true)   //180 is a 5-byte modification from the default since I re-wrote the code well :B1:
+                },
                 {jstris, x => {
                     if (DoubleRotate.IsChecked == true || x == false) {
                         Game.WriteByte(
@@ -2241,6 +2193,58 @@ namespace Sandbox {
             };
         }
 
+        private void FlipBase(bool x, bool is180) { //When I re-wrote the piece flipping codes, I made the 180 variant a simple modification of the default
+            if (x) {
+                Game.WriteByteArray(                                //Get Input
+                    new IntPtr(0x1402662D2),
+                    ConvertByteString("E9 2F FC FF FF 90 90 90")
+                );
+                Game.WriteByteArray(
+                    new IntPtr(0x140265F06),
+                    ConvertByteString("F6 84 19 68 01 00 00 80 0F 84 CA 03 00 00 38 4B 5E 0F 85 BF 03 00 00 C6 05 DF D0 1F 00 01 E9 B3 03 00 00")
+                );
+
+                Game.WriteByteArray(                                //Flip Piece
+                    new IntPtr(0x1400A6D4B),
+                    ConvertByteString("E9 F6 F7 FF FF")
+                );
+                Game.WriteByteArray(
+                    new IntPtr(0x1400A6546),
+                    ConvertByteString("BF 00 00 00 00 0F 45 F9 80 3D AE CA 3B 00 01 0F 85 82 00 00 00 C6 05 A1 CA 3B 00 02 57 8B F8 83 E7 20 83 FF 20 5F 0F 85 6B 00 00 00 41 8B 7E 30 8B BF C8 03 00 00 8B 47 08 83 F8 04 0F 8D 0B 00 00 00 83 F0 01 89 47 08 E9 28 00 00 00 41 8B 7E 30 8B BF C8 03 00 00 80 7F 18 03 0F 84 0A 00 00 00 BF 02 00 00 00 E9 38 00 00 00 BF FE FF FF FF E9 2E 00 00 00 31 FF 41 80 BE 25 01 00 00 00 0F 85 A0 07 00 00 B8 00 08 00 00 66 41 89 86 1E 01 00 00 E9 B8 07 00 00 C6 05 1F CA 3B 00 00 E9 6A 07 00 00 E9 6B 07 00 00 00 00 E9 64 07 00 00")
+                );
+
+                if (is180) {                                        //This NOP's a jmp in the default code that prevents S, Z, J, L pieces from having a 180 kick applied
+                    Game.WriteByteArray(
+                        new IntPtr(0x1400A658E),
+                        ConvertByteString("90 90 90 90 90")
+                    );
+                }
+
+                Game.WriteByteArray(                                //Reset on failed rotate
+                    new IntPtr(0x14280E491),
+                    ConvertByteString("E9 DC 00 00 00 90")
+                );
+                Game.WriteByteArray(
+                    new IntPtr(0x14280E572),
+                    ConvertByteString("A0 03 30 46 40 01 00 00 00 C6 05 81 4A C5 FD 00 0F 85 0F FF FF FF 3C 02 75 AC 48 8B 86 C8 03 00 00 83 78 08 04 7D 9F 83 70 08 01 EB 99")
+                );
+            } else {
+                Game.WriteByteArray(
+                    new IntPtr(0x1402662D2),
+                    ConvertByteString("F6 84 19 68 01 00 00 80")
+                );
+
+                Game.WriteByteArray(
+                    new IntPtr(0x1400A6D4B),
+                    ConvertByteString("BF 00 00 00 00")
+                );
+
+                Game.WriteByteArray(
+                    new IntPtr(0x14280E491),
+                    ConvertByteString("0F 84 A1 00 00 00")
+                );
+            }
+        }
         private void RotationStateBase(bool x) {    //All custom rotation state codes will call this first, passing its own activation state to it
             if (x) {
                 Game.WriteByteArray(
