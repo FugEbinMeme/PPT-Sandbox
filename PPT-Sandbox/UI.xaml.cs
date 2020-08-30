@@ -117,9 +117,10 @@ namespace Sandbox {
                                 nullpo.Content = "Nullpomino 180 SRS";
                                     nullpo.ToolTip = "180도 회전시 Nullpomino의 킥 시스템이 적용됩니다.\n" +
                                                      "오프라인 전용 탭에서 180도 회전을 활성화하세요.";
+                                ArikaRS.Content = "아리카 회전 시스템 (ARS)";
 
                             RotationStates.Text = "회전 상태 변환";
-                                ars.Content = "아리카 회전 시스템 (ARS)";
+                                ars.Content = ArikaRS.Content;
                                 thenewrs.Content = thenew.Content;
 
                         Offline.Header = "오프라인 전용";
@@ -405,9 +406,10 @@ namespace Sandbox {
                                 nullpo.Content = "Nullpomino 180 SRS";
                                     nullpo.ToolTip = "180度回転でNullpominoの回転法則を使用する\n" +
                                                      "[オフライン限定]タブで180度回転を有効にしてください";
+                                ArikaRS.Content = "ARS";
 
                             RotationStates.Text = "回転状態";
-                                ars.Content = "ARS";
+                                ars.Content = ArikaRS.Content;
                                 thenewrs.Content = thenew.Content;
 
                         Offline.Header = "オフライン限定";
@@ -694,9 +696,12 @@ namespace Sandbox {
                                 nullpo.Content = "Nullpomino 180 SRS";
                                     nullpo.ToolTip = "180 degree rotates now use Nullpomino kicks.\n" +
                                                      "Activate 180 rotations in the Offline Only tab.";
+                                ArikaRS.Content = "ARS";
+                                    ArikaRS.ToolTip = "Rotation system used by TGM3.\n" +
+                                                      "Best used with ARS Rotation State code.";
 
                             RotationStates.Text = "Rotation States";
-                                ars.Content = "ARS";
+                                ars.Content = ArikaRS.Content;
                                 thenewrs.Content = thenew.Content;
 
                         Offline.Header = "Offline Only";
@@ -1843,6 +1848,44 @@ namespace Sandbox {
                         Game.WriteByteArray(
                             new IntPtr(0x1400A763A),
                             ConvertByteString("45 00 BE 00 01 00 00")
+                        );
+                    }
+                }},
+                {ArikaRS, x => {
+                    if (x) {
+                        Game.WriteByteArray(            //Kick data
+                            new IntPtr(0x140462000),
+                            ConvertByteString("00 00 01 00 FF 00 00 00 00 00 00 00 01 00 FF 00 00 01 00 00 00 00 01 00 02 00 FF 00 00 00 00 00 00 01 00 02 00 00 00 00")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x1426CCE8E),
+                            ConvertByteString("E8 17 51 93 FD 66 0F 1F 84 00 00 00 00 00 66 0F 1F 44 00 00")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x1426CCEB6),
+                            ConvertByteString("EB 3F 90")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x1426CCEF7),
+                            ConvertByteString("48 85 DB 0F 85 18 00 00 00 83 7E 08 06 0F 84 0E 00 00 00 0F BE 84 24 78 FF FF FF 3B 44 24 40 74 A9 48 FF C3 EB 9C")
+                        );
+
+                        Game.WriteByteArray(            //ARS detection
+                            new IntPtr(0x140001FAA),
+                            ConvertByteString("45 31 F6 45 31 FF 83 7E 08 05 0F 85 01 00 00 00 C3 48 8D 0D 3E 00 46 00 83 7E 08 03 0F 87 05 00 00 00 E9 9B 00 00 00 48 83 C1 0A 83 7E 08 06 0F 84 05 00 00 00 E9 88 00 00 00 48 83 C1 0A F7 46 18 01 00 00 00 0F 84 49 00 00 00 51 41 51 45 8B F9 8B 56 0C 80 FB 03 0F 8D 07 00 00 00 FF CA E9 02 00 00 00 FF C2 44 8B 46 10 44 8B 4E 18 48 8B CE 48 83 EC 20 41 FF 52 70 48 83 C4 20 8B 56 0C 44 8B 46 10 41 59 59 84 C0 0F 84 3F 00 00 00 E9 2E 00 00 00 48 83 C1 0A 83 7E 14 00 0F 85 2C 00 00 00 83 FB 02 0F 85 17 00 00 00 44 8B 7E 10 41 83 FF 00 0F 84 09 00 00 00 44 8B 76 0C E9 1F 00 00 00 44 0F BE 34 59 44 0F BE 7C 59 01 C3 45 31 F6 45 31 FF B8 04 00 00 00 83 7E 08 06 0F 45 D8 C3 51 41 FF CF 31 C9 48 8B 56 20 48 8B 52 18 41 FF CE 4A 8B 04 F2 42 83 3C B8 FF 0F 85 32 00 00 00 41 FF C6 4A 8B 04 F2 42 83 3C B8 FF 0F 85 20 00 00 00 41 FF C6 4A 8B 04 F2 42 83 3C B8 FF 0F 85 0E 00 00 00 41 FF C6 4A 8B 04 F2 42 83 3C B8 FF 74 9B 59 EB 8C")
+                        );
+                    } else {
+                        Game.WriteByteArray(
+                            new IntPtr(0x1426CCEB6),
+                            ConvertByteString("48 FF C3")
+                        );
+
+                        Game.WriteByteArray(
+                            new IntPtr(0x1426CCE8E),
+                            ConvertByteString("44 8B 74 C2 2C 44 8B 7C C2 30 44 2B 7C CA 30 44 2B 74 CA 2C")
                         );
                     }
                 }}
