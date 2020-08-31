@@ -2034,7 +2034,7 @@ namespace Sandbox {
                     }
                 }},
                 {PuyoDelaySpeed, x =>
-                    Game.WriteInt32(new IntPtr(0x1411373AC), x*256/10)
+                    Game.WriteInt32(new IntPtr(0x1411373AC), Math.Max(1, x*256/10))
                 },
                 {ForceGarbage, x => {
                     Game.WriteByteArray(
