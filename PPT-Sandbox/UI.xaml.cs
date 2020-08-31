@@ -268,7 +268,6 @@ namespace Sandbox {
                                 Autolockdial.Title = "자동 드랍 타이머";
                                     Autolockdial.ToolTip = "블록이 아래에 닿은 후 자동 드랍되기까지의 프레임을 나타낸 값입니다.";
                                 PuyoDelaySpeed.Title = "뿌요 딜레이 속도 변경";
-                                    PuyoDelaySpeed.ToolTip = "불쾌감 감소 & 연쇄 진행을 위해 뿌요 애니메이션의 속도를 기하급수적으로 변경합니다.";
 
                         Gravity.Header = "중력";
                             Level.Text = "레벨";
@@ -555,7 +554,6 @@ namespace Sandbox {
                                     Autolockdial.Title = "自動設置タイマー";
                                         Autolockdial.ToolTip = "地面に触れたあと、ミノが固定されるまでのフレーム";
                                     PuyoDelaySpeed.Title = "ぷよ遅延速度変更";
-                                        PuyoDelaySpeed.ToolTip = "おじゃまの落下や連鎖速度のようなぷよのアニメーションを指数関数的に変更する";
 
                             Gravity.Header = "重力";
                                 Level.Text = "レベル";
@@ -849,7 +847,6 @@ namespace Sandbox {
                                 Autolockdial.Title = "Auto-Lock Timer";
                                     Autolockdial.ToolTip = "Frames before a piece locks after touching the ground.";
                                 PuyoDelaySpeed.Title = "Puyo Delay Speed Modifier";
-                                    PuyoDelaySpeed.ToolTip = "Exponentially change the speed of puyo animations, such as nuisance dropping and chain advancing.";
                                 Speed.Title = "Tetris Delay Speed Modifier";
                                 EntryT.Title = "Entry Delay (Tetris)";
                                 EntryP.Title = "Entry Delay (Puyo)";
@@ -2037,7 +2034,7 @@ namespace Sandbox {
                     }
                 }},
                 {PuyoDelaySpeed, x =>
-                    Game.WriteByte(new IntPtr(0x1412BAD5F), (byte)x)
+                    Game.WriteInt32(new IntPtr(0x1411373AC), x*256/10)
                 },
                 {ForceGarbage, x => {
                     Game.WriteByteArray(
