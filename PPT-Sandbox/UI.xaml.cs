@@ -850,6 +850,7 @@ namespace Sandbox {
                                     Autolockdial.ToolTip = "Frames before a piece locks after touching the ground.";
                                 PuyoDelaySpeed.Title = "Puyo Delay Speed Modifier";
                                     PuyoDelaySpeed.ToolTip = "Exponentially change the speed of puyo animations, such as nuisance dropping and chain advancing.";
+                                Speed.Title = "Tetris Delay Speed Modifier";
                                 EntryT.Title = "Entry Delay (Tetris)";
                                 EntryP.Title = "Entry Delay (Puyo)";
 
@@ -2163,7 +2164,10 @@ namespace Sandbox {
                         );
                         Game.WriteInt32(new IntPtr(0x1416CC14F),x);
                     }
-                }}
+                }},
+                {Speed, x => 
+                    Game.WriteInt32(new IntPtr(0x14113708F), x*4096/10)
+                }
             };
 
             TableScripts = new Dictionary<UniformGrid, Action<int, int>>() {
@@ -2345,6 +2349,7 @@ namespace Sandbox {
                 DAS,
                 Autolockdial,
                 PuyoDelaySpeed,
+                Speed,
                 EntryT,
                 EntryP,
                 GravityTable,
