@@ -139,6 +139,15 @@ namespace Sandbox {
             }
         }
 
+        bool _decimal = false;
+        public bool Decimal {
+            get => _decimal;
+            set {
+                _decimal = value;
+                DrawArcMain();
+            }
+        }
+
         bool _precise = true;
         public bool AllowPrecise {
             get => _precise;
@@ -186,7 +195,7 @@ namespace Sandbox {
             }
         }
 
-        string ValueString => (enums.Count > 0)? enums[(int)(RawValue - Minimum)] : ((MaximumOverride != "" && RawValue == Maximum)? MaximumOverride : $"{RawValue}{Unit}");
+        string ValueString => Decimal? $"{(RawValue/10).ToString()}{Unit}" : (enums.Count > 0)? enums[(int)(RawValue - Minimum)] : ((MaximumOverride != "" && RawValue == Maximum)? MaximumOverride : $"{RawValue}{Unit}");
 
         void DrawArc(Path Arc, double value, bool overrideBase) {
             double angle_starting = FillStart? angle_start : angle_start - Math.Abs(angle_end - angle_start) * value * 0.9;
