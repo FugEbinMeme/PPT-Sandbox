@@ -195,7 +195,7 @@ namespace Sandbox {
             }
         }
 
-        string ValueString => Decimal? $"{(RawValue/10).ToString()}{Unit}" : (enums.Count > 0)? enums[(int)(RawValue - Minimum)] : ((MaximumOverride != "" && RawValue == Maximum)? MaximumOverride : $"{RawValue}{Unit}");
+        string ValueString => (enums.Count > 0)? enums[(int)(RawValue - Minimum)] : ((MaximumOverride != "" && RawValue == Maximum)? MaximumOverride : Decimal ?$"{(RawValue / 10).ToString()}{Unit}" : $"{RawValue}{Unit}");
 
         void DrawArc(Path Arc, double value, bool overrideBase) {
             double angle_starting = FillStart? angle_start : angle_start - Math.Abs(angle_end - angle_start) * value * 0.9;
