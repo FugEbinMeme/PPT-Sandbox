@@ -2012,10 +2012,14 @@ namespace Sandbox {
                     } else {
                         Game.WriteByteArray(                        //else, set custom code
                             new IntPtr(0x1417D4045),
-                            ConvertByteString("B0 03 90 90 90 90")
+                            ConvertByteString("E9 2D 02 00 00 90")
+                        );
+                        Game.WriteByteArray(                        //Tiny puyo check - make sure your piece isnt out of bounds for versus mode
+                            new IntPtr(0x1417D4277),                //I do this internally rather than externally since asm is easier for me than C# LOL
+                            ConvertByteString("B8 03 00 00 00 B9 06 00 00 00 38 C8 0F 86 C2 FD FF FF 80 3D 28 49 DC FE 08 0F 45 C1 E9 B3 FD FF FF")
                         );
 
-                        Game.WriteByte(new IntPtr(0x1417D4046), (byte)x);  //write value to custom code
+                        Game.WriteByte(new IntPtr(0x1417D4278), (byte)x);  //write value to custom code
                     }
                 }},
                 {yposp, x => {
@@ -2027,10 +2031,14 @@ namespace Sandbox {
                     } else {
                         Game.WriteByteArray(                        //else, set custom code
                             new IntPtr(0x1417D4058),
-                            ConvertByteString("B0 03 90 90 90 90")
+                            ConvertByteString("E9 F9 01 00 00 90")
+                        );
+                        Game.WriteByteArray(
+                            new IntPtr(0x1417D4256),
+                            ConvertByteString("B8 03 00 00 00 B9 0E 00 00 00 38 C8 0F 86 F6 FD FF FF 80 3D 49 49 DC FE 08 0F 45 C1 E9 E7 FD FF FF")
                         );
 
-                        Game.WriteByte(new IntPtr(0x1417D4059), (byte)x);  //write value to custom code
+                        Game.WriteByte(new IntPtr(0x1417D4257), (byte)x);  //write value to custom code
                     }
                 }},
                 {PuyoDelaySpeed, x =>
