@@ -244,6 +244,11 @@ namespace Sandbox {
         double oldValue;
         double lastY;
 
+        private void Wheel(object sender, MouseWheelEventArgs e) {
+            if (!Enabled) return;
+            RawValue += (double)e.Delta/120;
+        }
+
         void Down(object sender, MouseButtonEventArgs e) {
             if (Enabled && e.ChangedButton == MouseButton.Middle) {
                 RawValue = Default;

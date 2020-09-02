@@ -6,7 +6,7 @@
         <TextBlock VerticalAlignment="Center" x:Name="TitleText" />
 
         <Canvas Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="43" Height="39" Background="Transparent" Cursor="Hand" x:Name="ArcCanvas"
-                MouseDown="Down" MouseUp="Up" MouseMove="Move">
+                MouseDown="Down" MouseUp="Up" MouseMove="Move" MouseWheel="Wheel">
             <Path Stroke="#020202" x:Name="ArcBase" />
             <Path x:Name="ArcMain" />
         </Canvas>
