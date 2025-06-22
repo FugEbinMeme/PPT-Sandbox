@@ -1,6 +1,6 @@
 # PPT-Sandbox
 
-[![Discord - Join Chat](https://img.shields.io/badge/discord-join%20chat-blue)](https://discord.gg/vfrmzUV)
+[![Discord - Join Chat](https://img.shields.io/badge/discord-join%20chat-blue)](https://discord.gg/MGpTFsMDeh)
 
 A Puyo Puyo Tetris Trainer/Modding Tool
 
