@@ -54,7 +54,8 @@ namespace Sandbox {
                                     Input.ToolTip = "기본적으로, 뿌요뿌요 테트리스는 하드 드롭하지 않으면 [회전-> 이동-> 중력] 순서대로 입력을 처리하고, 그렇지 않으면 [회전-> 하드 드롭] 순서로 입력을 처리합니다.\n" +
                                                     "이 옵션을 키면, 항상 [이동 -> 회전 -> (중력 / 하드드롭] 순으로 처리하여 입력 수를 줄이고 부드러운 입력을 보여줍니다.\n" +
                                                     "홀드는 항상 다른 것보다 먼저 처리됩니다.";
-                                TG.Content = "20G";
+                                TG.Content = "20G (중력)";
+                                    TG.ToolTip = "CPU 플레이어에서는 작동하지 않습니다.";
 
                                 AutoLocking.Text = "블록 자동 놓기";
                                     RemoveAutoLock.Content = "블록 자동 놓기 해제";
@@ -69,6 +70,7 @@ namespace Sandbox {
                                 PreserveRot.ToolTip = "홀드 시 블록 회전 저장";
                             Unhold.Content = "홀드 시 블록의 위치 유지";
                                 Unhold.ToolTip = "홀드 시 블록 위치 저장";
+                            IRS.Content = "IRS & IHS 허용";
 
                         Harddrop.Text = "하드드롭 변형";
                             Float.Content = "떠있는 상태로 놓기";
@@ -189,6 +191,7 @@ namespace Sandbox {
                         MarginTime.Header = "마진 타임";
                             Margin.Text = "값";
                                 Margin.ToolTip = "테트리스 VS 테트리스에서는 적용되지 않습니다.";
+                            MargarineTime.Content = "테트리스 vs 테트리스 마진 타임";
 
                     GarbageHeader.Header = "방해 줄 / 방해 뿌요";
                         Detection.Header = "     판정";
@@ -268,8 +271,11 @@ namespace Sandbox {
                                 Autolockdial.Title = "자동 드랍 타이머";
                                     Autolockdial.ToolTip = "블록이 아래에 닿은 후 자동 드랍되기까지의 프레임을 나타낸 값입니다.";
                                 PuyoDelaySpeed.Title = "뿌요 딜레이 속도 변경";
+                                Speed.Title = "테트리스 딜레이 속도 조절기";
+                                EntryT.Title = "스폰딜레이 지연(테트리스)";
+                                EntryP.Title = "스폰딜레이 지연(뿌요)";
 
-                        Gravity.Header = "중력";
+                    Gravity.Header = "중력";
                             Level.Text = "레벨";
                             GravityExplanation.Text = "값이 높을수록 보드의 맨 아래에 도달하는 데 걸리는 시간이 줄어듭니다. Sweet (달콤) / Mild (순함) / Normal (보통) / Hot (매콤) / Spicy (강렬) 핸디캡은 특정 레벨에 할당됩니다.\n" +
                                                       "달콤은 레벨 1, 순함은 레벨 2, 보통은 레벨 3, 매콤은 레벨 5, 그리고 강렬은 레벨 7입니다.\n" +
@@ -343,8 +349,9 @@ namespace Sandbox {
                                                     "オンにすると、常に[移動->回転->(重力/ハードドロップ)]になり、よりスムーズな操作性と入力漏れの減少につながる" +
                                                     "ホールドは常に最初に処理される";
                                 TG.Content = "20G";
+                                    TG.ToolTip = "Doesn't work on CPU players";
 
-                                AutoLocking.Text = "自動接地";
+                    AutoLocking.Text = "自動接地";
                                     RemoveAutoLock.Content = "自動接地を無効化";
                                     TGMAutoLock.Content = "ARIKA式自動接地";
                                         TGMAutoLock.ToolTip = "接地時間のタイマーは新しい最低の高さに来るときのみリセットされる\n" +
@@ -357,6 +364,7 @@ namespace Sandbox {
                                     PreserveRot.ToolTip = "ホールドしても回転はリセットされない";
                                 Unhold.Content = "ホールド時に位置を保持する";
                                     Unhold.ToolTip = "ホールドしても位置はリセットされない";
+                                IRS.Content = "Allow IRS & IHS";
 
                             Harddrop.Text = "ハードドロップ変更";
                                 Float.Content = "フローティングロック";
@@ -476,6 +484,7 @@ namespace Sandbox {
                     MarginTime.Header = "マージンタイム";
                         Margin.Text = "値";
                             Margin.ToolTip = "テト vs テトには影響しない";
+                        MargarineTime.Content = "Enable Margin Time in Tetris vs Tetris";
 
                     GarbageHeader.Header = "おじゃま";
                         Detection.Header = "     検出";
