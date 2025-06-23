@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPT-Sandbox", "PPT-Sandbox\PPT-Sandbox.csproj", "{C4EFF629-59E4-44A0-AB4B-ED610518EE82}"
+	ProjectSection(ProjectDependencies) = postProject
+		{35B5C872-D829-428F-9DFA-8EF2B4DE194C} = {35B5C872-D829-428F-9DFA-8EF2B4DE194C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessMemory", "..\ProcessMemory\ProcessMemory\ProcessMemory.csproj", "{35B5C872-D829-428F-9DFA-8EF2B4DE194C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +23,12 @@ Global
 		{C4EFF629-59E4-44A0-AB4B-ED610518EE82}.Prerelease|x64.Build.0 = Prerelease|x64
 		{C4EFF629-59E4-44A0-AB4B-ED610518EE82}.Release|x64.ActiveCfg = Release|x64
 		{C4EFF629-59E4-44A0-AB4B-ED610518EE82}.Release|x64.Build.0 = Release|x64
+		{35B5C872-D829-428F-9DFA-8EF2B4DE194C}.Debug|x64.ActiveCfg = Debug|x64
+		{35B5C872-D829-428F-9DFA-8EF2B4DE194C}.Debug|x64.Build.0 = Debug|x64
+		{35B5C872-D829-428F-9DFA-8EF2B4DE194C}.Prerelease|x64.ActiveCfg = Release|x64
+		{35B5C872-D829-428F-9DFA-8EF2B4DE194C}.Prerelease|x64.Build.0 = Release|x64
+		{35B5C872-D829-428F-9DFA-8EF2B4DE194C}.Release|x64.ActiveCfg = Release|x64
+		{35B5C872-D829-428F-9DFA-8EF2B4DE194C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
